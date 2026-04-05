@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Axion App Studio — Applications PWA made in France</title>
+<meta name="description" content="Axion App Studio crée des applications web PWA simples, rapides et accessibles pour les particuliers et les professionnels.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--b2:#7C3AED;--b1:#2563EB;--c1:#FF6B35;--txt:#0A0A0F;--txm:#3D3D50;--txl:#8888A0;--bg:#FAFAFA;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--txt);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 24px;display:flex;align-items:center;background:rgba(250,250,250,.95);border-bottom:1px solid rgba(0,0,0,.08)}
+.nav-in{width:100%;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;font-weight:900;font-size:1.3rem;letter-spacing:-.04em;color:#7C3AED}
+.nav-mark{display:none}
+.nav-cta{background:#7C3AED;color:#fff;padding:9px 20px;border-radius:50px;font-size:.83rem;font-weight:600}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 80px;position:relative;overflow:hidden}
+.blob{position:absolute;border-radius:50%;pointer-events:none}
+.b1{width:500px;height:500px;background:radial-gradient(circle,rgba(255,107,53,.13),transparent 65%);top:-120px;left:-150px}
+.b2{width:450px;height:450px;background:radial-gradient(circle,rgba(124,58,237,.11),transparent 65%);top:60px;right:-120px}
+.b3{width:380px;height:380px;background:radial-gradient(circle,rgba(236,72,153,.09),transparent 65%);bottom:-60px;left:28%}
+.badge{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(0,0,0,.09);padding:6px 14px;border-radius:50px;font-size:.75rem;font-weight:600;color:var(--txm);margin-bottom:26px;position:relative;z-index:1}
+.dot{width:7px;height:7px;border-radius:50%;background:#7C3AED;animation:p 2s ease-in-out infinite}
+@keyframes p{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
+h1{font-size:clamp(2.2rem,7vw,4rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:20px;position:relative;z-index:1}
+.hi{color:#7C3AED}
+.sub{font-size:1rem;color:var(--txm);line-height:1.8;max-width:480px;margin:0 auto 36px;position:relative;z-index:1}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn-g{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-size:.9rem;font-weight:600;background:linear-gradient(135deg,#FF6B35,#7C3AED);color:#fff;box-shadow:0 6px 22px rgba(124,58,237,.28)}
+.btn-w{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:50px;font-size:.9rem;font-weight:600;background:#fff;color:var(--txt);border:1.5px solid rgba(0,0,0,.12)}
+
+.stats{padding:52px 24px;background:#fff;border-top:1px solid rgba(0,0,0,.07);border-bottom:1px solid rgba(0,0,0,.07)}
+.stats-in{max-width:600px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}
+.sn{font-size:1.9rem;font-weight:800;color:#7C3AED}
+.sl{font-size:.77rem;color:var(--txl);margin-top:5px}
+
+.apps{padding:80px 24px}
+.apps-in{max-width:860px;margin:0 auto}
+.tag{display:inline-flex;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.18);color:#7C3AED;padding:5px 14px;border-radius:50px;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.ttl{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:10px}
+.stxt{font-size:.9rem;color:var(--txm);line-height:1.75}
+.card{background:#fff;border-radius:22px;overflow:hidden;border:1px solid rgba(0,0,0,.08);box-shadow:0 4px 22px rgba(0,0,0,.06);margin-top:36px}
+.card-top{padding:30px;background:linear-gradient(135deg,#EFF6FF,#F5F3FF)}
+.card-ico{width:56px;height:56px;border-radius:15px;background:linear-gradient(135deg,#2563EB,#60A5FA);display:grid;place-items:center;font-size:1.4rem;margin-bottom:14px}
+.card-name{font-size:1.3rem;font-weight:800;margin-bottom:8px}
+.card-desc{font-size:.86rem;color:var(--txm);line-height:1.7;margin-bottom:14px}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+@media(min-width:500px){.feats{grid-template-columns:repeat(3,1fr)}}
+.feat{font-size:.77rem;color:var(--txm);display:flex;align-items:center;gap:6px}
+.feat::before{content:'✓';color:#2563EB;font-weight:800;flex-shrink:0}
+.card-bot{padding:18px 30px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(0,0,0,.07)}
+.tags{display:flex;gap:7px;flex-wrap:wrap}
+.t{background:var(--bg);border:1px solid rgba(0,0,0,.09);padding:4px 11px;border-radius:50px;font-size:.7rem;font-weight:600;color:var(--txm)}
+.lnk{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:50px;background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;font-size:.82rem;font-weight:600}
+.soon{background:rgba(0,0,0,.025);border:1.5px dashed rgba(0,0,0,.13);border-radius:18px;padding:38px;text-align:center;margin-top:12px}
+.soon-i{font-size:1.9rem;margin-bottom:10px}
+.soon-t{font-size:.97rem;font-weight:800;margin-bottom:6px;color:var(--txm)}
+.soon-s{font-size:.81rem;color:var(--txl);line-height:1.65}
+
+.sur-mesure{padding:80px 24px;background:#fff}
+.sur-in{max-width:860px;margin:0 auto}
+.sur-intro{background:linear-gradient(135deg,#0D0D1A,#1a1535);border-radius:22px;padding:44px 36px;margin-top:36px;margin-bottom:14px;position:relative;overflow:hidden}
+.sur-blob1{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(255,107,53,.18),transparent 70%);top:-100px;left:-80px;border-radius:50%}
+.sur-blob2{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 70%);bottom:-100px;right:-80px;border-radius:50%}
+.sur-ttl{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:#fff;margin-bottom:14px;position:relative;z-index:1}
+.sur-txt{font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:22px;position:relative;z-index:1}
+.sur-exemples{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;position:relative;z-index:1}
+.sur-ex{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:5px 13px;border-radius:50px;font-size:.75rem;font-weight:600;color:rgba(255,255,255,.7)}
+.sur-inclus{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1}
+@media(min-width:500px){.sur-inclus{grid-template-columns:repeat(3,1fr)}}
+.sur-item{display:flex;align-items:center;gap:7px;font-size:.8rem;color:rgba(255,255,255,.65)}
+.sur-item::before{content:'✓';color:#FF6B35;font-weight:800;flex-shrink:0}
+
+.form-card{background:#fff;border-radius:22px;border:1px solid rgba(0,0,0,.08);box-shadow:0 4px 22px rgba(0,0,0,.06);padding:32px}
+.form-ttl{font-size:1.1rem;font-weight:800;margin-bottom:6px}
+.form-sub{font-size:.84rem;color:var(--txm);margin-bottom:24px;line-height:1.6}
+.form-section{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#7C3AED;margin-bottom:12px;margin-top:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.fl-label{font-size:.78rem;font-weight:700;color:var(--txt)}
+.fl-opt{font-size:.72rem;color:var(--txl);font-weight:500}
+input,textarea,select{width:100%;padding:11px 14px;border:1.5px solid rgba(0,0,0,.12);border-radius:10px;font-size:.86rem;font-family:var(--font);color:var(--txt);background:#fff;outline:none;transition:border-color .15s}
+input:focus,textarea:focus,select:focus{border-color:#7C3AED}
+textarea{resize:vertical;min-height:100px}
+.radio-group{display:flex;flex-wrap:wrap;gap:8px}
+.radio-opt{display:flex;align-items:center;gap:6px;background:var(--bg);border:1.5px solid rgba(0,0,0,.1);padding:8px 14px;border-radius:50px;cursor:pointer;font-size:.81rem;font-weight:600;color:var(--txm);transition:.15s}
+.radio-opt input[type=radio]{width:auto;padding:0;border:none;accent-color:#7C3AED}
+.radio-opt:has(input:checked){border-color:#7C3AED;background:rgba(124,58,237,.06);color:#7C3AED}
+.btn-submit{width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#FF6B35,#7C3AED);color:#fff;font-size:.95rem;font-weight:700;border:none;cursor:pointer;margin-top:24px;font-family:var(--font)}
+.form-note{font-size:.74rem;color:var(--txl);text-align:center;margin-top:10px;line-height:1.6}
+
+.about{padding:80px 24px;background:var(--bg)}
+.about-in{max-width:660px;margin:0 auto;text-align:center}
+.acard{background:linear-gradient(135deg,#0D0D1A,#1a1535);border-radius:22px;padding:42px 30px;margin-top:34px;position:relative;overflow:hidden}
+.ab1{position:absolute;width:240px;height:240px;background:radial-gradient(circle,rgba(255,107,53,.18),transparent 70%);top:-80px;left:-60px;border-radius:50%}
+.ab2{position:absolute;width:240px;height:240px;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 70%);bottom:-80px;right:-60px;border-radius:50%}
+.av{width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#FF6B35,#7C3AED);display:grid;place-items:center;font-size:1.4rem;margin:0 auto 16px;position:relative;z-index:1}
+.an{font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:4px;position:relative;z-index:1}
+.ar{font-size:.77rem;color:rgba(255,255,255,.45);margin-bottom:16px;position:relative;z-index:1}
+.at{font-size:.85rem;color:rgba(255,255,255,.68);line-height:1.8;position:relative;z-index:1}
+.chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:16px;position:relative;z-index:1}
+.chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:4px 12px;border-radius:50px;font-size:.7rem;font-weight:600;color:rgba(255,255,255,.55)}
+
+.cta{padding:80px 24px;text-align:center}
+.cta h2{font-size:clamp(1.7rem,5vw,2.5rem);font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+.cta p{font-size:.9rem;color:var(--txm);margin-bottom:28px;line-height:1.75}
+
+footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
+.foot-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.foot-links a{font-size:.76rem;color:var(--txl);font-weight:500}
+.foot-copy{font-size:.71rem;color:var(--txl)}
+
+@media(max-width:480px){
+  .card-top,.card-bot{padding:20px}
+  .sur-intro{padding:28px 20px}
+  .form-card{padding:22px}
+  .acard{padding:28px 18px}
+  .stats-in{grid-template-columns:1fr;gap:22px}
+  .btns{flex-direction:column;align-items:center}
+  .btn-g,.btn-w{width:100%;max-width:280px;justify-content:center}
+  .card-bot{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="/" class="nav-logo">AXION</a>
+    <a href="#formulaire" class="nav-cta">Projet sur mesure</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="badge"><div class="dot"></div>Studio PWA · Made in France 🇫🇷</div>
+  <h1>Des apps qui<br><span class="hi">simplifient</span><br>votre quotidien</h1>
+  <p class="sub">Axion Studio conçoit des applications web progressives simples, rapides et accessibles — pour les particuliers, les familles et les professionnels.</p>
+  <div class="btns">
+    <a href="#apps" class="btn-g">Voir nos applications →</a>
+    <a href="#formulaire" class="btn-w">🛠️ Projet sur mesure</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stats-in">
+    <div><div class="sn">PWA</div><div class="sl">Technologie web moderne</div></div>
+    <div><div class="sn">100%</div><div class="sl">Sans pub, données privées</div></div>
+    <div><div class="sn">🇫🇷</div><div class="sl">Développé en France</div></div>
+  </div>
+</div>
+
+<section class="apps" id="apps">
+  <div class="apps-in">
+    <div class="tag">✦ Nos applications</div>
+    <div class="ttl">Des outils pensés<br>pour vous faciliter la vie</div>
+    <p class="stxt">Chaque application résout un vrai problème, sans complexité inutile.</p>
+    <div class="card">
+      <div class="card-top">
+        <div class="card-ico">🚗</div>
+        <div class="card-name">AutoCarnet</div>
+        <div class="card-desc">Le carnet d'entretien voiture numérique. Suivez vos véhicules, recevez vos rappels CT et vidange automatiquement, gérez votre flotte professionnelle.</div>
+        <div class="feats">
+          <div class="feat">Rappels automatiques</div>
+          <div class="feat">Historique complet</div>
+          <div class="feat">Export PDF &amp; CSV</div>
+          <div class="feat">Prix carburant</div>
+          <div class="feat">Mode équipe</div>
+          <div class="feat">Hors ligne</div>
+        </div>
+      </div>
+      <div class="card-bot">
+        <div class="tags">
+          <div class="t">Gratuit</div>
+          <div class="t">Famille 1,99€/mois</div>
+          <div class="t">Pro 4,99€/mois</div>
+        </div>
+        <a href="https://autocarnet.fr" target="_blank" class="lnk">Découvrir →</a>
+      </div>
+    </div>
+    <div class="soon">
+      <div class="soon-i">🚀</div>
+      <div class="soon-t">Prochaine application en cours…</div>
+      <div class="soon-s">Axion Studio développe constamment de nouveaux outils. Revenez bientôt.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sur-mesure" id="sur-mesure">
+  <div class="sur-in">
+    <div class="tag">✦ Sur mesure</div>
+    <div class="ttl">Vous avez un projet ?<br>On le construit.</div>
+    <p class="stxt">Artisan, association, commerçant, TPE — si vous avez besoin d'un outil numérique simple et efficace, Axion Studio peut le créer pour vous.</p>
+
+    <div class="sur-intro">
+      <div class="sur-blob1"></div>
+      <div class="sur-blob2"></div>
+      <div class="sur-ttl">Une application pensée<br>pour votre métier.</div>
+      <div class="sur-txt">Quel que soit votre secteur, on conçoit un outil adapté à vos besoins réels — sans fonctionnalités inutiles, sans budget d'agence. Quelques exemples :</div>
+      <div class="sur-exemples">
+        <div class="sur-ex">🔧 Artisan du bâtiment</div>
+        <div class="sur-ex">🍽️ Restaurant / traiteur</div>
+        <div class="sur-ex">🏋️ Coach / salle de sport</div>
+        <div class="sur-ex">🏘️ Syndic / copropriété</div>
+        <div class="sur-ex">🧑‍🤝‍🧑 Association</div>
+        <div class="sur-ex">🚚 Transporteur / livreur</div>
+        <div class="sur-ex">🏥 Praticien de santé</div>
+        <div class="sur-ex">📦 Commerce / boutique</div>
+        <div class="sur-ex">🌾 Agriculteur / maraîcher</div>
+        <div class="sur-ex">🎨 Artiste / galerie</div>
+        <div class="sur-ex">🏗️ Bureau d'études / cabinet</div>
+        <div class="sur-ex">Et bien d'autres…</div>
+      </div>
+      <div class="sur-inclus">
+        <div class="sur-item">PWA installable sur mobile</div>
+        <div class="sur-item">Fonctionne hors ligne</div>
+        <div class="sur-item">iPhone &amp; Android</div>
+        <div class="sur-item">Design personnalisé</div>
+        <div class="sur-item">Livraison rapide</div>
+        <div class="sur-item">Hébergement inclus 1 an</div>
+      </div>
+    </div>
+
+    <div class="form-card" id="formulaire">
+      <div class="form-ttl">💬 Décrivez votre projet</div>
+      <div class="form-sub">Remplissez ce formulaire en 2 minutes — on vous répond sous 24h avec une proposition adaptée. C'est sans engagement.</div>
+
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <input type="hidden" name="bot-field" style="display:none">
+
+        <div class="form-section">Vos coordonnées</div>
+        <div class="form-row">
+          <div class="fg">
+            <label class="fl-label">Nom / Prénom *</label>
+            <input type="text" name="nom" placeholder="Jean Dupont" required>
+          </div>
+          <div class="fg">
+            <label class="fl-label">Email *</label>
+            <input type="email" name="email" placeholder="jean@exemple.fr" required>
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fl-label">Téléphone <span class="fl-opt">(optionnel)</span></label>
+          <input type="tel" name="telephone" placeholder="06 12 34 56 78">
+        </div>
+
+        <div class="form-section">Votre projet</div>
+        <div class="fg">
+          <label class="fl-label">Votre secteur / métier *</label>
+          <input type="text" name="secteur" placeholder="Ex : plombier, association sportive, restaurant…" required>
+        </div>
+        <div class="fg">
+          <label class="fl-label">Décrivez votre besoin *</label>
+          <textarea name="besoin" placeholder="Ex : Je voudrais une application pour gérer mes rendez-vous clients, envoyer des devis et suivre mes paiements…" required></textarea>
+        </div>
+        <div class="fg">
+          <label class="fl-label">Vous avez déjà un site web ?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="site" value="oui"> Oui</label>
+            <label class="radio-opt"><input type="radio" name="site" value="non"> Non</label>
+            <label class="radio-opt"><input type="radio" name="site" value="en cours"> En cours</label>
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fl-label">Délai souhaité</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="delai" value="urgent"> Dès que possible</label>
+            <label class="radio-opt"><input type="radio" name="delai" value="1-2 mois"> Dans 1-2 mois</label>
+            <label class="radio-opt"><input type="radio" name="delai" value="pas urgent"> Pas urgent</label>
+          </div>
+        </div>
+
+        <div class="form-section">Budget approximatif</div>
+        <div class="fg">
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="budget" value="je ne sais pas"> Je ne sais pas</label>
+            <label class="radio-opt"><input type="radio" name="budget" value="moins 500"> Moins de 500€</label>
+            <label class="radio-opt"><input type="radio" name="budget" value="500-1500"> 500 – 1 500€</label>
+            <label class="radio-opt"><input type="radio" name="budget" value="1500-3000"> 1 500 – 3 000€</label>
+            <label class="radio-opt"><input type="radio" name="budget" value="plus 3000"> Plus de 3 000€</label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">🚀 Envoyer ma demande</button>
+        <div class="form-note">Réponse garantie sous 24h · Sans engagement · 100% confidentiel</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-in">
+    <div class="tag">✦ Le studio</div>
+    <div class="ttl">Qui sommes-nous ?</div>
+    <p class="stxt">Un développeur indépendant passionné par les outils simples qui font vraiment la différence.</p>
+    <div class="acard">
+      <div class="ab1"></div>
+      <div class="ab2"></div>
+      <div class="av">👨‍💻</div>
+      <div class="an">Axion Studio</div>
+      <div class="ar">Développeur PWA indépendant · Finistère, France</div>
+      <div class="at">Axion Studio est un studio de développement solo spécialisé dans les applications web progressives (PWA). Chaque outil est conçu avec une obsession pour la simplicité, la rapidité et la vraie utilité — sans fioritures ni abonnements abusifs.</div>
+      <div class="chips">
+        <div class="chip">HTML / CSS / JS</div>
+        <div class="chip">PWA</div>
+        <div class="chip">Supabase</div>
+        <div class="chip">Netlify</div>
+        <div class="chip">Made in Bretagne 🌊</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Une idée d'application ?</h2>
+  <p>Produit SaaS ou projet sur mesure — on adore les défis.<br>Parlons-en, c'est sans engagement.</p>
+  <a href="#formulaire" class="btn-g">💬 Décrire mon projet</a>
+</section>
+
+<footer>
+  <div class="foot-links">
+    <a href="#apps">Applications</a>
+    <a href="#sur-mesure">Sur mesure</a>
+    <a href="#about">Studio</a>
+    <a href="https://autocarnet.fr">AutoCarnet</a>
+    <a href="mailto:contact@axionappstudio.com">Contact</a>
+  </div>
+  <div class="foot-copy">© 2026 Axion App Studio · Développé avec ❤️ en Bretagne · SIRET 914 511 639 00025</div>
+</footer>
+
+</body>
+</html>
