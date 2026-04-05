@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qu'est-ce qu'une PWA ? — Axion App Studio</title>
+<meta name="description" content="Une PWA, c'est quoi ? On vous explique simplement ce qu'est une application web progressive et pourquoi c'est idéal pour les petites entreprises.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--b2:#7C3AED;--txt:#0A0A0F;--txm:#3D3D50;--txl:#8888A0;--bg:#FAFAFA;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--txt)}
+a{text-decoration:none;color:var(--b2)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 24px;display:flex;align-items:center;background:rgba(250,250,250,.95);border-bottom:1px solid rgba(0,0,0,.08)}
+.nav-in{width:100%;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:900;font-size:1.3rem;letter-spacing:-.04em;color:#7C3AED}
+.nav-back{font-size:.83rem;font-weight:600;color:var(--txm)}
+.wrap{max-width:680px;margin:0 auto;padding:96px 24px 80px}
+.art-tag{display:inline-flex;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15);color:#7C3AED;padding:3px 12px;border-radius:50px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+h1{font-size:clamp(1.6rem,5vw,2.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:12px}
+.meta{font-size:.78rem;color:var(--txl);margin-bottom:36px}
+h2{font-size:1.1rem;font-weight:800;margin-bottom:10px;margin-top:32px;color:var(--txt)}
+p{font-size:.92rem;color:var(--txm);line-height:1.85;margin-bottom:14px}
+ul{padding-left:20px;margin-bottom:14px}
+li{font-size:.92rem;color:var(--txm);line-height:1.85;margin-bottom:6px}
+.highlight{background:linear-gradient(135deg,#EFF6FF,#F5F3FF);border-left:3px solid #7C3AED;border-radius:0 12px 12px 0;padding:16px 20px;margin:24px 0}
+.highlight p{margin-bottom:0;font-weight:500;color:var(--txt)}
+.cta-block{background:linear-gradient(135deg,#0D0D1A,#1a1535);border-radius:18px;padding:32px;margin-top:40px;text-align:center}
+.cta-block h3{color:#fff;font-size:1.1rem;font-weight:800;margin-bottom:8px}
+.cta-block p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:20px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:50px;background:linear-gradient(135deg,#FF6B35,#7C3AED);color:#fff;font-size:.88rem;font-weight:700}
+footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center;margin-top:60px}
+.foot-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.foot-links a{font-size:.76rem;color:var(--txl);font-weight:500}
+.foot-copy{font-size:.71rem;color:var(--txl)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="/" class="nav-logo">AXION</a>
+    <a href="/blog" class="nav-back">← Blog</a>
+  </div>
+</nav>
+<div class="wrap">
+  <div class="art-tag">Guide</div>
+  <h1>Qu'est-ce qu'une PWA et pourquoi votre entreprise en a besoin</h1>
+  <div class="meta">Avril 2026 · 5 min de lecture · Par Axion App Studio</div>
 
+  <p>Vous avez peut-être entendu parler des PWA sans vraiment savoir ce que c'est. Pas de panique — on vous explique tout simplement, sans jargon technique.</p>
+
+  <h2>PWA : la définition simple</h2>
+  <p>PWA signifie <strong>Progressive Web App</strong>. En français : une application web progressive. Concrètement, c'est un site web qui se comporte exactement comme une application mobile — on peut l'installer sur son téléphone, l'utiliser sans internet, recevoir des notifications, et y accéder en un tap depuis l'écran d'accueil.</p>
+
+  <div class="highlight">
+    <p>💡 Une PWA, c'est le meilleur des deux mondes : la simplicité d'un site web + les fonctionnalités d'une appli mobile, sans passer par l'App Store ni Google Play.</p>
+  </div>
+
+  <h2>Comment ça fonctionne concrètement ?</h2>
+  <p>L'utilisateur visite votre application depuis son navigateur (Chrome, Safari…). Une bannière lui propose d'installer l'appli sur son téléphone. En un tap, l'icône apparaît sur son écran d'accueil — exactement comme n'importe quelle appli. La prochaine fois, il ouvre l'appli directement, même sans connexion internet.</p>
+
+  <h2>Pourquoi c'est idéal pour les petites entreprises ?</h2>
+  <p>Une application native (celle qu'on trouve sur l'App Store) coûte entre 10 000€ et 50 000€ à développer, nécessite des mises à jour constantes, et doit être validée par Apple et Google. C'est hors de portée pour la plupart des artisans et petites entreprises.</p>
+  <p>Une PWA, c'est :</p>
+  <ul>
+    <li><strong>Beaucoup moins cher</strong> à développer et maintenir</li>
+    <li><strong>Accessible depuis n'importe quel appareil</strong> — iPhone, Android, PC, tablette</li>
+    <li><strong>Mise à jour instantanée</strong> — pas besoin de repasser par l'App Store</li>
+    <li><strong>Fonctionne hors ligne</strong> — même sans connexion internet</li>
+    <li><strong>Pas de commission</strong> Apple ou Google (30% sur les achats in-app)</li>
+  </ul>
+
+  <h2>Des exemples concrets</h2>
+  <p>Une PWA peut être utilisée pour quasiment n'importe quel besoin professionnel :</p>
+  <ul>
+    <li>Un plombier qui gère ses devis et rendez-vous depuis son téléphone</li>
+    <li>Une association qui suit ses adhérents et envoie des notifications</li>
+    <li>Un restaurant qui gère ses commandes internes en cuisine</li>
+    <li>Un coach sportif qui partage les programmes d'entraînement avec ses clients</li>
+    <li>Un commerçant qui digitalise son programme de fidélité</li>
+  </ul>
+
+  <h2>Et les limites ?</h2>
+  <p>Les PWA ont quelques limitations par rapport aux applications natives : accès restreint à certains capteurs du téléphone (Bluetooth, NFC), et sur iPhone, certaines fonctionnalités comme les notifications push sont parfois limitées selon la version d'iOS. Pour 95% des usages professionnels courants, ces limites ne posent aucun problème.</p>
+
+  <div class="highlight">
+    <p>✅ Pour la grande majorité des besoins des artisans, TPE et associations, une PWA répond parfaitement — à une fraction du coût d'une application native.</p>
+  </div>
+
+  <h2>En résumé</h2>
+  <p>Si vous avez un besoin numérique simple — gérer vos clients, suivre vos stocks, organiser vos rendez-vous, communiquer avec votre équipe — une PWA est probablement la solution la plus rapide, la plus abordable et la plus efficace pour votre situation.</p>
+
+  <div class="cta-block">
+    <h3>Vous avez un projet en tête ?</h3>
+    <p>Décrivez-nous votre besoin en 2 minutes — on vous répond sous 24h avec une proposition adaptée à votre activité et votre budget.</p>
+    <a href="/#formulaire" class="cta-btn">💬 Parler de mon projet</a>
+  </div>
+</div>
+<footer>
+  <div class="foot-links">
+    <a href="/">Accueil</a>
+    <a href="/blog">Blog</a>
+    <a href="/mentions-legales">Mentions légales</a>
+  </div>
+  <div class="foot-copy">© 2026 Axion App Studio</div>
+</footer>
+</body>
+</html>
