@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog — Axion App Studio</title>
+<meta name="description" content="Conseils, guides et ressources sur les applications PWA pour artisans, TPE et associations. Par Axion App Studio.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--b2:#7C3AED;--txt:#0A0A0F;--txm:#3D3D50;--txl:#8888A0;--bg:#FAFAFA;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--txt)}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 24px;display:flex;align-items:center;background:rgba(250,250,250,.95);border-bottom:1px solid rgba(0,0,0,.08)}
+.nav-in{width:100%;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:900;font-size:1.3rem;letter-spacing:-.04em;color:#7C3AED}
+.nav-back{font-size:.83rem;font-weight:600;color:var(--txm)}
+.wrap{max-width:800px;margin:0 auto;padding:96px 24px 80px}
+.page-ttl{font-size:1.8rem;font-weight:800;letter-spacing:-.03em;margin-bottom:6px}
+.page-sub{font-size:.9rem;color:var(--txm);margin-bottom:48px;line-height:1.7}
+.articles{display:flex;flex-direction:column;gap:20px}
+.article-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:18px;padding:28px;transition:.15s}
+.article-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);transform:translateY(-2px)}
+.art-tag{display:inline-flex;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15);color:#7C3AED;padding:3px 12px;border-radius:50px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.art-ttl{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;line-height:1.3}
+.art-desc{font-size:.86rem;color:var(--txm);line-height:1.7;margin-bottom:14px}
+.art-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.art-date{font-size:.75rem;color:var(--txl);font-weight:500}
+.art-lnk{font-size:.82rem;font-weight:700;color:#7C3AED}
+footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center;margin-top:60px}
+.foot-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.foot-links a{font-size:.76rem;color:var(--txl);font-weight:500}
+.foot-copy{font-size:.71rem;color:var(--txl)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="/" class="nav-logo">AXION</a>
+    <a href="/" class="nav-back">← Accueil</a>
+  </div>
+</nav>
+<div class="wrap">
+  <div class="page-ttl">Blog</div>
+  <p class="page-sub">Conseils pratiques sur les applications PWA pour les artisans, TPE et associations qui veulent se digitaliser simplement et sans se ruiner.</p>
+  <div class="articles">
+    <a href="/blog/pwa-kesako" class="article-card">
+      <div class="art-tag">Guide</div>
+      <div class="art-ttl">Qu'est-ce qu'une PWA et pourquoi votre entreprise en a besoin</div>
+      <div class="art-desc">Une PWA, c'est quoi exactement ? On vous explique simplement ce que c'est, comment ça fonctionne, et pourquoi c'est la solution idéale pour les petites entreprises qui veulent leur propre application sans exploser leur budget.</div>
+      <div class="art-meta">
+        <div class="art-date">Avril 2026 · 5 min de lecture</div>
+        <div class="art-lnk">Lire l'article →</div>
+      </div>
+    </a>
+    <a href="/blog/pwa-vs-app-mobile" class="article-card">
+      <div class="art-tag">Comparatif</div>
+      <div class="art-ttl">Application mobile vs PWA : ce que les artisans doivent savoir</div>
+      <div class="art-desc">App Store, Google Play, PWA… difficile de s'y retrouver. On compare les deux solutions pour vous aider à choisir la plus adaptée à votre activité, votre budget et vos clients.</div>
+      <div class="art-meta">
+        <div class="art-date">Avril 2026 · 6 min de lecture</div>
+        <div class="art-lnk">Lire l'article →</div>
+      </div>
+    </a>
+    <a href="/blog/5-metiers-pwa" class="article-card">
+      <div class="art-tag">Inspiration</div>
+      <div class="art-ttl">5 métiers qui gagneraient à avoir leur propre application</div>
+      <div class="art-desc">Plombier, coach sportif, restaurateur, association, commerçant… Ces métiers ont un point commun : une application simple pourrait leur faire gagner des heures chaque semaine. On vous explique comment.</div>
+      <div class="art-meta">
+        <div class="art-date">Avril 2026 · 7 min de lecture</div>
+        <div class="art-lnk">Lire l'article →</div>
+      </div>
+    </a>
+  </div>
+</div>
+<footer>
+  <div class="foot-links">
+    <a href="/">Accueil</a>
+    <a href="/#sur-mesure">Sur mesure</a>
+    <a href="/mentions-legales">Mentions légales</a>
+  </div>
+  <div class="foot-copy">© 2026 Axion App Studio</div>
+</footer>
+</body>
+</html>
