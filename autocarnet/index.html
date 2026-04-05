@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AutoCarnet — Carnet d'entretien voiture numérique | Axion App Studio</title>
+<meta name="description" content="AutoCarnet est l'application PWA gratuite pour suivre l'entretien de vos véhicules. Rappels CT, vidange, gestion de flotte. Par Axion App Studio.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--b2:#7C3AED;--b1:#2563EB;--c1:#FF6B35;--txt:#0A0A0F;--txm:#3D3D50;--txl:#8888A0;--bg:#FAFAFA;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--txt);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 24px;display:flex;align-items:center;background:rgba(250,250,250,.95);border-bottom:1px solid rgba(0,0,0,.08)}
+.nav-in{width:100%;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:900;font-size:1.3rem;letter-spacing:-.04em;color:#7C3AED}
+.nav-back{font-size:.83rem;font-weight:600;color:var(--txm)}
+
+/* HERO */
+.hero{padding:96px 24px 60px;text-align:center;background:linear-gradient(160deg,#EFF6FF,#F5F3FF);position:relative;overflow:hidden}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(37,99,235,.2);color:#2563EB;padding:5px 14px;border-radius:50px;font-size:.73rem;font-weight:700;margin-bottom:20px}
+.hero-ico{width:72px;height:72px;border-radius:22px;background:linear-gradient(135deg,#2563EB,#60A5FA);display:grid;place-items:center;font-size:1.8rem;margin:0 auto 20px;box-shadow:0 8px 24px rgba(37,99,235,.25)}
+h1{font-size:clamp(1.8rem,6vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:14px}
+.hi{color:#2563EB}
+.hero-sub{font-size:.97rem;color:var(--txm);line-height:1.8;max-width:480px;margin:0 auto 32px}
+.btn-main{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-size:.92rem;font-weight:700;background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;box-shadow:0 6px 22px rgba(37,99,235,.3);margin-bottom:10px}
+.btn-sec{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:50px;font-size:.92rem;font-weight:600;background:#fff;color:var(--txt);border:1.5px solid rgba(0,0,0,.12);margin-left:8px}
+.trust{font-size:.75rem;color:var(--txl);margin-top:14px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.trust span::before{content:'✓ ';color:#2563EB;font-weight:800}
+
+/* MOCKUP */
+.mockup-wrap{padding:8px 24px 52px;display:flex;justify-content:center}
+.mockup{background:linear-gradient(155deg,#1E3A8A,#3B82F6);border-radius:22px;padding:18px;max-width:280px;width:100%;box-shadow:0 24px 60px rgba(37,99,235,.22)}
+.m-bar{display:flex;gap:5px;margin-bottom:13px}
+.m-bar span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.22)}
+.m-card{background:#fff;border-radius:12px;padding:12px;margin-bottom:8px}
+.m-row{display:flex;align-items:center;gap:9px}
+.m-ico{width:36px;height:36px;background:#EFF6FF;border-radius:8px;display:grid;place-items:center;font-size:1rem;flex-shrink:0}
+.m-name{font-size:.82rem;font-weight:800}
+.m-sub{font-size:.65rem;color:var(--txm);margin-top:1px}
+.m-ok{margin-left:auto;background:#ECFDF5;color:#059669;font-size:.62rem;font-weight:800;padding:2px 7px;border-radius:20px;flex-shrink:0}
+.m-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:10px}
+.m-st{background:#F8FAFC;border-radius:6px;padding:6px;text-align:center}
+.m-sv{font-size:.74rem;font-weight:800}
+.m-sl{font-size:.55rem;color:var(--txm);margin-top:1px}
+.m-notif{background:rgba(255,255,255,.13);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:9px}
+.m-ntxt{font-size:.7rem;color:#fff;line-height:1.45}
+.m-ntxt strong{display:block;font-weight:800}
+
+/* STATS */
+.stats{padding:44px 24px;background:#2563EB}
+.stats-in{max-width:700px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:20px;text-align:center}
+@media(min-width:560px){.stats-in{grid-template-columns:repeat(4,1fr)}}
+.sn{font-size:1.8rem;font-weight:900;color:#fff;line-height:1;letter-spacing:-.03em}
+.sl{font-size:.72rem;color:rgba(255,255,255,.6);margin-top:5px;font-weight:600}
+
+/* FEATURES */
+.features{padding:72px 24px}
+.sec-in{max-width:860px;margin:0 auto}
+.tag{display:inline-flex;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.18);color:#2563EB;padding:5px 14px;border-radius:50px;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.ttl{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:10px}
+.stxt{font-size:.9rem;color:var(--txm);line-height:1.75;margin-bottom:32px}
+.feat-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+.feat{background:#fff;border-radius:16px;padding:20px;border:1px solid rgba(0,0,0,.07)}
+.feat-ico{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;font-size:1rem;margin-bottom:10px}
+.fi-b{background:#EFF6FF}.fi-g{background:#ECFDF5}.fi-o{background:#FFFBEB}.fi-p{background:#F5F3FF}.fi-r{background:#FEF2F2}.fi-c{background:#ECFEFF}
+.feat-t{font-size:.88rem;font-weight:800;margin-bottom:5px}
+.feat-d{font-size:.8rem;color:var(--txm);line-height:1.65}
+
+/* PRICING */
+.pricing{padding:72px 24px;background:#fff}
+.pricing-grid{max-width:680px;margin:28px auto 0;display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:500px){.pricing-grid{grid-template-columns:repeat(3,1fr)}}
+.price-c{border:1.5px solid rgba(0,0,0,.08);border-radius:18px;padding:22px;position:relative;display:flex;flex-direction:column}
+.price-c.hot{border-color:#2563EB;background:#EFF6FF}
+.p-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;font-size:.65rem;font-weight:800;padding:3px 12px;border-radius:20px;white-space:nowrap}
+.p-plan{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--txm);margin-bottom:8px}
+.p-amt{font-size:2rem;font-weight:900;letter-spacing:-.04em;margin-bottom:2px}
+.p-per{font-size:.74rem;color:var(--txl);margin-bottom:16px}
+.p-feats{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:18px;flex:1}
+.p-feats li{font-size:.8rem;color:var(--txm);display:flex;align-items:center;gap:7px}
+.ck{color:#2563EB;font-weight:800;font-size:.8rem;flex-shrink:0}
+.p-cta{display:block;text-align:center;padding:11px;border-radius:10px;font-size:.84rem;font-weight:700;margin-top:auto}
+.p-cta.full{background:#2563EB;color:#fff}
+.p-cta.outline{background:transparent;color:#2563EB;border:1.5px solid #2563EB}
+
+/* AVIS */
+.avis{padding:72px 24px;background:var(--bg)}
+.avis-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:28px;max-width:860px;margin-left:auto;margin-right:auto}
+@media(min-width:560px){.avis-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:860px){.avis-grid{grid-template-columns:repeat(3,1fr)}}
+.avis-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:16px;padding:22px}
+.stars{color:#F59E0B;font-size:.9rem;margin-bottom:10px}
+.avis-txt{font-size:.84rem;color:var(--txm);line-height:1.7;margin-bottom:14px;font-style:italic}
+.avis-author{display:flex;align-items:center;gap:10px}
+.avis-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#7C3AED);display:grid;place-items:center;color:#fff;font-size:.82rem;font-weight:800;flex-shrink:0}
+.avis-name{font-size:.82rem;font-weight:700}
+.avis-role{font-size:.72rem;color:var(--txl)}
+
+/* CTA */
+.cta-sec{padding:72px 24px;text-align:center;background:linear-gradient(155deg,#1E3A8A,#2563EB)}
+.cta-sec h2{color:#fff;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+.cta-sec p{color:rgba(255,255,255,.7);font-size:.9rem;line-height:1.75;margin-bottom:28px}
+.btn-w{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-size:.92rem;font-weight:800;background:#fff;color:#2563EB}
+.inst-note{margin-top:14px;font-size:.71rem;color:rgba(255,255,255,.45);line-height:2}
+
+footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
+.foot-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.foot-links a{font-size:.76rem;color:var(--txl);font-weight:500}
+.foot-copy{font-size:.71rem;color:var(--txl)}
+
+@media(max-width:480px){
+  .btn-sec{margin-left:0;margin-top:8px}
+  .hero .btn-main,.hero .btn-sec{width:100%;max-width:280px;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="/" class="nav-logo">AXION</a>
+    <a href="/" class="nav-back">← Accueil</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✦ Application by Axion Studio</div>
+  <div class="hero-ico">🚗</div>
+  <h1>Le carnet d'entretien<br>voiture qui <span class="hi">simplifie tout</span></h1>
+  <p class="hero-sub">Fini les carnets papier perdus. Rappels automatiques, historique complet, gestion de flotte — tout dans une appli gratuite sur votre téléphone.</p>
+  <div>
+    <a href="https://autocarnet.fr" target="_blank" class="btn-main">🚀 Essayer gratuitement</a>
+    <a href="#pricing" class="btn-sec">Voir les tarifs</a>
+  </div>
+  <div class="trust">
+    <span>Sans pub</span>
+    <span>Données privées</span>
+    <span>PWA installable</span>
+    <span>Gratuit pour toujours</span>
+  </div>
+</section>
+
+<!-- MOCKUP -->
+<div class="mockup-wrap">
+  <div class="mockup">
+    <div class="m-bar"><span></span><span></span><span></span></div>
+    <div class="m-card">
+      <div class="m-row">
+        <div class="m-ico">🚗</div>
+        <div style="flex:1;min-width:0">
+          <div class="m-name">Renault Clio</div>
+          <div class="m-sub">AB-123-CD · 48 200 km</div>
+        </div>
+        <div class="m-ok">✓ À jour</div>
+      </div>
+      <div class="m-stats">
+        <div class="m-st"><div class="m-sv">12</div><div class="m-sl">Entretiens</div></div>
+        <div class="m-st"><div class="m-sv">1 240€</div><div class="m-sl">Coût</div></div>
+        <div class="m-st"><div class="m-sv">Dans 2m</div><div class="m-sl">Révision</div></div>
+      </div>
+    </div>
+    <div class="m-notif">
+      <span style="font-size:1.1rem">🔔</span>
+      <div class="m-ntxt"><strong>Rappel vidange</strong>Dans 500 km — Peugeot 308</div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-in">
+    <div><div class="sn">44</div><div class="sl">Types d'interventions</div></div>
+    <div><div class="sn">200+</div><div class="sl">Modèles de véhicules</div></div>
+    <div><div class="sn">3</div><div class="sl">Plans disponibles</div></div>
+    <div><div class="sn">100%</div><div class="sl">Données privées</div></div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="sec-in">
+    <div class="tag">✦ Fonctionnalités</div>
+    <div class="ttl">Tout ce qu'il faut,<br>rien de superflu</div>
+    <p class="stxt">Un outil pensé pour gérer ses véhicules sans prise de tête.</p>
+    <div class="feat-grid">
+      <div class="feat"><div class="feat-ico fi-b">🔧</div><div class="feat-t">44 types d'interventions</div><div class="feat-d">Vidange, freins, pneus, CT, courroie… Tous les entretiens courants organisés par catégorie.</div></div>
+      <div class="feat"><div class="feat-ico fi-g">🔔</div><div class="feat-t">Rappels intelligents</div><div class="feat-d">Alertes automatiques par date et kilométrage. Plus jamais de CT raté ou de vidange oubliée.</div></div>
+      <div class="feat"><div class="feat-ico fi-o">⛽</div><div class="feat-t">Prix carburant en direct</div><div class="feat-d">Trouvez les stations les moins chères autour de vous. Données officielles gouvernementales.</div></div>
+      <div class="feat"><div class="feat-ico fi-p">📄</div><div class="feat-t">Gestion des documents</div><div class="feat-d">Carte grise, assurance, CT — tout centralisé avec alertes d'expiration automatiques.</div></div>
+      <div class="feat"><div class="feat-ico fi-c">👥</div><div class="feat-t">Mode équipe</div><div class="feat-d">Partagez vos véhicules avec votre famille ou équipe. Idéal pour les artisans et TPE.</div></div>
+      <div class="feat"><div class="feat-ico fi-r">📊</div><div class="feat-t">Stats & export PDF/CSV</div><div class="feat-d">Coût par km, dépenses annuelles. Export complet en un tap pour votre comptable.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="avis">
+  <div class="sec-in" style="text-align:center">
+    <div class="tag">✦ Avis utilisateurs</div>
+    <div class="ttl">Ils nous font confiance</div>
+    <p class="stxt">Des particuliers, familles et professionnels qui gèrent leurs véhicules avec AutoCarnet.</p>
+  </div>
+  <div class="avis-grid">
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <div class="avis-txt">"Enfin une appli simple pour suivre l'entretien de ma voiture. J'ai failli rater mon CT — maintenant j'ai le rappel 30 jours avant. Indispensable !"</div>
+      <div class="avis-author">
+        <div class="avis-avatar">ML</div>
+        <div>
+          <div class="avis-name">Marie L.</div>
+          <div class="avis-role">Particulière · Lyon</div>
+        </div>
+      </div>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <div class="avis-txt">"J'ai 4 véhicules utilitaires dans mon entreprise. AutoCarnet Pro me permet de tout suivre depuis mon téléphone. Mes gars peuvent aussi ajouter les entretiens directement."</div>
+      <div class="avis-author">
+        <div class="avis-avatar">TB</div>
+        <div>
+          <div class="avis-name">Thomas B.</div>
+          <div class="avis-role">Plombier · Rennes</div>
+        </div>
+      </div>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <div class="avis-txt">"On utilisait un carnet papier depuis des années. AutoCarnet a tout changé — on retrouve l'historique en 2 secondes et l'export PDF est parfait pour la revente."</div>
+      <div class="avis-author">
+        <div class="avis-avatar">SF</div>
+        <div>
+          <div class="avis-name">Sophie F.</div>
+          <div class="avis-role">Famille · Bordeaux</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="sec-in" style="text-align:center">
+    <div class="tag">✦ Tarifs</div>
+    <div class="ttl">Simple et transparent</div>
+    <p class="stxt">Commencez gratuitement, évoluez quand vous en avez besoin.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-c">
+      <div class="p-plan">Gratuit</div>
+      <div class="p-amt">0€</div>
+      <div class="p-per">Pour toujours</div>
+      <ul class="p-feats">
+        <li><span class="ck">✓</span>1 véhicule</li>
+        <li><span class="ck">✓</span>Entretiens illimités</li>
+        <li><span class="ck">✓</span>Rappels</li>
+        <li><span class="ck">✓</span>PWA installable</li>
+      </ul>
+      <a href="https://autocarnet.fr/app.html" target="_blank" class="p-cta outline">Commencer</a>
+    </div>
+    <div class="price-c hot">
+      <div class="p-badge">⭐ Populaire</div>
+      <div class="p-plan">Famille</div>
+      <div class="p-amt">1,99€<span style="font-size:.8rem;font-weight:600;color:var(--txm)">/mois</span></div>
+      <div class="p-per">7 jours offerts</div>
+      <ul class="p-feats">
+        <li><span class="ck">✓</span>3 véhicules</li>
+        <li><span class="ck">✓</span>Entretiens illimités</li>
+        <li><span class="ck">✓</span>Documents</li>
+        <li><span class="ck">✓</span>Photos factures</li>
+        <li><span class="ck">✓</span>Rappels avancés</li>
+      </ul>
+      <a href="https://autocarnet.fr/app.html" target="_blank" class="p-cta full">Essayer 7 jours</a>
+    </div>
+    <div class="price-c">
+      <div class="p-plan">Pro</div>
+      <div class="p-amt">4,99€<span style="font-size:.8rem;font-weight:600;color:var(--txm)">/mois</span></div>
+      <div class="p-per">7 jours offerts</div>
+      <ul class="p-feats">
+        <li><span class="ck">✓</span>Véhicules illimités</li>
+        <li><span class="ck">✓</span>Entretiens illimités</li>
+        <li><span class="ck">✓</span>Prix carburant</li>
+        <li><span class="ck">✓</span>Export PDF & CSV</li>
+        <li><span class="ck">✓</span>Mode équipe</li>
+      </ul>
+      <a href="https://autocarnet.fr/app.html" target="_blank" class="p-cta full">Essayer 7 jours</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <h2>Commencez dès maintenant</h2>
+  <p>Gratuit, sans publicité, sans carte bancaire.<br>Vos données restent privées et vous appartiennent.</p>
+  <a href="https://autocarnet.fr" target="_blank" class="btn-w">📱 Ouvrir AutoCarnet</a>
+  <div class="inst-note">
+    <div>iPhone : Safari → Partager → Sur l'écran d'accueil</div>
+    <div>Android : Menu ⋮ → Installer l'application</div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-links">
+    <a href="/">Accueil</a>
+    <a href="/blog">Blog</a>
+    <a href="https://autocarnet.fr" target="_blank">Ouvrir AutoCarnet</a>
+    <a href="/mentions-legales">Mentions légales</a>
+  </div>
+  <div class="foot-copy">© 2026 Axion App Studio · AutoCarnet est une application développée par Axion App Studio</div>
+</footer>
+
+</body>
+</html>
