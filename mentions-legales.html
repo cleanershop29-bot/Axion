@@ -5,51 +5,84 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mentions légales & CGV — Axion App Studio</title>
 <meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--b2:#7C3AED;--txt:#0A0A0F;--txm:#3D3D50;--txl:#8888A0;--bg:#FAFAFA;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
-body{font-family:var(--font);background:var(--bg);color:var(--txt)}
-a{color:var(--b2);text-decoration:none}
+:root{--v:#7C3AED;--o:#FF6B35;--dark:#0D0D1A;--dark2:#16162A;--txm:rgba(255,255,255,.55);--txl:rgba(255,255,255,.3)}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--dark);color:#fff;-webkit-font-smoothing:antialiased}
+a{color:#A855F7;text-decoration:none}
+a:hover{text-decoration:underline}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 24px;display:flex;align-items:center;background:rgba(250,250,250,.95);border-bottom:1px solid rgba(0,0,0,.08)}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;padding:0 20px;display:flex;align-items:center;background:rgba(13,13,26,.96);border-bottom:1px solid rgba(124,58,237,.18);backdrop-filter:blur(12px)}
 .nav-in{width:100%;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-weight:900;font-size:1.3rem;letter-spacing:-.04em;color:#7C3AED}
-.nav-back{font-size:.83rem;font-weight:600;color:var(--txm)}
+.nav-logo{display:flex;align-items:center;gap:9px}
+.nav-wm{font-size:.88rem;font-weight:800;color:rgba(255,255,255,.5);white-space:nowrap}
+.nav-wm span{color:#A855F7}
+.nav-back{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:5px;transition:color .15s}
+.nav-back:hover{color:#fff;text-decoration:none}
 
-.wrap{max-width:720px;margin:0 auto;padding:96px 24px 80px}
-.page-ttl{font-size:1.8rem;font-weight:800;letter-spacing:-.03em;margin-bottom:6px}
-.page-date{font-size:.8rem;color:var(--txl);margin-bottom:48px}
+.wrap{max-width:720px;margin:0 auto;padding:96px 20px 80px}
 
-.section{margin-bottom:40px}
-h2{font-size:1rem;font-weight:800;color:var(--b2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;padding-bottom:8px;border-bottom:1.5px solid rgba(124,58,237,.15)}
-h3{font-size:.92rem;font-weight:700;margin-bottom:8px;margin-top:16px;color:var(--txt)}
-p{font-size:.88rem;color:var(--txm);line-height:1.8;margin-bottom:10px}
+.page-hd{margin-bottom:48px}
+.page-ttl{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:6px}
+.page-date{font-size:.78rem;color:var(--txl);margin-top:6px}
+
+.section{margin-bottom:44px}
+h2{
+  font-size:.72rem;font-weight:700;color:#A855F7;
+  text-transform:uppercase;letter-spacing:.14em;
+  margin-bottom:20px;padding-bottom:10px;
+  border-bottom:1px solid rgba(124,58,237,.2);
+  display:flex;align-items:center;gap:8px;
+}
+h2::before{content:'';width:16px;height:2px;background:var(--v);border-radius:2px;flex-shrink:0}
+h3{font-size:.9rem;font-weight:700;margin-bottom:8px;margin-top:18px;color:#fff}
+p{font-size:.87rem;color:var(--txm);line-height:1.8;margin-bottom:10px}
 ul{padding-left:18px;margin-bottom:10px}
-li{font-size:.88rem;color:var(--txm);line-height:1.8;margin-bottom:4px}
-.info-block{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:18px 20px;margin-bottom:14px}
-.info-row{display:flex;gap:8px;font-size:.86rem;margin-bottom:6px}
+li{font-size:.87rem;color:var(--txm);line-height:1.8;margin-bottom:4px}
+strong{color:#fff;font-weight:700}
+
+.info-block{background:var(--dark2);border:1px solid rgba(124,58,237,.15);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+.info-row{display:flex;gap:10px;font-size:.85rem;margin-bottom:7px}
 .info-row:last-child{margin-bottom:0}
-.info-label{font-weight:700;color:var(--txt);min-width:140px;flex-shrink:0}
+.info-label{font-weight:700;color:#fff;min-width:140px;flex-shrink:0}
 .info-val{color:var(--txm)}
 
-footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
-.foot-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
-.foot-links a{font-size:.76rem;color:var(--txl);font-weight:500}
-.foot-copy{font-size:.71rem;color:var(--txl)}
+.contact-note{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.18);border-radius:12px;padding:14px 18px;font-size:.84rem;color:#A855F7;margin-top:36px}
+
+footer{padding:28px 20px;border-top:1px solid rgba(255,255,255,.05);background:var(--dark2)}
+.foot-in{max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:12px}
+.foot-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.foot-links a{font-size:.73rem;color:rgba(255,255,255,.22);font-weight:500;transition:color .15s}
+.foot-links a:hover{color:rgba(255,255,255,.6);text-decoration:none}
+.foot-copy{font-size:.69rem;color:rgba(255,255,255,.16)}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-in">
-    <a href="/" class="nav-logo">AXION</a>
-    <a href="/" class="nav-back">← Retour</a>
+    <a href="/" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 72 72" fill="none">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs>
+        <rect width="72" height="72" rx="20" fill="#16162A"/>
+        <rect x="1" y="1" width="70" height="70" rx="19" stroke="url(#lg)" stroke-width="2" fill="none"/>
+        <path d="M18 56 L36 16 L54 56" stroke="url(#lg)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="25" y1="41" x2="47" y2="41" stroke="url(#lg)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <span class="nav-wm">AXION <span>APP STUDIO</span></span>
+    </a>
+    <a href="/" class="nav-back">← Retour au site</a>
   </div>
 </nav>
 
 <div class="wrap">
-  <div class="page-ttl">Mentions légales & CGV</div>
-  <div class="page-date">Dernière mise à jour : avril 2026</div>
+  <div class="page-hd">
+    <div class="page-ttl">Mentions légales & CGV</div>
+    <div class="page-date">Dernière mise à jour : avril 2026</div>
+  </div>
 
   <!-- MENTIONS LÉGALES -->
   <div class="section">
@@ -90,12 +123,12 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
     <h2>Conditions générales de vente</h2>
 
     <h3>1. Objet</h3>
-    <p>Les présentes CGV régissent les relations entre Jérémy Fortin — Axion App Studio (ci-après "le Prestataire") et tout client (ci-après "le Client") souhaitant commander une prestation de développement d'application web (PWA) sur mesure.</p>
+    <p>Les présentes CGV régissent les relations entre Jérémy Fortin — Axion App Studio (ci-après "le Prestataire") et tout client (ci-après "le Client") souhaitant commander une prestation de développement web sur mesure.</p>
 
     <h3>2. Prestations proposées</h3>
-    <p>Le Prestataire propose la conception et le développement d'applications web progressives (PWA) sur mesure, incluant :</p>
+    <p>Le Prestataire propose la conception et le développement de sites web, applications web et outils numériques sur mesure, incluant :</p>
     <ul>
-      <li>Conception et développement de l'application</li>
+      <li>Conception et développement du projet</li>
       <li>Design de l'interface utilisateur</li>
       <li>Mise en ligne et hébergement (1 an inclus)</li>
       <li>Formation à l'utilisation</li>
@@ -132,17 +165,22 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
     <p>Les présentes CGV sont soumises au droit français. En cas de litige, les parties s'engagent à rechercher une solution amiable avant tout recours judiciaire. À défaut, le tribunal compétent sera celui du domicile du Prestataire.</p>
   </div>
 
-  <p style="font-size:.8rem;color:var(--txl);margin-top:40px">Pour toute question : <a href="mailto:contact@axionappstudio.com">contact@axionappstudio.com</a></p>
+  <div class="contact-note">
+    Pour toute question : <a href="mailto:contact@axionappstudio.com">contact@axionappstudio.com</a>
+  </div>
 </div>
 
 <footer>
-  <div class="foot-links">
-    <a href="/">Accueil</a>
-    <a href="/#apps">Applications</a>
-    <a href="/#sur-mesure">Sur mesure</a>
-    <a href="mailto:contact@axionappstudio.com">Contact</a>
+  <div class="foot-in">
+    <div class="foot-links">
+      <a href="/">Accueil</a>
+      <a href="/#services">Services</a>
+      <a href="/#sur-mesure">Sur mesure</a>
+      <a href="/#about">Studio</a>
+      <a href="mailto:contact@axionappstudio.com">Contact</a>
+    </div>
+    <div class="foot-copy">© 2026 Axion App Studio · SIRET 914 511 639 00025 · Bretagne, France</div>
   </div>
-  <div class="foot-copy">© 2026 Axion App Studio · SIRET 914 511 639 00025</div>
 </footer>
 
 </body>
