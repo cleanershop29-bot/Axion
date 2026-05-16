@@ -3,249 +3,534 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Axion App Studio — Applications PWA made in France</title>
-<meta name="description" content="Axion App Studio crée des applications web PWA simples, rapides et accessibles pour les particuliers et les professionnels.">
-<meta property="og:title" content="Axion App Studio — Applications PWA made in France">
-<meta property="og:description" content="Développeur web indépendant en Bretagne. Sites vitrines, applications web et outils métier sur mesure. Devis gratuit sous 24h.">
+<title>Axion App Studio — Développeur Web Freelance Bretagne</title>
+<meta name="description" content="Jérémy, développeur web freelance en Bretagne. Sites vitrines, applications web et outils métier sur mesure. Devis gratuit sous 24h.">
+<meta property="og:title" content="Axion App Studio — Développeur Web Freelance Bretagne">
+<meta property="og:description" content="Sites vitrines, applications web et outils métier sur mesure. Devis gratuit sous 24h.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://axionappstudio.com">
 <meta property="og:locale" content="fr_FR">
-<meta name="keywords" content="développeur web freelance Bretagne, création application web Finistère, PWA sur mesure, développeur indépendant France">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Axion App Studio",
-  "description": "Studio de développement web indépendant spécialisé PWA",
-  "url": "https://axionappstudio.com",
-  "email": "contact@axionappstudio.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressRegion": "Bretagne",
-    "addressCountry": "FR"
-  },
-  "sameAs": ["https://autocarnet.fr"]
-}
-</script>
+<meta name="keywords" content="développeur web freelance Bretagne, création site web Finistère, application web sur mesure, développeur indépendant France">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Axion App Studio","description":"Développeur web freelance en Bretagne","url":"https://axionappstudio.com","email":"contact@axionappstudio.com","address":{"@type":"PostalAddress","addressRegion":"Bretagne","addressCountry":"FR"},"sameAs":["https://autocarnet.fr"]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--b2:#7C3AED;--b1:#2563EB;--c1:#FF6B35;--txt:#0A0A0F;--txm:#3D3D50;--txl:#8888A0;--bg:#FAFAFA;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
-body{font-family:var(--font);background:var(--bg);color:var(--txt);overflow-x:hidden}
+:root{
+  --v:#7C3AED;--o:#FF6B35;
+  --txt:#0A0A0F;--txm:#4B4B63;--txl:#9090A8;
+  --bg:#F8F7FF;--dark:#0D0D1A;--dark2:#16162A;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
+img{max-width:100%}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;padding:0 24px;display:flex;align-items:center;background:rgba(250,250,250,.98);border-bottom:1px solid rgba(0,0,0,.08);backdrop-filter:blur(8px)}
-.nav-in{width:100%;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;font-weight:900;font-size:1.3rem;letter-spacing:-.04em;color:#7C3AED}
-.nav-mark{display:none}
-.nav-cta{background:#7C3AED;color:#fff;padding:9px 20px;border-radius:50px;font-size:.83rem;font-weight:600}
-
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 80px;position:relative;overflow:hidden}
-.blob{position:absolute;border-radius:50%;pointer-events:none}
-.b1{width:500px;height:500px;background:radial-gradient(circle,rgba(255,107,53,.13),transparent 65%);top:-120px;left:-150px}
-.b2{width:450px;height:450px;background:radial-gradient(circle,rgba(124,58,237,.11),transparent 65%);top:60px;right:-120px}
-.b3{width:380px;height:380px;background:radial-gradient(circle,rgba(236,72,153,.09),transparent 65%);bottom:-60px;left:28%}
-.badge{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(0,0,0,.09);padding:6px 14px;border-radius:50px;font-size:.75rem;font-weight:600;color:var(--txm);margin-bottom:26px;position:relative;z-index:1}
-.dot{width:7px;height:7px;border-radius:50%;background:#7C3AED;animation:p 2s ease-in-out infinite}
-@keyframes p{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
-h1{font-size:clamp(2.2rem,7vw,4rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:20px;position:relative;z-index:1}
-.hi{color:#7C3AED}
-.sub{font-size:1rem;color:var(--txm);line-height:1.8;max-width:480px;margin:0 auto 36px;position:relative;z-index:1}
-.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
-.btn-g{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-size:.9rem;font-weight:600;background:linear-gradient(135deg,#FF6B35,#7C3AED);color:#fff;box-shadow:0 6px 22px rgba(124,58,237,.28)}
-.btn-w{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:50px;font-size:.9rem;font-weight:600;background:#fff;color:var(--txt);border:1.5px solid rgba(0,0,0,.12)}
-
-.stats{padding:52px 24px;background:#fff;border-top:1px solid rgba(0,0,0,.07);border-bottom:1px solid rgba(0,0,0,.07)}
-.stats-in{max-width:600px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}
-.sn{font-size:1.9rem;font-weight:800;color:#7C3AED}
-.sl{font-size:.77rem;color:var(--txl);margin-top:5px}
-
-.apps{padding:80px 24px}
-.apps-in{max-width:860px;margin:0 auto}
-.tag{display:inline-flex;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.18);color:#7C3AED;padding:5px 14px;border-radius:50px;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
-.ttl{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:10px}
-.stxt{font-size:.9rem;color:var(--txm);line-height:1.75}
-.card{background:#fff;border-radius:22px;overflow:hidden;border:1px solid rgba(0,0,0,.08);box-shadow:0 4px 22px rgba(0,0,0,.06);margin-top:36px}
-.card-top{padding:30px;background:linear-gradient(135deg,#EFF6FF,#F5F3FF)}
-.card-ico{width:56px;height:56px;border-radius:15px;background:linear-gradient(135deg,#2563EB,#60A5FA);display:grid;place-items:center;font-size:1.4rem;margin-bottom:14px}
-.card-name{font-size:1.3rem;font-weight:800;margin-bottom:8px}
-.card-desc{font-size:.86rem;color:var(--txm);line-height:1.7;margin-bottom:14px}
-.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
-@media(min-width:500px){.feats{grid-template-columns:repeat(3,1fr)}}
-.feat{font-size:.77rem;color:var(--txm);display:flex;align-items:center;gap:6px}
-.feat::before{content:'✓';color:#2563EB;font-weight:800;flex-shrink:0}
-.card-bot{padding:18px 30px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(0,0,0,.07)}
-.tags{display:flex;gap:7px;flex-wrap:wrap}
-.t{background:var(--bg);border:1px solid rgba(0,0,0,.09);padding:4px 11px;border-radius:50px;font-size:.7rem;font-weight:600;color:var(--txm)}
-.lnk{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:50px;background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;font-size:.82rem;font-weight:600}
-.soon{background:rgba(0,0,0,.025);border:1.5px dashed rgba(0,0,0,.13);border-radius:18px;padding:38px;text-align:center;margin-top:12px}
-.soon-i{font-size:1.9rem;margin-bottom:10px}
-.soon-t{font-size:.97rem;font-weight:800;margin-bottom:6px;color:var(--txm)}
-.soon-s{font-size:.81rem;color:var(--txl);line-height:1.65}
-
-.sur-mesure{padding:80px 24px;background:#fff}
-.sur-in{max-width:860px;margin:0 auto}
-.sur-intro{background:linear-gradient(135deg,#0D0D1A,#1a1535);border-radius:22px;padding:44px 36px;margin-top:36px;margin-bottom:14px;position:relative;overflow:hidden}
-.sur-blob1{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(255,107,53,.18),transparent 70%);top:-100px;left:-80px;border-radius:50%}
-.sur-blob2{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 70%);bottom:-100px;right:-80px;border-radius:50%}
-.sur-ttl{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:#fff;margin-bottom:14px;position:relative;z-index:1}
-.sur-txt{font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:22px;position:relative;z-index:1}
-.sur-exemples{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;position:relative;z-index:1}
-.sur-ex{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:5px 13px;border-radius:50px;font-size:.75rem;font-weight:600;color:rgba(255,255,255,.7)}
-.sur-inclus{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1}
-@media(min-width:500px){.sur-inclus{grid-template-columns:repeat(3,1fr)}}
-.sur-item{display:flex;align-items:center;gap:7px;font-size:.8rem;color:rgba(255,255,255,.65)}
-.sur-item::before{content:'✓';color:#FF6B35;font-weight:800;flex-shrink:0}
-
-.form-card{background:#fff;border-radius:22px;border:1px solid rgba(0,0,0,.08);box-shadow:0 4px 22px rgba(0,0,0,.06);padding:32px}
-.form-ttl{font-size:1.1rem;font-weight:800;margin-bottom:6px}
-.form-sub{font-size:.84rem;color:var(--txm);margin-bottom:24px;line-height:1.6}
-.form-section{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#7C3AED;margin-bottom:12px;margin-top:24px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:500px){.form-row{grid-template-columns:1fr}}
-.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
-.fl-label{font-size:.78rem;font-weight:700;color:var(--txt)}
-.fl-opt{font-size:.72rem;color:var(--txl);font-weight:500}
-input,textarea,select{width:100%;padding:11px 14px;border:1.5px solid rgba(0,0,0,.12);border-radius:10px;font-size:.86rem;font-family:var(--font);color:var(--txt);background:#fff;outline:none;transition:border-color .15s}
-input:focus,textarea:focus,select:focus{border-color:#7C3AED}
-textarea{resize:vertical;min-height:100px}
-.radio-group{display:flex;flex-wrap:wrap;gap:8px}
-.radio-opt{display:flex;align-items:center;gap:6px;background:var(--bg);border:1.5px solid rgba(0,0,0,.1);padding:8px 14px;border-radius:50px;cursor:pointer;font-size:.81rem;font-weight:600;color:var(--txm);transition:.15s}
-.radio-opt input[type=radio]{width:auto;padding:0;border:none;accent-color:#7C3AED}
-.radio-opt:has(input:checked){border-color:#7C3AED;background:rgba(124,58,237,.06);color:#7C3AED}
-.btn-submit{width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#FF6B35,#7C3AED);color:#fff;font-size:.95rem;font-weight:700;border:none;cursor:pointer;margin-top:24px;font-family:var(--font)}
-.form-note{font-size:.74rem;color:var(--txl);text-align:center;margin-top:10px;line-height:1.6}
-
-.about{padding:80px 24px;background:var(--bg)}
-.about-in{max-width:660px;margin:0 auto;text-align:center}
-.acard{background:linear-gradient(135deg,#0D0D1A,#1a1535);border-radius:22px;padding:42px 30px;margin-top:34px;position:relative;overflow:hidden}
-.ab1{position:absolute;width:240px;height:240px;background:radial-gradient(circle,rgba(255,107,53,.18),transparent 70%);top:-80px;left:-60px;border-radius:50%}
-.ab2{position:absolute;width:240px;height:240px;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 70%);bottom:-80px;right:-60px;border-radius:50%}
-.av{width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#FF6B35,#7C3AED);display:grid;place-items:center;font-size:1.4rem;margin:0 auto 16px;position:relative;z-index:1}
-.an{font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:4px;position:relative;z-index:1}
-.ar{font-size:.77rem;color:rgba(255,255,255,.45);margin-bottom:16px;position:relative;z-index:1}
-.at{font-size:.85rem;color:rgba(255,255,255,.68);line-height:1.8;position:relative;z-index:1}
-.chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:16px;position:relative;z-index:1}
-.chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:4px 12px;border-radius:50px;font-size:.7rem;font-weight:600;color:rgba(255,255,255,.55)}
-
-.cta{padding:80px 24px;text-align:center}
-.cta h2{font-size:clamp(1.7rem,5vw,2.5rem);font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
-.cta p{font-size:.9rem;color:var(--txm);margin-bottom:28px;line-height:1.75}
-
-footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
-.foot-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
-.foot-links a{font-size:.76rem;color:var(--txl);font-weight:500}
-.foot-copy{font-size:.71rem;color:var(--txl)}
-
-@media(max-width:480px){
-  .card-top,.card-bot{padding:20px}
-  .sur-intro{padding:28px 20px}
-  .form-card{padding:22px}
-  .acard{padding:28px 18px}
-  .stats-in{grid-template-columns:1fr;gap:22px}
-  .btns{flex-direction:column;align-items:center}
-  .btn-g,.btn-w{width:100%;max-width:280px;justify-content:center}
-  .card-bot{flex-direction:column;align-items:flex-start}
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:64px;padding:0 20px;
+  display:flex;align-items:center;
+  background:rgba(13,13,26,.96);
+  border-bottom:1px solid rgba(124,58,237,.2);
+  backdrop-filter:blur(12px);
 }
+.nav-in{
+  width:100%;max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-wm{font-size:.95rem;font-weight:800;color:#fff;letter-spacing:-.01em;white-space:nowrap}
+.nav-wm span{color:#A855F7}
+.nav-links{display:none;gap:24px}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.45);transition:color .15s}
+.nav-links a:hover{color:#fff}
+.nav-cta{
+  background:var(--v);color:#fff;
+  padding:9px 18px;border-radius:50px;
+  font-size:.82rem;font-weight:700;
+  white-space:nowrap;flex-shrink:0;
+  transition:background .15s;
+}
+.nav-cta:hover{background:#6D28D9}
 
-/* Bouton flottant */
-.fab{
-  position:fixed;bottom:24px;right:20px;z-index:200;
-  display:flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,#FF6B35,#7C3AED);
-  color:#fff;font-size:.85rem;font-weight:700;
-  padding:13px 22px;border-radius:50px;
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:100px 20px 72px;
+  background:var(--dark);
+  position:relative;overflow:hidden;
+}
+.glow1{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.2),transparent 65%);top:-180px;left:-120px;pointer-events:none}
+.glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,53,.12),transparent 65%);bottom:-120px;right:-80px;pointer-events:none}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(124,58,237,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.05) 1px,transparent 1px);
+  background-size:48px 48px;pointer-events:none;
+  -webkit-mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,black 30%,transparent 100%);
+  mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,black 30%,transparent 100%);
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.25);
+  padding:6px 14px;border-radius:50px;
+  font-size:.75rem;font-weight:600;
+  color:rgba(255,255,255,.7);
+  margin-bottom:24px;position:relative;z-index:1;
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:#A855F7;animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.5);opacity:.6}}
+
+h1{
+  font-size:clamp(2rem,6.5vw,3.6rem);
+  font-weight:800;
+  line-height:1.12;
+  letter-spacing:-.03em;
+  margin-bottom:20px;
+  position:relative;z-index:1;
+  color:#fff;
+  max-width:600px;
+}
+.hi{color:#A855F7}
+
+.hero-sub{
+  font-size:.97rem;color:rgba(255,255,255,.5);
+  line-height:1.75;max-width:400px;
+  margin:0 auto 36px;
+  position:relative;z-index:1;
+}
+.hero-btns{
+  display:flex;gap:10px;justify-content:center;
+  flex-wrap:wrap;position:relative;z-index:1;
+}
+.btn-main{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 26px;border-radius:50px;
+  font-size:.88rem;font-weight:700;
+  background:var(--v);color:#fff;
   box-shadow:0 6px 24px rgba(124,58,237,.38);
-  text-decoration:none;
-  animation:fab-in .4s ease both;
+  transition:transform .15s,box-shadow .15s;
 }
-@keyframes fab-in{from{transform:translateY(80px);opacity:0}to{transform:translateY(0);opacity:1}}
-.fab:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(124,58,237,.45)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(124,58,237,.5)}
+.btn-out{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 22px;border-radius:50px;
+  font-size:.88rem;font-weight:600;
+  background:transparent;color:rgba(255,255,255,.7);
+  border:1px solid rgba(255,255,255,.15);
+  transition:border-color .15s,background .15s;
+}
+.btn-out:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
 
-/* Bouton Play Store */
-.play-btn{
-  display:inline-flex;align-items:center;gap:10px;
-  background:#000;color:#fff;
-  padding:11px 22px;border-radius:12px;
-  font-size:.85rem;font-weight:600;
-  transition:.15s;border:1.5px solid rgba(255,255,255,.1);
+.hero-trust{
+  display:flex;align-items:center;gap:14px;
+  justify-content:center;flex-wrap:wrap;
+  margin-top:32px;position:relative;z-index:1;
 }
-.play-btn:hover{background:#1a1a1a;transform:translateY(-1px)}
-.play-btn svg{width:20px;height:20px;flex-shrink:0}
+.ti{font-size:.75rem;color:rgba(255,255,255,.3);font-weight:500;display:flex;align-items:center;gap:5px}
+.ti::before{content:'✓';color:#A855F7;font-weight:700}
+.ts{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.15)}
+
+/* ── STATS ── */
+.stats{
+  background:var(--dark2);
+  border-top:1px solid rgba(124,58,237,.18);
+  border-bottom:1px solid rgba(124,58,237,.18);
+  padding:24px;
+}
+.stats-in{
+  max-width:640px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:8px;text-align:center;
+}
+.sn{font-size:1.5rem;font-weight:800;color:#A855F7}
+.sl{font-size:.72rem;color:rgba(255,255,255,.3);margin-top:3px;font-weight:500}
+
+/* ── SERVICES ── */
+.services{padding:72px 20px;background:var(--bg)}
+.sec-in{max-width:900px;margin:0 auto}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--v);margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:16px;height:2px;background:var(--v);border-radius:2px}
+.sec-h{
+  font-size:clamp(1.6rem,3.5vw,2.2rem);
+  font-weight:800;letter-spacing:-.03em;
+  line-height:1.15;margin-bottom:10px;color:var(--txt);
+}
+.sec-p{font-size:.9rem;color:var(--txm);line-height:1.7;max-width:440px}
+
+.srv-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:12px;margin-top:40px;
+}
+@media(min-width:600px){.srv-grid{grid-template-columns:repeat(3,1fr)}}
+.srv{
+  background:#fff;border:1.5px solid rgba(0,0,0,.06);
+  border-radius:16px;padding:22px 18px;
+  transition:border-color .2s,transform .2s,box-shadow .2s;
+}
+.srv:hover{border-color:rgba(124,58,237,.2);transform:translateY(-3px);box-shadow:0 10px 28px rgba(124,58,237,.08)}
+.srv-ico{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;margin-bottom:12px;
+}
+.srv-n{font-size:.9rem;font-weight:700;margin-bottom:5px;color:var(--txt)}
+.srv-d{font-size:.76rem;color:var(--txm);line-height:1.6}
+
+/* ── AUTOCARNET ── */
+.autocarnet{padding:72px 20px;background:#fff;border-top:1px solid rgba(0,0,0,.06)}
+.ac-card{
+  border-radius:20px;overflow:hidden;margin-top:36px;
+  background:var(--dark);
+  box-shadow:0 16px 48px rgba(0,0,0,.16);
+}
+.ac-top{padding:32px 28px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden}
+.ac-g1{position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 70%);top:-80px;right:-50px;pointer-events:none}
+.ac-hd{display:flex;align-items:center;gap:14px;position:relative;z-index:1}
+.ac-logo{width:60px;height:60px;border-radius:14px;flex-shrink:0}
+.ac-name{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:3px}
+.ac-tag{font-size:.8rem;color:rgba(255,255,255,.4)}
+.ac-desc{font-size:.87rem;color:rgba(255,255,255,.55);line-height:1.75;position:relative;z-index:1}
+.ac-feats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;position:relative;z-index:1}
+@media(min-width:480px){.ac-feats{grid-template-columns:repeat(3,1fr)}}
+.ac-feat{display:flex;align-items:center;gap:6px;font-size:.77rem;color:rgba(255,255,255,.5)}
+.ac-feat::before{content:'✓';color:#A855F7;font-weight:700;flex-shrink:0}
+.ac-bot{
+  padding:18px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+  border-top:1px solid rgba(255,255,255,.06);
+  background:rgba(0,0,0,.15);
+}
+.ac-plans{display:flex;gap:6px;flex-wrap:wrap}
+.ac-plan{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  padding:4px 11px;border-radius:50px;
+  font-size:.69rem;font-weight:600;color:rgba(255,255,255,.5);
+}
+.ac-act{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn-ac{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 18px;border-radius:50px;
+  background:var(--v);color:#fff;
+  font-size:.81rem;font-weight:700;
+  transition:background .15s;
+}
+.btn-ac:hover{background:#6D28D9}
+
+/* ── MINI CTA ── */
 .mini-cta{
-  text-align:center;padding:32px 24px;
+  text-align:center;padding:20px;
+  background:var(--bg);
+  border-top:1px solid rgba(0,0,0,.06);
+  border-bottom:1px solid rgba(0,0,0,.06);
 }
 .mini-cta a{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(124,58,237,.07);border:1.5px solid rgba(124,58,237,.2);
-  color:#7C3AED;font-size:.88rem;font-weight:700;
-  padding:12px 26px;border-radius:50px;
-  transition:.15s;
+  background:rgba(124,58,237,.07);
+  border:1.5px solid rgba(124,58,237,.18);
+  color:var(--v);font-size:.85rem;font-weight:700;
+  padding:11px 24px;border-radius:50px;transition:.15s;
 }
 .mini-cta a:hover{background:rgba(124,58,237,.13)}
+
+/* ── SUR MESURE ── */
+.sur-mesure{padding:72px 20px;background:var(--bg)}
+.sur-dark{
+  background:var(--dark);border-radius:20px;
+  padding:40px 32px;margin-top:36px;
+  position:relative;overflow:hidden;
+  box-shadow:0 12px 40px rgba(0,0,0,.14);
+}
+.sg1{position:absolute;width:320px;height:320px;background:radial-gradient(circle,rgba(255,107,53,.1),transparent 70%);top:-120px;left:-80px;border-radius:50%;pointer-events:none}
+.sg2{position:absolute;width:320px;height:320px;background:radial-gradient(circle,rgba(124,58,237,.12),transparent 70%);bottom:-120px;right:-80px;border-radius:50%;pointer-events:none}
+.sur-t{font-size:clamp(1.4rem,3.5vw,1.9rem);font-weight:800;color:#fff;margin-bottom:12px;position:relative;z-index:1;letter-spacing:-.02em}
+.sur-d{font-size:.87rem;color:rgba(255,255,255,.48);line-height:1.75;margin-bottom:22px;position:relative;z-index:1;max-width:520px}
+.sur-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:28px;position:relative;z-index:1}
+.sur-pill{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  padding:6px 12px;border-radius:50px;
+  font-size:.74rem;font-weight:600;color:rgba(255,255,255,.55);
+}
+.sur-inc{display:grid;grid-template-columns:1fr 1fr;gap:9px;position:relative;z-index:1}
+@media(min-width:480px){.sur-inc{grid-template-columns:repeat(3,1fr)}}
+.sur-item{display:flex;align-items:center;gap:7px;font-size:.78rem;color:rgba(255,255,255,.48)}
+.sur-item::before{content:'✓';color:var(--o);font-weight:700;flex-shrink:0}
+.sur-cta{margin-top:28px;position:relative;z-index:1}
+.btn-wh{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:12px 24px;border-radius:50px;
+  background:#fff;color:var(--v);
+  font-size:.88rem;font-weight:700;
+  transition:transform .15s;
+  box-shadow:0 4px 16px rgba(0,0,0,.16);
+}
+.btn-wh:hover{transform:translateY(-2px)}
+
+/* ── FORMULAIRE ── */
+.formulaire{padding:72px 20px;background:#fff;border-top:1px solid rgba(0,0,0,.06)}
+.form-card{
+  background:var(--bg);border-radius:20px;
+  border:1.5px solid rgba(124,58,237,.14);
+  padding:36px 32px;margin-top:36px;
+  position:relative;overflow:hidden;
+}
+.form-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--v),#A855F7,var(--o));
+}
+@media(max-width:480px){.form-card{padding:24px 16px}}
+.fsect{
+  font-size:.68rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--v);margin:22px 0 12px;
+  display:flex;align-items:center;gap:7px;
+}
+.fsect::before{content:'';width:12px;height:2px;background:var(--v);border-radius:2px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.frow{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.fl{font-size:.77rem;font-weight:600;color:var(--txt)}
+.fl-opt{font-size:.7rem;color:var(--txl);font-weight:400}
+input,textarea{
+  width:100%;padding:11px 14px;
+  border:1.5px solid rgba(0,0,0,.09);border-radius:10px;
+  font-size:.85rem;font-family:'Inter',system-ui,sans-serif;
+  color:var(--txt);background:#fff;outline:none;
+  transition:border-color .15s,box-shadow .15s;
+}
+input:focus,textarea:focus{border-color:var(--v);box-shadow:0 0 0 3px rgba(124,58,237,.07)}
+textarea{resize:vertical;min-height:108px}
+.rg{display:flex;flex-wrap:wrap;gap:7px}
+.ro{
+  display:flex;align-items:center;gap:6px;
+  background:#fff;border:1.5px solid rgba(0,0,0,.08);
+  padding:8px 14px;border-radius:50px;cursor:pointer;
+  font-size:.79rem;font-weight:600;color:var(--txm);
+  transition:.15s;user-select:none;
+}
+.ro input[type=radio]{width:auto;padding:0;border:none;accent-color:var(--v)}
+.ro:has(input:checked){border-color:var(--v);background:rgba(124,58,237,.05);color:var(--v)}
+.btn-sub{
+  width:100%;padding:14px;border-radius:12px;
+  background:var(--v);color:#fff;
+  font-size:.93rem;font-weight:700;
+  border:none;cursor:pointer;margin-top:24px;
+  font-family:'Inter',system-ui,sans-serif;
+  transition:background .15s,transform .15s;
+  box-shadow:0 6px 22px rgba(124,58,237,.26);
+}
+.btn-sub:hover{background:#6D28D9;transform:translateY(-1px)}
+.form-note{font-size:.72rem;color:var(--txl);text-align:center;margin-top:10px;line-height:1.6}
+
+/* ── À PROPOS ── */
+.about{padding:72px 20px;background:var(--bg)}
+.ab-card{
+  background:var(--dark);border-radius:20px;
+  padding:40px 32px;margin-top:36px;
+  position:relative;overflow:hidden;text-align:center;
+  box-shadow:0 12px 40px rgba(0,0,0,.14);
+}
+@media(max-width:480px){.ab-card{padding:30px 20px}}
+.ag1{position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(255,107,53,.13),transparent 70%);top:-70px;left:-50px;border-radius:50%;pointer-events:none}
+.ag2{position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(124,58,237,.15),transparent 70%);bottom:-70px;right:-50px;border-radius:50%;pointer-events:none}
+.ab-av{
+  width:64px;height:64px;border-radius:16px;
+  background:linear-gradient(135deg,var(--o),var(--v));
+  display:grid;place-items:center;font-size:1.5rem;
+  margin:0 auto 16px;position:relative;z-index:1;
+}
+.ab-n{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:3px;position:relative;z-index:1}
+.ab-r{font-size:.76rem;color:rgba(255,255,255,.3);margin-bottom:16px;position:relative;z-index:1}
+.ab-t{font-size:.86rem;color:rgba(255,255,255,.52);line-height:1.8;max-width:480px;margin:0 auto;position:relative;z-index:1}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:20px;position:relative;z-index:1}
+.chip{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  padding:4px 11px;border-radius:50px;
+  font-size:.69rem;font-weight:600;color:rgba(255,255,255,.38);
+}
+
+/* ── CTA FINAL ── */
+.cta-fin{
+  padding:72px 20px;text-align:center;
+  background:var(--dark);
+  border-top:1px solid rgba(124,58,237,.16);
+  position:relative;overflow:hidden;
+}
+.cta-glow{
+  position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(124,58,237,.16),transparent 65%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+}
+.cta-fin h2{
+  font-size:clamp(1.7rem,4.5vw,2.6rem);font-weight:800;
+  letter-spacing:-.03em;margin-bottom:12px;color:#fff;
+  position:relative;z-index:1;
+}
+.cta-fin p{
+  font-size:.9rem;color:rgba(255,255,255,.42);
+  margin-bottom:28px;line-height:1.75;
+  position:relative;z-index:1;
+}
+
+/* ── FOOTER ── */
+footer{
+  padding:28px 20px;background:var(--dark2);
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.foot-in{
+  max-width:900px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.foot-logo{display:flex;align-items:center;gap:9px}
+.foot-wm{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.01em}
+.foot-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.foot-links a{font-size:.73rem;color:rgba(255,255,255,.22);font-weight:500;transition:color .15s}
+.foot-links a:hover{color:rgba(255,255,255,.6)}
+.foot-copy{font-size:.69rem;color:rgba(255,255,255,.16)}
+
+/* ── FAB ── */
+.fab{
+  position:fixed;bottom:20px;right:16px;z-index:999;
+  display:flex;align-items:center;gap:7px;
+  background:var(--v);color:#fff;
+  font-size:.81rem;font-weight:700;
+  padding:12px 20px;border-radius:50px;
+  box-shadow:0 5px 22px rgba(124,58,237,.42);
+  animation:fab-in .5s .4s ease both;
+  transition:background .15s,transform .15s;
+}
+.fab:hover{background:#6D28D9;transform:translateY(-2px)}
+@keyframes fab-in{from{transform:translateY(70px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+@media(max-width:480px){
+  .ac-top,.sur-dark,.ab-card{padding:24px 18px}
+  .ac-bot{padding:14px 18px;flex-direction:column;align-items:flex-start}
+  .stats-in{grid-template-columns:repeat(3,1fr)}
+}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-in">
-    <a href="/" class="nav-logo">AXION</a>
-    <a href="#formulaire" class="nav-cta">Projet sur mesure</a>
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 72 72" fill="none">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs>
+        <rect width="72" height="72" rx="20" fill="#16162A"/>
+        <rect x="1" y="1" width="70" height="70" rx="19" stroke="url(#lg)" stroke-width="2" fill="none"/>
+        <path d="M18 56 L36 16 L54 56" stroke="url(#lg)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="25" y1="41" x2="47" y2="41" stroke="url(#lg)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <span class="nav-wm">AXION <span>APP STUDIO</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#apps">AutoCarnet</a>
+      <a href="#sur-mesure">Sur mesure</a>
+      <a href="#about">Studio</a>
+    </div>
+    <a href="#formulaire" class="nav-cta">Devis gratuit</a>
   </div>
 </nav>
 
-<!-- Bouton flottant devis -->
 <a href="#formulaire" class="fab">💬 Devis gratuit</a>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-  <div class="badge"><div class="dot"></div>Développeur Web · Made in France 🇫🇷</div>
-  <h1>Sites web, applications<br>et outils numériques<br><span class="hi">sur mesure</span></h1>
-  <p class="sub">Artisan, commerçant, TPE ou startup — je crée l'outil numérique qu'il vous faut, au bon prix, livré rapidement.</p>
-  <div class="btns">
-    <a href="#apps" class="btn-g">Voir AutoCarnet →</a>
-    <a href="#formulaire" class="btn-w">🛠️ Projet sur mesure</a>
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-badge"><div class="pulse"></div>Développeur Web Freelance · Bretagne 🇫🇷</div>
+  <h1>Sites web, apps et outils<br>numériques <span class="hi">sur mesure.</span></h1>
+  <p class="hero-sub">Artisan, commerçant, TPE ou startup — je crée l'outil numérique qu'il vous faut, au bon prix, livré rapidement.</p>
+  <div class="hero-btns">
+    <a href="#formulaire" class="btn-main">💬 Devis gratuit en 2 min</a>
+    <a href="#services" class="btn-out">Voir mes services →</a>
+  </div>
+  <div class="hero-trust">
+    <span class="ti">Réponse sous 24h</span>
+    <span class="ts"></span>
+    <span class="ti">Sans engagement</span>
+    <span class="ts"></span>
+    <span class="ti">100% confidentiel</span>
   </div>
 </section>
 
+<!-- STATS -->
 <div class="stats">
   <div class="stats-in">
-    <div><div class="sn">PWA</div><div class="sl">Technologie web moderne</div></div>
-    <div><div class="sn">100%</div><div class="sl">Sans pub, données privées</div></div>
-    <div><div class="sn">🇫🇷</div><div class="sl">Développé en France</div></div>
+    <div><div class="sn">100%</div><div class="sl">Sans pub ni tracking</div></div>
+    <div><div class="sn">24h</div><div class="sl">Délai de réponse</div></div>
+    <div><div class="sn">🇫🇷</div><div class="sl">Basé en Bretagne</div></div>
   </div>
 </div>
 
-<section class="apps" id="apps">
-  <div class="apps-in">
-    <div class="tag">✦ Notre application</div>
-    <div class="ttl">AutoCarnet</div>
-    <p class="stxt">Le carnet d'entretien voiture numérique — disponible sur Android.</p>
-    <div class="card">
-      <div class="card-top">
-        <img src="autocarnet-logo.png" alt="AutoCarnet" style="width:64px;height:64px;border-radius:16px;margin-bottom:14px;display:block;position:relative;z-index:0;">
-        <div class="card-name">AutoCarnet</div>
-        <div class="card-desc">Suivez vos véhicules, recevez vos rappels CT et vidange automatiquement, gérez votre flotte professionnelle. Simple, rapide, sans pub.</div>
-        <div class="feats">
-          <div class="feat">Rappels automatiques</div>
-          <div class="feat">Historique complet</div>
-          <div class="feat">Export PDF &amp; CSV</div>
-          <div class="feat">Prix carburant</div>
-          <div class="feat">Mode équipe</div>
-          <div class="feat">Hors ligne</div>
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-in">
+    <div class="eyebrow">Ce que je fais</div>
+    <div class="sec-h">Tout ce dont vous avez besoin,<br>un seul interlocuteur.</div>
+    <p class="sec-p">Du site vitrine à l'application métier — je m'adapte à votre besoin, pas l'inverse.</p>
+    <div class="srv-grid">
+      <div class="srv"><div class="srv-ico" style="background:rgba(37,99,235,.1)">🌐</div><div class="srv-n">Site vitrine</div><div class="srv-d">Site professionnel, rapide et optimisé pour Google.</div></div>
+      <div class="srv"><div class="srv-ico" style="background:rgba(16,185,129,.1)">🛒</div><div class="srv-n">E-commerce</div><div class="srv-d">Boutique en ligne avec paiement sécurisé.</div></div>
+      <div class="srv"><div class="srv-ico" style="background:rgba(124,58,237,.1)">⚙️</div><div class="srv-n">Application web</div><div class="srv-d">Outil métier accessible depuis n'importe quel appareil.</div></div>
+      <div class="srv"><div class="srv-ico" style="background:rgba(255,107,53,.1)">📊</div><div class="srv-n">Outil de gestion</div><div class="srv-d">Tableaux de bord, stocks, clients — remplacez Excel.</div></div>
+      <div class="srv"><div class="srv-ico" style="background:rgba(236,72,153,.1)">💳</div><div class="srv-n">Paiement en ligne</div><div class="srv-d">Intégration Stripe sécurisée, simple à gérer.</div></div>
+      <div class="srv"><div class="srv-ico" style="background:rgba(100,116,139,.1)">🔧</div><div class="srv-n">Refonte & maintenance</div><div class="srv-d">Modernisation ou suivi mensuel de votre site.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOCARNET -->
+<section class="autocarnet" id="apps">
+  <div class="sec-in">
+    <div class="eyebrow">Notre application</div>
+    <div class="sec-h">AutoCarnet</div>
+    <p class="sec-p">Le carnet d'entretien voiture numérique — disponible sur Android.</p>
+    <div class="ac-card">
+      <div class="ac-top">
+        <div class="ac-g1"></div>
+        <div class="ac-hd">
+          <img src="autocarnet-logo.png" alt="AutoCarnet" class="ac-logo">
+          <div>
+            <div class="ac-name">AutoCarnet</div>
+            <div class="ac-tag">Carnet d'entretien · Android</div>
+          </div>
+        </div>
+        <div class="ac-desc">Suivez vos véhicules, recevez vos rappels CT et vidange automatiquement, gérez votre flotte professionnelle. Simple, rapide, sans pub.</div>
+        <div class="ac-feats">
+          <div class="ac-feat">Rappels automatiques</div>
+          <div class="ac-feat">Historique complet</div>
+          <div class="ac-feat">Export PDF &amp; CSV</div>
+          <div class="ac-feat">Prix carburant</div>
+          <div class="ac-feat">Mode équipe</div>
+          <div class="ac-feat">Hors ligne</div>
         </div>
       </div>
-      <div class="card-bot">
-        <div class="tags">
-          <div class="t">Gratuit</div>
-          <div class="t">Famille 1,99€/mois</div>
-          <div class="t">Pro 4,99€/mois</div>
+      <div class="ac-bot">
+        <div class="ac-plans">
+          <div class="ac-plan">Gratuit</div>
+          <div class="ac-plan">Famille 1,99€/mois</div>
+          <div class="ac-plan">Pro 4,99€/mois</div>
         </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-          <a href="https://autocarnet.fr" target="_blank" class="lnk">Site web →</a>
+        <div class="ac-act">
+          <a href="https://autocarnet.fr" target="_blank" class="btn-ac">Site web →</a>
           <a href="https://play.google.com/store/apps/details?id=fr.autocarnet.app" target="_blank">
-            <img src="google-play-badge.png" alt="Disponible sur Google Play" style="height:46px;display:block;">
+            <img src="google-play-badge.png" alt="Disponible sur Google Play" style="height:40px;display:block">
           </a>
         </div>
       </div>
@@ -253,126 +538,115 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
   </div>
 </section>
 
-<!-- Mini CTA entre apps et sur-mesure -->
+<!-- MINI CTA -->
 <div class="mini-cta">
-  <a href="#formulaire">🛠️ Vous avez un projet ? Obtenez votre devis gratuit →</a>
+  <a href="#formulaire">🛠️ Vous avez un projet ? Devis gratuit →</a>
 </div>
 
+<!-- SUR MESURE -->
 <section class="sur-mesure" id="sur-mesure">
-  <div class="sur-in">
-    <div class="tag">✦ Sur mesure</div>
-    <div class="ttl">Vous avez un projet ?<br>Je le construis.</div>
-    <p class="stxt">Artisan, association, commerçant, TPE — site vitrine, application métier, outil de gestion, e-commerce. Je m'adapte à votre besoin, pas l'inverse.</p>
-
-    <div class="sur-intro">
-      <div class="sur-blob1"></div>
-      <div class="sur-blob2"></div>
-      <div class="sur-ttl">Un outil numérique pensé<br>pour votre métier.</div>
-      <div class="sur-txt">Site vitrine, boutique en ligne, application de gestion, outil interne — quel que soit votre besoin, je conçois la solution adaptée à votre activité. Sans budget d'agence, sans jargon. Quelques exemples :</div>
-      <div class="sur-exemples">
-        <div class="sur-ex">🔧 Artisan du bâtiment</div>
-        <div class="sur-ex">🍽️ Restaurant / traiteur</div>
-        <div class="sur-ex">🏋️ Coach / salle de sport</div>
-        <div class="sur-ex">🏘️ Syndic / copropriété</div>
-        <div class="sur-ex">🧑‍🤝‍🧑 Association</div>
-        <div class="sur-ex">🚚 Transporteur / livreur</div>
-        <div class="sur-ex">🏥 Praticien de santé</div>
-        <div class="sur-ex">📦 Commerce / boutique</div>
-        <div class="sur-ex">🌾 Agriculteur / maraîcher</div>
-        <div class="sur-ex">🎨 Artiste / galerie</div>
-        <div class="sur-ex">🏗️ Bureau d'études / cabinet</div>
-        <div class="sur-ex">Et bien d'autres…</div>
+  <div class="sec-in">
+    <div class="eyebrow">Sur mesure</div>
+    <div class="sec-h">Vous avez un projet ?<br>Je le construis.</div>
+    <p class="sec-p">Quel que soit votre secteur — sans budget d'agence, sans jargon.</p>
+    <div class="sur-dark">
+      <div class="sg1"></div>
+      <div class="sg2"></div>
+      <div class="sur-t">Un outil pensé pour votre métier.</div>
+      <div class="sur-d">Site vitrine, boutique en ligne, application de gestion, outil interne — quelques exemples de secteurs :</div>
+      <div class="sur-pills">
+        <div class="sur-pill">🔧 Artisan</div>
+        <div class="sur-pill">🍽️ Restaurant</div>
+        <div class="sur-pill">🏋️ Coach / sport</div>
+        <div class="sur-pill">🚚 Transporteur</div>
+        <div class="sur-pill">🏥 Praticien santé</div>
+        <div class="sur-pill">📦 Commerce</div>
+        <div class="sur-pill">🧑‍🤝‍🧑 Association</div>
+        <div class="sur-pill">🌾 Agriculteur</div>
+        <div class="sur-pill">🏗️ Bureau d'études</div>
+        <div class="sur-pill">🎨 Artiste</div>
+        <div class="sur-pill">Et bien d'autres…</div>
       </div>
-      <div class="sur-inclus">
-        <div class="sur-item">PWA installable sur mobile</div>
-        <div class="sur-item">Fonctionne hors ligne</div>
-        <div class="sur-item">iPhone &amp; Android</div>
+      <div class="sur-inc">
         <div class="sur-item">Design personnalisé</div>
+        <div class="sur-item">Installable sur mobile</div>
+        <div class="sur-item">iPhone &amp; Android</div>
+        <div class="sur-item">Fonctionne hors ligne</div>
         <div class="sur-item">Livraison rapide</div>
         <div class="sur-item">Hébergement inclus 1 an</div>
       </div>
+      <div class="sur-cta">
+        <a href="#formulaire" class="btn-wh">💬 Décrire mon projet →</a>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="form-card" id="formulaire">
-      <div class="form-ttl">💬 Décrivez votre projet</div>
-      <div class="form-sub">Remplissez ce formulaire en 2 minutes — on vous répond sous 24h avec une proposition adaptée. C'est sans engagement.</div>
-
+<!-- FORMULAIRE -->
+<section class="formulaire" id="formulaire">
+  <div class="sec-in">
+    <div class="eyebrow">Devis gratuit</div>
+    <div class="sec-h">Décrivez votre projet.</div>
+    <p class="sec-p">Je vous réponds sous 24h avec une proposition adaptée. Sans engagement.</p>
+    <div class="form-card">
       <form name="contact" method="POST" action="/merci" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
         <input type="hidden" name="bot-field" style="display:none">
-
-        <div class="form-section">Vos coordonnées</div>
-        <div class="form-row">
-          <div class="fg">
-            <label class="fl-label">Nom / Prénom *</label>
-            <input type="text" name="nom" placeholder="Jean Dupont" required>
-          </div>
-          <div class="fg">
-            <label class="fl-label">Email *</label>
-            <input type="email" name="email" placeholder="jean@exemple.fr" required>
-          </div>
+        <div class="fsect">Vos coordonnées</div>
+        <div class="frow">
+          <div class="fg"><label class="fl">Nom / Prénom *</label><input type="text" name="nom" placeholder="Jean Dupont" required></div>
+          <div class="fg"><label class="fl">Email *</label><input type="email" name="email" placeholder="jean@exemple.fr" required></div>
         </div>
+        <div class="fg"><label class="fl">Téléphone <span class="fl-opt">(optionnel)</span></label><input type="tel" name="telephone" placeholder="06 12 34 56 78"></div>
+        <div class="fsect">Votre projet</div>
+        <div class="fg"><label class="fl">Votre secteur / métier *</label><input type="text" name="secteur" placeholder="Ex : plombier, restaurant, association…" required></div>
+        <div class="fg"><label class="fl">Décrivez votre besoin *</label><textarea name="besoin" placeholder="Ex : Je voudrais un site pour présenter mon activité et permettre à mes clients de me contacter facilement…" required></textarea></div>
         <div class="fg">
-          <label class="fl-label">Téléphone <span class="fl-opt">(optionnel)</span></label>
-          <input type="tel" name="telephone" placeholder="06 12 34 56 78">
-        </div>
-
-        <div class="form-section">Votre projet</div>
-        <div class="fg">
-          <label class="fl-label">Votre secteur / métier *</label>
-          <input type="text" name="secteur" placeholder="Ex : plombier, association sportive, restaurant…" required>
-        </div>
-        <div class="fg">
-          <label class="fl-label">Décrivez votre besoin *</label>
-          <textarea name="besoin" placeholder="Ex : Je voudrais une application pour gérer mes rendez-vous clients, envoyer des devis et suivre mes paiements…" required></textarea>
-        </div>
-        <div class="fg">
-          <label class="fl-label">Vous avez déjà un site web ?</label>
-          <div class="radio-group">
-            <label class="radio-opt"><input type="radio" name="site" value="oui"> Oui</label>
-            <label class="radio-opt"><input type="radio" name="site" value="non"> Non</label>
-            <label class="radio-opt"><input type="radio" name="site" value="en cours"> En cours</label>
+          <label class="fl">Vous avez déjà un site web ?</label>
+          <div class="rg">
+            <label class="ro"><input type="radio" name="site" value="oui"> Oui</label>
+            <label class="ro"><input type="radio" name="site" value="non"> Non</label>
+            <label class="ro"><input type="radio" name="site" value="en cours"> En cours</label>
           </div>
         </div>
         <div class="fg">
-          <label class="fl-label">Délai souhaité</label>
-          <div class="radio-group">
-            <label class="radio-opt"><input type="radio" name="delai" value="urgent"> Dès que possible</label>
-            <label class="radio-opt"><input type="radio" name="delai" value="1-2 mois"> Dans 1-2 mois</label>
-            <label class="radio-opt"><input type="radio" name="delai" value="pas urgent"> Pas urgent</label>
+          <label class="fl">Délai souhaité</label>
+          <div class="rg">
+            <label class="ro"><input type="radio" name="delai" value="urgent"> Dès que possible</label>
+            <label class="ro"><input type="radio" name="delai" value="1-2 mois"> Dans 1-2 mois</label>
+            <label class="ro"><input type="radio" name="delai" value="pas urgent"> Pas urgent</label>
           </div>
         </div>
-
-        <div class="form-section">Budget approximatif</div>
+        <div class="fsect">Budget approximatif</div>
         <div class="fg">
-          <div class="radio-group">
-            <label class="radio-opt"><input type="radio" name="budget" value="je ne sais pas"> Je ne sais pas</label>
-            <label class="radio-opt"><input type="radio" name="budget" value="moins 500"> Moins de 500€</label>
-            <label class="radio-opt"><input type="radio" name="budget" value="500-1500"> 500 – 1 500€</label>
-            <label class="radio-opt"><input type="radio" name="budget" value="1500-3000"> 1 500 – 3 000€</label>
-            <label class="radio-opt"><input type="radio" name="budget" value="plus 3000"> Plus de 3 000€</label>
+          <div class="rg">
+            <label class="ro"><input type="radio" name="budget" value="je ne sais pas"> Je ne sais pas</label>
+            <label class="ro"><input type="radio" name="budget" value="moins 500"> Moins de 500€</label>
+            <label class="ro"><input type="radio" name="budget" value="500-1500"> 500 – 1 500€</label>
+            <label class="ro"><input type="radio" name="budget" value="1500-3000"> 1 500 – 3 000€</label>
+            <label class="ro"><input type="radio" name="budget" value="plus 3000"> Plus de 3 000€</label>
           </div>
         </div>
-
-        <button type="submit" class="btn-submit">🚀 Obtenir mon devis gratuit — sous 24h</button>
+        <button type="submit" class="btn-sub">🚀 Obtenir mon devis gratuit — sous 24h</button>
         <div class="form-note">Réponse garantie sous 24h · Sans engagement · 100% confidentiel</div>
       </form>
     </div>
   </div>
 </section>
 
+<!-- À PROPOS -->
 <section class="about" id="about">
-  <div class="about-in">
-    <div class="tag">✦ Le studio</div>
-    <div class="ttl">Qui suis-je ?</div>
-    <p class="stxt">Développeur web freelance passionné par les outils simples qui font vraiment la différence.</p>
-    <div class="acard">
-      <div class="ab1"></div>
-      <div class="ab2"></div>
-      <div class="av">👨‍💻</div>
-      <div class="an">Jérémy — Axion App Studio</div>
-      <div class="ar">Développeur web freelance · Finistère, Bretagne</div>
-      <div class="at">Je suis Jérémy, développeur web indépendant basé en Bretagne, spécialisé dans la création d'applications web sur mesure et de PWA. Avec une solide expérience terrain en logistique, je comprends les vrais besoins des professionnels — pas juste le code. Chaque projet est conçu avec une obsession pour la simplicité, la rapidité et la vraie utilité.</div>
+  <div class="sec-in" style="max-width:640px;text-align:center">
+    <div class="eyebrow" style="justify-content:center">Le studio</div>
+    <div class="sec-h">Qui suis-je ?</div>
+    <p class="sec-p" style="margin:0 auto">Développeur web freelance passionné par les outils simples qui font vraiment la différence.</p>
+    <div class="ab-card">
+      <div class="ag1"></div>
+      <div class="ag2"></div>
+      <div class="ab-av">👨‍💻</div>
+      <div class="ab-n">Jérémy — Axion App Studio</div>
+      <div class="ab-r">Développeur web freelance · Finistère, Bretagne</div>
+      <div class="ab-t">Développeur web indépendant basé en Bretagne, spécialisé dans la création de sites web et d'applications sur mesure. Avec une solide expérience terrain en logistique, je comprends les vrais besoins des professionnels — pas juste le code.</div>
       <div class="chips">
         <div class="chip">HTML / CSS / JS</div>
         <div class="chip">PWA</div>
@@ -386,20 +660,39 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
   </div>
 </section>
 
-<section class="cta">
-  <h2>Une idée d'application ?</h2>
-  <p>Obtenez votre devis gratuit en 2 minutes.<br>Réponse garantie sous 24h, sans engagement.</p>
-  <a href="#formulaire" class="btn-g">💬 Obtenir mon devis gratuit</a>
+<!-- CTA FINAL -->
+<section class="cta-fin">
+  <div class="cta-glow"></div>
+  <h2>Prêt à lancer votre projet ?</h2>
+  <p>Devis gratuit en 2 minutes.<br>Je vous réponds sous 24h, sans engagement.</p>
+  <a href="#formulaire" class="btn-main" style="position:relative;z-index:1">💬 Obtenir mon devis gratuit</a>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="foot-links">
-    <a href="#apps">AutoCarnet</a>
-    <a href="#sur-mesure">Sur mesure</a>
-    <a href="#about">Studio</a>
-    <a href="https://autocarnet.fr">AutoCarnet</a>
-    <a href="mailto:contact@axionappstudio.com">Contact</a>
-    <a href="/blog">Blog</a>
-    <a href="/mentions-legales">Mentions légales</a>
+  <div class="foot-in">
+    <div class="foot-logo">
+      <svg width="26" height="26" viewBox="0 0 72 72" fill="none">
+        <defs><linearGradient id="flg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs>
+        <rect width="72" height="72" rx="20" fill="#1a1a2e"/>
+        <rect x="1" y="1" width="70" height="70" rx="19" stroke="url(#flg)" stroke-width="2" fill="none"/>
+        <path d="M18 56 L36 16 L54 56" stroke="url(#flg)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="25" y1="41" x2="47" y2="41" stroke="url(#flg)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <span class="foot-wm">AXION APP STUDIO</span>
+    </div>
+    <div class="foot-links">
+      <a href="#services">Services</a>
+      <a href="#apps">AutoCarnet</a>
+      <a href="#sur-mesure">Sur mesure</a>
+      <a href="#about">Studio</a>
+      <a href="mailto:contact@axionappstudio.com">Contact</a>
+      <a href="/blog">Blog</a>
+      <a href="/mentions-legales">Mentions légales</a>
+    </div>
+    <div class="foot-copy">© 2026 Axion App Studio · SIRET 914 511 639 00025 · Bretagne, France</div>
   </div>
-  <div class="foot-copy">© 2026 Axion App Studio �
+</footer>
+
+</body>
+</html>
