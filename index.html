@@ -5,6 +5,28 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Axion App Studio — Applications PWA made in France</title>
 <meta name="description" content="Axion App Studio crée des applications web PWA simples, rapides et accessibles pour les particuliers et les professionnels.">
+<meta property="og:title" content="Axion App Studio — Applications PWA made in France">
+<meta property="og:description" content="Développeur web indépendant en Bretagne. Sites vitrines, applications web et outils métier sur mesure. Devis gratuit sous 24h.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://axionappstudio.com">
+<meta property="og:locale" content="fr_FR">
+<meta name="keywords" content="développeur web freelance Bretagne, création application web Finistère, PWA sur mesure, développeur indépendant France">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Axion App Studio",
+  "description": "Studio de développement web indépendant spécialisé PWA",
+  "url": "https://axionappstudio.com",
+  "email": "contact@axionappstudio.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "Bretagne",
+    "addressCountry": "FR"
+  },
+  "sameAs": ["https://autocarnet.fr"]
+}
+</script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--b2:#7C3AED;--b1:#2563EB;--c1:#FF6B35;--txt:#0A0A0F;--txm:#3D3D50;--txl:#8888A0;--bg:#FAFAFA;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
@@ -124,6 +146,42 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
   .btn-g,.btn-w{width:100%;max-width:280px;justify-content:center}
   .card-bot{flex-direction:column;align-items:flex-start}
 }
+
+/* Bouton flottant */
+.fab{
+  position:fixed;bottom:24px;right:20px;z-index:200;
+  display:flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#FF6B35,#7C3AED);
+  color:#fff;font-size:.85rem;font-weight:700;
+  padding:13px 22px;border-radius:50px;
+  box-shadow:0 6px 24px rgba(124,58,237,.38);
+  text-decoration:none;
+  animation:fab-in .4s ease both;
+}
+@keyframes fab-in{from{transform:translateY(80px);opacity:0}to{transform:translateY(0);opacity:1}}
+.fab:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(124,58,237,.45)}
+
+/* Bouton Play Store */
+.play-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#000;color:#fff;
+  padding:11px 22px;border-radius:12px;
+  font-size:.85rem;font-weight:600;
+  transition:.15s;border:1.5px solid rgba(255,255,255,.1);
+}
+.play-btn:hover{background:#1a1a1a;transform:translateY(-1px)}
+.play-btn svg{width:20px;height:20px;flex-shrink:0}
+.mini-cta{
+  text-align:center;padding:32px 24px;
+}
+.mini-cta a{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(124,58,237,.07);border:1.5px solid rgba(124,58,237,.2);
+  color:#7C3AED;font-size:.88rem;font-weight:700;
+  padding:12px 26px;border-radius:50px;
+  transition:.15s;
+}
+.mini-cta a:hover{background:rgba(124,58,237,.13)}
 </style>
 </head>
 <body>
@@ -135,15 +193,18 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
   </div>
 </nav>
 
+<!-- Bouton flottant devis -->
+<a href="#formulaire" class="fab">💬 Devis gratuit</a>
+
 <section class="hero">
   <div class="blob b1"></div>
   <div class="blob b2"></div>
   <div class="blob b3"></div>
-  <div class="badge"><div class="dot"></div>Studio PWA · Made in France 🇫🇷</div>
-  <h1>Des apps qui<br><span class="hi">simplifient</span><br>votre quotidien</h1>
-  <p class="sub">Axion Studio conçoit des applications web progressives simples, rapides et accessibles — pour les particuliers, les familles et les professionnels.</p>
+  <div class="badge"><div class="dot"></div>Développeur Web · Made in France 🇫🇷</div>
+  <h1>Sites web, applications<br>et outils numériques<br><span class="hi">sur mesure</span></h1>
+  <p class="sub">Artisan, commerçant, TPE ou startup — je crée l'outil numérique qu'il vous faut, au bon prix, livré rapidement.</p>
   <div class="btns">
-    <a href="#apps" class="btn-g">Voir nos applications →</a>
+    <a href="#apps" class="btn-g">Voir AutoCarnet →</a>
     <a href="#formulaire" class="btn-w">🛠️ Projet sur mesure</a>
   </div>
 </section>
@@ -158,14 +219,14 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
 
 <section class="apps" id="apps">
   <div class="apps-in">
-    <div class="tag">✦ Nos applications</div>
-    <div class="ttl">Des outils pensés<br>pour vous faciliter la vie</div>
-    <p class="stxt">Chaque application résout un vrai problème, sans complexité inutile.</p>
+    <div class="tag">✦ Notre application</div>
+    <div class="ttl">AutoCarnet</div>
+    <p class="stxt">Le carnet d'entretien voiture numérique — disponible sur Android.</p>
     <div class="card">
       <div class="card-top">
-        <div class="card-ico">🚗</div>
+        <img src="autocarnet-logo.png" alt="AutoCarnet" style="width:64px;height:64px;border-radius:16px;margin-bottom:14px;display:block;">
         <div class="card-name">AutoCarnet</div>
-        <div class="card-desc">Le carnet d'entretien voiture numérique. Suivez vos véhicules, recevez vos rappels CT et vidange automatiquement, gérez votre flotte professionnelle.</div>
+        <div class="card-desc">Suivez vos véhicules, recevez vos rappels CT et vidange automatiquement, gérez votre flotte professionnelle. Simple, rapide, sans pub.</div>
         <div class="feats">
           <div class="feat">Rappels automatiques</div>
           <div class="feat">Historique complet</div>
@@ -181,28 +242,33 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
           <div class="t">Famille 1,99€/mois</div>
           <div class="t">Pro 4,99€/mois</div>
         </div>
-        <a href="https://autocarnet.fr" target="_blank" class="lnk">Découvrir →</a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <a href="https://autocarnet.fr" target="_blank" class="lnk">Site web →</a>
+          <a href="https://play.google.com/store/apps/details?id=fr.autocarnet.app" target="_blank">
+            <img src="google-play-badge.webp" alt="Disponible sur Google Play" style="height:44px;display:block;">
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="soon">
-      <div class="soon-i">🚀</div>
-      <div class="soon-t">Prochaine application en cours…</div>
-      <div class="soon-s">Axion Studio développe constamment de nouveaux outils. Revenez bientôt.</div>
     </div>
   </div>
 </section>
 
+<!-- Mini CTA entre apps et sur-mesure -->
+<div class="mini-cta">
+  <a href="#formulaire">🛠️ Vous avez un projet ? Obtenez votre devis gratuit →</a>
+</div>
+
 <section class="sur-mesure" id="sur-mesure">
   <div class="sur-in">
     <div class="tag">✦ Sur mesure</div>
-    <div class="ttl">Vous avez un projet ?<br>On le construit.</div>
-    <p class="stxt">Artisan, association, commerçant, TPE — si vous avez besoin d'un outil numérique simple et efficace, Axion Studio peut le créer pour vous.</p>
+    <div class="ttl">Vous avez un projet ?<br>Je le construis.</div>
+    <p class="stxt">Artisan, association, commerçant, TPE — site vitrine, application métier, outil de gestion, e-commerce. Je m'adapte à votre besoin, pas l'inverse.</p>
 
     <div class="sur-intro">
       <div class="sur-blob1"></div>
       <div class="sur-blob2"></div>
-      <div class="sur-ttl">Une application pensée<br>pour votre métier.</div>
-      <div class="sur-txt">Quel que soit votre secteur, on conçoit un outil adapté à vos besoins réels — sans fonctionnalités inutiles, sans budget d'agence. Quelques exemples :</div>
+      <div class="sur-ttl">Un outil numérique pensé<br>pour votre métier.</div>
+      <div class="sur-txt">Site vitrine, boutique en ligne, application de gestion, outil interne — quel que soit votre besoin, je conçois la solution adaptée à votre activité. Sans budget d'agence, sans jargon. Quelques exemples :</div>
       <div class="sur-exemples">
         <div class="sur-ex">🔧 Artisan du bâtiment</div>
         <div class="sur-ex">🍽️ Restaurant / traiteur</div>
@@ -288,7 +354,7 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
           </div>
         </div>
 
-        <button type="submit" class="btn-submit">🚀 Envoyer ma demande</button>
+        <button type="submit" class="btn-submit">🚀 Obtenir mon devis gratuit — sous 24h</button>
         <div class="form-note">Réponse garantie sous 24h · Sans engagement · 100% confidentiel</div>
       </form>
     </div>
@@ -298,20 +364,22 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
 <section class="about" id="about">
   <div class="about-in">
     <div class="tag">✦ Le studio</div>
-    <div class="ttl">Qui sommes-nous ?</div>
-    <p class="stxt">Un développeur indépendant passionné par les outils simples qui font vraiment la différence.</p>
+    <div class="ttl">Qui suis-je ?</div>
+    <p class="stxt">Développeur web freelance passionné par les outils simples qui font vraiment la différence.</p>
     <div class="acard">
       <div class="ab1"></div>
       <div class="ab2"></div>
       <div class="av">👨‍💻</div>
-      <div class="an">Axion Studio</div>
-      <div class="ar">Développeur PWA indépendant · Finistère, France</div>
-      <div class="at">Axion Studio est un studio de développement solo spécialisé dans les applications web progressives (PWA). Chaque outil est conçu avec une obsession pour la simplicité, la rapidité et la vraie utilité — sans fioritures ni abonnements abusifs.</div>
+      <div class="an">Jérémy — Axion App Studio</div>
+      <div class="ar">Développeur web freelance · Finistère, Bretagne</div>
+      <div class="at">Je suis Jérémy, développeur web indépendant basé en Bretagne, spécialisé dans la création d'applications web sur mesure et de PWA. Avec une solide expérience terrain en logistique, je comprends les vrais besoins des professionnels — pas juste le code. Chaque projet est conçu avec une obsession pour la simplicité, la rapidité et la vraie utilité.</div>
       <div class="chips">
         <div class="chip">HTML / CSS / JS</div>
         <div class="chip">PWA</div>
         <div class="chip">Supabase</div>
+        <div class="chip">Stripe</div>
         <div class="chip">Netlify</div>
+        <div class="chip">Logistique & Terrain</div>
         <div class="chip">Made in Bretagne 🌊</div>
       </div>
     </div>
@@ -320,17 +388,17 @@ footer{padding:26px 24px;border-top:1px solid rgba(0,0,0,.08);text-align:center}
 
 <section class="cta">
   <h2>Une idée d'application ?</h2>
-  <p>Produit SaaS ou projet sur mesure — on adore les défis.<br>Parlons-en, c'est sans engagement.</p>
-  <a href="#formulaire" class="btn-g">💬 Décrire mon projet</a>
+  <p>Obtenez votre devis gratuit en 2 minutes.<br>Réponse garantie sous 24h, sans engagement.</p>
+  <a href="#formulaire" class="btn-g">💬 Obtenir mon devis gratuit</a>
 </section>
 
 <footer>
   <div class="foot-links">
-    <a href="#apps">Applications</a>
+    <a href="#apps">AutoCarnet</a>
     <a href="#sur-mesure">Sur mesure</a>
     <a href="#about">Studio</a>
     <a href="https://autocarnet.fr">AutoCarnet</a>
-    <a href="/cdn-cgi/l/email-protection#97f4f8f9e3f6f4e3d7f6effef8f9f6e7e7e4e3e2f3fef8b9f4f8fa">Contact</a>
+    <a href="mailto:contact@axionappstudio.com">Contact</a>
     <a href="/blog">Blog</a>
     <a href="/mentions-legales">Mentions légales</a>
   </div>
