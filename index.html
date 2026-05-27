@@ -353,6 +353,16 @@ h1{
 .sim-autre{width:100%;padding:12px 14px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.07);border-radius:10px;font-size:.82rem;color:rgba(255,255,255,.7);font-family:'DM Sans',system-ui,sans-serif;resize:vertical;min-height:80px;outline:none;transition:.2s}
 .sim-autre:focus{border-color:var(--v);box-shadow:0 0 0 3px rgba(124,58,237,.08)}
 .sim-autre::placeholder{color:rgba(255,255,255,.2)}
+.sim-desc-box{
+  margin-top:10px;padding:12px 16px;
+  background:rgba(124,58,237,.07);
+  border-left:3px solid var(--v);
+  border-radius:0 8px 8px 0;
+  font-size:.78rem;color:rgba(255,255,255,.55);
+  line-height:1.7;font-weight:300;
+  animation:desc-in .2s ease;
+}
+@keyframes desc-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 /* Recap */
 .sim-right{position:sticky;top:80px}
 .sim-recap{background:var(--dark2);border:1.5px solid rgba(124,58,237,.22);border-radius:20px;overflow:hidden}
@@ -865,90 +875,91 @@ footer{
         <div class="sim-step">
           <div class="sim-step-label">1 · Type de projet</div>
           <div class="sim-types">
-            <div class="sim-type active" data-type="vitrine" data-price="290">
+            <div class="sim-type active" data-type="vitrine" data-price="290" data-desc="Idéal pour présenter votre activité en ligne. Inclut : design personnalisé, pages accueil/services/contact, formulaire simple, optimisation Google et hébergement 1 an.">
               <div class="sim-type-ico">🌐</div>
               <div class="sim-type-name">Site vitrine</div>
               <div class="sim-type-price">dès 290€</div>
             </div>
-            <div class="sim-type" data-type="ecommerce" data-price="590">
+            <div class="sim-type" data-type="ecommerce" data-price="590" data-desc="Vendez vos produits en ligne 24h/24. Inclut : catalogue produits, panier, paiement sécurisé Stripe, gestion des commandes et livraison.">
               <div class="sim-type-ico">🛒</div>
               <div class="sim-type-name">E-commerce</div>
               <div class="sim-type-price">dès 590€</div>
             </div>
-            <div class="sim-type" data-type="app" data-price="790">
+            <div class="sim-type" data-type="app" data-price="790" data-desc="Une vraie application accessible depuis n'importe quel appareil. Inclut : base de données, comptes utilisateurs, interface sur mesure et mode hors ligne.">
               <div class="sim-type-ico">⚙️</div>
               <div class="sim-type-name">Application web</div>
               <div class="sim-type-price">dès 790€</div>
             </div>
-            <div class="sim-type" data-type="outil" data-price="990">
+            <div class="sim-type" data-type="outil" data-price="990" data-desc="Un outil numérique taillé pour votre façon de travailler. Gestion de stocks, tableaux de bord, suivi clients — remplacez Excel par quelque chose de vraiment puissant.">
               <div class="sim-type-ico">📊</div>
               <div class="sim-type-name">Outil métier</div>
               <div class="sim-type-price">dès 990€</div>
             </div>
           </div>
+          <div class="sim-desc-box" id="sim-type-desc">Idéal pour présenter votre activité en ligne. Inclut : design personnalisé, pages accueil/services/contact, formulaire simple, optimisation Google et hébergement 1 an.</div>
         </div>
 
         <!-- 2. Options -->
         <div class="sim-step">
           <div class="sim-step-label">2 · Options</div>
           <div class="sim-opts">
-            <div class="sim-opt" data-price="100" data-label="Formulaire avancé">
+            <div class="sim-opt" data-price="100" data-label="Formulaire avancé" data-desc="Formulaire multi-étapes avec validation, anti-spam, envoi par email et confirmation automatique au client.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Formulaire de contact avancé</span><span class="sim-opt-tag">+100€</span></div>
             </div>
-            <div class="sim-opt" data-price="150" data-label="Paiement en ligne Stripe">
+            <div class="sim-opt" data-price="150" data-label="Paiement en ligne Stripe" data-desc="Intégration Stripe sécurisée : paiement unique, abonnement mensuel ou paiement à la commande. Conforme PCI-DSS.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Paiement en ligne (Stripe)</span><span class="sim-opt-tag">+150€</span></div>
             </div>
-            <div class="sim-opt" data-price="250" data-label="Espace client / connexion">
+            <div class="sim-opt" data-price="250" data-label="Espace client / connexion" data-desc="Vos clients créent un compte, se connectent et accèdent à leur espace personnel (commandes, documents, historique...).">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Espace client / connexion</span><span class="sim-opt-tag">+250€</span></div>
             </div>
-            <div class="sim-opt" data-price="300" data-label="Espace administrateur">
+            <div class="sim-opt" data-price="300" data-label="Espace administrateur" data-desc="Interface privée pour gérer votre site sans toucher au code : produits, commandes, contenus, utilisateurs.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Espace administrateur</span><span class="sim-opt-tag">+300€</span></div>
             </div>
-            <div class="sim-opt" data-price="100" data-label="Blog intégré">
+            <div class="sim-opt" data-price="100" data-label="Blog intégré" data-desc="Section blog avec catégories, tags et articles optimisés pour le référencement Google.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Blog intégré</span><span class="sim-opt-tag">+100€</span></div>
             </div>
-            <div class="sim-opt" data-price="200" data-label="SEO avancé + articles optimisés">
+            <div class="sim-opt" data-price="200" data-label="SEO avancé + articles optimisés" data-desc="Balises structurées, vitesse optimisée, sitemap, 3 articles de blog ciblés sur vos mots-clés prioritaires.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">SEO avancé + articles optimisés</span><span class="sim-opt-tag">+200€</span></div>
             </div>
-            <div class="sim-opt" data-price="150" data-label="PWA installable sur mobile">
+            <div class="sim-opt" data-price="150" data-label="PWA installable sur mobile" data-desc="Votre site devient une vraie app installable sur iPhone et Android, sans passer par l'App Store. Fonctionne hors ligne.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">PWA installable sur mobile</span><span class="sim-opt-tag">+150€</span></div>
             </div>
-            <div class="sim-opt" data-price="120" data-label="Carte interactive / localisation">
+            <div class="sim-opt" data-price="120" data-label="Carte interactive / localisation" data-desc="Carte Google Maps ou OpenStreetMap intégrée avec vos points de vente, zones d'intervention ou itinéraire.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Carte interactive / localisation</span><span class="sim-opt-tag">+120€</span></div>
             </div>
-            <div class="sim-opt" data-price="200" data-label="Système de réservation en ligne">
+            <div class="sim-opt" data-price="200" data-label="Système de réservation en ligne" data-desc="Calendrier de disponibilités, prise de rendez-vous en ligne avec confirmation par email et rappel automatique.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Réservation en ligne</span><span class="sim-opt-tag">+200€</span></div>
             </div>
-            <div class="sim-opt" data-price="100" data-label="Chat en direct">
+            <div class="sim-opt" data-price="100" data-label="Chat en direct" data-desc="Widget de chat intégré pour répondre aux visiteurs en temps réel depuis votre téléphone.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Chat en direct</span><span class="sim-opt-tag">+100€</span></div>
             </div>
-            <div class="sim-opt" data-price="150" data-label="Notifications push">
+            <div class="sim-opt" data-price="150" data-label="Notifications push" data-desc="Envoyez des notifications directement sur le téléphone de vos clients (promotions, rappels, nouveautés).">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Notifications push</span><span class="sim-opt-tag">+150€</span></div>
             </div>
-            <div class="sim-opt" data-price="120" data-label="Connexion Google / réseaux sociaux">
+            <div class="sim-opt" data-price="120" data-label="Connexion Google / réseaux sociaux" data-desc="Vos clients se connectent en 1 clic avec leur compte Google ou Facebook. Plus de mot de passe à retenir.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Connexion Google / réseaux sociaux</span><span class="sim-opt-tag">+120€</span></div>
             </div>
-            <div class="sim-opt" data-price="80" data-label="Galerie photos / portfolio">
+            <div class="sim-opt" data-price="80" data-label="Galerie photos / portfolio" data-desc="Galerie responsive avec lightbox, filtres par catégorie et chargement optimisé pour mobile.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Galerie photos / portfolio</span><span class="sim-opt-tag">+80€</span></div>
             </div>
-            <div class="sim-opt" data-price="80" data-label="Avis clients / témoignages">
+            <div class="sim-opt" data-price="80" data-label="Avis clients / témoignages" data-desc="Section avis intégrée avec notes étoiles, photos et possibilité de modération avant publication.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Avis clients / témoignages</span><span class="sim-opt-tag">+80€</span></div>
             </div>
-            <div class="sim-opt" data-price="80" data-label="Multilingue FR + EN">
+            <div class="sim-opt" data-price="80" data-label="Multilingue FR + EN" data-desc="Votre site en français et en anglais avec détection automatique de la langue du visiteur.">
               <div class="sim-check"></div>
               <div class="sim-opt-body"><span class="sim-opt-name">Multilingue (FR + EN)</span><span class="sim-opt-tag">+80€</span></div>
             </div>
@@ -959,14 +970,14 @@ footer{
         <div class="sim-step">
           <div class="sim-step-label">3 · Votre contenu</div>
           <div class="sim-radios">
-            <div class="sim-radio active" data-group="contenu" data-price="0">
+            <div class="sim-radio active" data-group="contenu" data-price="0" data-desc="Vous me transmettez textes, photos et logo via un formulaire partagé. Je m'occupe de tout intégrer proprement.">
               <div class="sim-dot"></div>
               <div class="sim-radio-body">
                 <div class="sim-radio-title">Je fournis tout</div>
                 <div class="sim-radio-sub">Textes, photos et logo prêts</div>
               </div>
             </div>
-            <div class="sim-radio" data-group="contenu" data-price="150">
+            <div class="sim-radio" data-group="contenu" data-price="150" data-desc="Je rédige les textes de votre site à votre place et sélectionne des photos libres de droits adaptées à votre activité. Vous validez avant mise en ligne.">
               <div class="sim-dot"></div>
               <div class="sim-radio-body">
                 <div class="sim-radio-title">J'ai besoin d'aide</div>
@@ -975,20 +986,21 @@ footer{
               <span class="sim-radio-price">+150€</span>
             </div>
           </div>
+          <div class="sim-desc-box" id="sim-contenu-desc">Vous me transmettez textes, photos et logo via un formulaire partagé. Je m'occupe de tout intégrer proprement.</div>
         </div>
 
         <!-- 4. Délai -->
         <div class="sim-step">
           <div class="sim-step-label">4 · Délai souhaité</div>
           <div class="sim-radios">
-            <div class="sim-radio active" data-group="delai" data-mult="1">
+            <div class="sim-radio active" data-group="delai" data-mult="1" data-desc="Livraison en 1 à 3 semaines selon la complexité du projet. Vous êtes tenu informé à chaque étape clé.">
               <div class="sim-dot"></div>
               <div class="sim-radio-body">
                 <div class="sim-radio-title">Standard</div>
                 <div class="sim-radio-sub">1 à 3 semaines selon la complexité</div>
               </div>
             </div>
-            <div class="sim-radio" data-group="delai" data-mult="1.25">
+            <div class="sim-radio" data-group="delai" data-mult="1.25" data-desc="Votre projet passe en priorité absolue. Livraison garantie en 1 semaine, week-end inclus si nécessaire.">
               <div class="sim-dot"></div>
               <div class="sim-radio-body">
                 <div class="sim-radio-title">Express</div>
@@ -997,20 +1009,21 @@ footer{
               <span class="sim-radio-price">+25%</span>
             </div>
           </div>
+          <div class="sim-desc-box" id="sim-delai-desc">Livraison en 1 à 3 semaines selon la complexité du projet. Vous êtes tenu informé à chaque étape clé.</div>
         </div>
 
         <!-- 5. Maintenance -->
         <div class="sim-step">
           <div class="sim-step-label">5 · Maintenance mensuelle</div>
           <div class="sim-radios">
-            <div class="sim-radio active" data-group="maint" data-maint="0">
+            <div class="sim-radio active" data-group="maint" data-maint="0" data-desc="Vous gérez les mises à jour vous-même. Je vous forme à la prise en main et reste disponible pour des interventions ponctuelles.">
               <div class="sim-dot"></div>
               <div class="sim-radio-body">
                 <div class="sim-radio-title">Sans maintenance</div>
                 <div class="sim-radio-sub">Vous gérez vous-même</div>
               </div>
             </div>
-            <div class="sim-radio" data-group="maint" data-maint="19">
+            <div class="sim-radio" data-group="maint" data-maint="19" data-desc="Je m'occupe de tout : mises à jour, sauvegardes, surveillance, corrections de bugs et support prioritaire par message. Résiliation possible à tout moment.">
               <div class="sim-dot"></div>
               <div class="sim-radio-body">
                 <div class="sim-radio-title">Maintenance incluse</div>
@@ -1019,6 +1032,7 @@ footer{
               <span class="sim-radio-price">+19€/mois</span>
             </div>
           </div>
+          <div class="sim-desc-box" id="sim-maint-desc">Vous gérez les mises à jour vous-même. Je vous forme à la prise en main et reste disponible pour des interventions ponctuelles.</div>
         </div>
 
         <!-- 6. Autre besoin -->
@@ -1525,12 +1539,21 @@ footer{
       document.querySelectorAll('.sim-type').forEach(function(t){t.classList.remove('active');});
       el.classList.add('active');
       state.type = el.dataset.type;
+      var box = document.getElementById('sim-type-desc');
+      if(box && el.dataset.desc){box.textContent=el.dataset.desc;box.style.animation='none';requestAnimationFrame(function(){box.style.animation='';});}
       render();
     });
   });
 
-  // Options — toggle simple sur le div, sans input
+  // Options — toggle simple sur le div
   document.querySelectorAll('.sim-opt').forEach(function(el){
+    // Créer une desc-box pour chaque option
+    var descBox = document.createElement('div');
+    descBox.className = 'sim-desc-box sim-opt-desc';
+    descBox.style.display = 'none';
+    descBox.style.marginTop = '6px';
+    el.parentNode.insertBefore(descBox, el.nextSibling);
+
     el.addEventListener('click',function(){
       var price = parseInt(el.dataset.price);
       var label = el.dataset.label;
@@ -1539,10 +1562,12 @@ footer{
         el.classList.add('active');
         el.querySelector('.sim-check').textContent = '✓';
         state.opts.push({price:price,label:label});
+        if(el.dataset.desc){descBox.textContent=el.dataset.desc;descBox.style.display='block';}
       } else {
         el.classList.remove('active');
         el.querySelector('.sim-check').textContent = '';
         state.opts.splice(idx,1);
+        descBox.style.display='none';
       }
       render();
     });
@@ -1557,6 +1582,8 @@ footer{
       if(group==='contenu') state.contenu = parseInt(el.dataset.price||0);
       if(group==='delai') state.mult = parseFloat(el.dataset.mult||1);
       if(group==='maint') state.maint = parseInt(el.dataset.maint||0);
+      var box = document.getElementById('sim-'+group+'-desc');
+      if(box && el.dataset.desc){box.textContent=el.dataset.desc;box.style.animation='none';requestAnimationFrame(function(){box.style.animation='';});}
       render();
     });
   });
