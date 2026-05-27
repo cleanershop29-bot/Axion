@@ -307,6 +307,145 @@ h1{
 }
 .sec-p{font-size:.9rem;color:var(--txm);line-height:1.75;max-width:440px;font-weight:300}
 
+/* ── SIMULATEUR ── */
+.simulateur{padding:80px 20px;background:var(--dark);border-top:1px solid rgba(124,58,237,.12)}
+.sim-wrap{
+  display:grid;grid-template-columns:1fr;gap:24px;margin-top:44px;
+  align-items:start;
+}
+@media(min-width:860px){.sim-wrap{grid-template-columns:1fr 360px}}
+
+.sim-step{margin-bottom:28px}
+.sim-step-label{
+  font-size:.68rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--v2);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.sim-step-label::before{content:'';width:14px;height:1.5px;background:var(--v2);border-radius:2px}
+
+/* Types */
+.sim-types{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sim-type{
+  background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.07);
+  border-radius:12px;padding:16px 14px;cursor:pointer;
+  transition:.2s;text-align:center;position:relative;
+}
+.sim-type input{position:absolute;opacity:0;pointer-events:none}
+.sim-type-ico{font-size:1.4rem;margin-bottom:6px}
+.sim-type-name{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:3px}
+.sim-type-price{font-size:.72rem;color:rgba(255,255,255,.3);font-weight:400}
+.sim-type:hover{border-color:rgba(124,58,237,.35);background:rgba(124,58,237,.06)}
+.sim-type.active{border-color:var(--v);background:rgba(124,58,237,.12)}
+.sim-type.active .sim-type-name{color:#fff}
+.sim-type.active .sim-type-price{color:var(--v2)}
+
+/* Options checkboxes */
+.sim-opts{display:flex;flex-direction:column;gap:8px}
+.sim-opt{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.07);
+  border-radius:10px;padding:12px 14px;cursor:pointer;
+  transition:.2s;
+}
+.sim-opt input{position:absolute;opacity:0;pointer-events:none}
+.sim-opt-check{
+  width:20px;height:20px;border-radius:6px;flex-shrink:0;
+  border:1.5px solid rgba(255,255,255,.2);
+  transition:.2s;display:grid;place-items:center;
+}
+.sim-opt-check::after{content:'✓';font-size:.75rem;color:#fff;opacity:0;transition:.15s}
+.sim-opt:hover{border-color:rgba(124,58,237,.3)}
+.sim-opt.checked{border-color:var(--v);background:rgba(124,58,237,.08)}
+.sim-opt.checked .sim-opt-check{background:var(--v);border-color:var(--v)}
+.sim-opt.checked .sim-opt-check::after{opacity:1}
+.sim-opt-txt{display:flex;justify-content:space-between;align-items:center;flex:1;gap:8px}
+.sim-opt-txt span{font-size:.82rem;color:rgba(255,255,255,.6);font-weight:400}
+.sim-opt-price{font-size:.78rem;font-weight:600;color:var(--v2);white-space:nowrap;flex-shrink:0}
+
+/* Radios */
+.sim-radios{display:flex;flex-direction:column;gap:8px}
+.sim-radio{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.07);
+  border-radius:10px;padding:14px;cursor:pointer;transition:.2s;
+}
+.sim-radio input{position:absolute;opacity:0;pointer-events:none}
+.sim-radio-dot{
+  width:18px;height:18px;border-radius:50%;flex-shrink:0;
+  border:1.5px solid rgba(255,255,255,.2);transition:.2s;
+  display:grid;place-items:center;
+}
+.sim-radio-dot::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--v2);opacity:0;transition:.15s}
+.sim-radio:hover{border-color:rgba(124,58,237,.3)}
+.sim-radio.active{border-color:var(--v);background:rgba(124,58,237,.08)}
+.sim-radio.active .sim-radio-dot{border-color:var(--v)}
+.sim-radio.active .sim-radio-dot::after{opacity:1}
+.sim-radio-title{font-size:.84rem;font-weight:600;color:rgba(255,255,255,.8)}
+.sim-radio-sub{font-size:.73rem;color:rgba(255,255,255,.35);margin-top:2px;font-weight:300}
+.sim-radio-price{font-size:.78rem;font-weight:600;color:var(--v2);white-space:nowrap;margin-left:auto;flex-shrink:0}
+
+/* Recap */
+.sim-right{position:sticky;top:80px}
+.sim-recap{
+  background:var(--dark2);border:1.5px solid rgba(124,58,237,.2);
+  border-radius:20px;overflow:hidden;
+}
+.sim-recap-top{
+  padding:28px 24px 20px;
+  background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(255,107,53,.06));
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.sim-recap-label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.3);margin-bottom:10px}
+.sim-recap-price{
+  font-family:'DM Sans',sans-serif;
+  font-size:3rem;font-weight:800;color:#fff;
+  letter-spacing:-.03em;line-height:1;margin-bottom:8px;
+  transition:all .3s cubic-bezier(.34,1.56,.64,1);
+}
+.sim-recap-sub{font-size:.78rem;color:rgba(255,255,255,.35);font-weight:300}
+
+.sim-recap-lines{padding:16px 24px;display:flex;flex-direction:column;gap:8px}
+.sim-line{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.8rem;color:rgba(255,255,255,.5);font-weight:400;
+}
+.sim-line span:last-child{font-weight:600;color:rgba(255,255,255,.7)}
+
+.sim-recap-note{
+  margin:0 24px 16px;font-size:.71rem;color:rgba(255,255,255,.2);
+  font-style:italic;font-weight:300;
+}
+.sim-maint-box{
+  margin:0 24px 16px;
+  background:rgba(255,107,53,.08);border:1px solid rgba(255,107,53,.2);
+  border-radius:8px;padding:10px 14px;
+  display:flex;justify-content:space-between;
+  font-size:.8rem;color:rgba(255,255,255,.5);
+}
+.sim-maint-box span:last-child{font-weight:600;color:#FF8855}
+
+.sim-cta{
+  display:block;margin:0 24px 16px;
+  background:var(--v);color:#fff;text-align:center;
+  padding:14px;border-radius:11px;
+  font-size:.88rem;font-weight:700;
+  box-shadow:0 6px 24px rgba(124,58,237,.35);
+  transition:.2s;letter-spacing:.01em;
+}
+.sim-cta:hover{background:#6D28D9;transform:translateY(-1px)}
+
+.sim-garanties{
+  padding:14px 24px 20px;
+  display:flex;justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.sim-gar{font-size:.68rem;color:rgba(255,255,255,.25);font-weight:400}
+
+@media(max-width:480px){
+  .sim-types{grid-template-columns:1fr 1fr}
+  .sim-recap-price{font-size:2.4rem}
+}
+
 /* ── SERVICES ── */
 .services{padding:80px 20px;background:var(--bg)}
 .srv-grid{
@@ -722,6 +861,7 @@ footer{
       <span class="nav-wm">AXION <span>APP STUDIO</span></span>
     </a>
     <div class="nav-links" role="navigation" aria-label="Navigation principale">
+      <a href="#simulateur">Simulateur</a>
       <a href="#services">Services</a>
       <a href="#tarifs">Tarifs</a>
       <a href="#apps">AutoCarnet</a>
@@ -780,6 +920,227 @@ footer{
     </div>
   </div>
 </div>
+
+<!-- SIMULATEUR DE PRIX -->
+<section class="simulateur" id="simulateur">
+  <div class="sec-in">
+    <div class="eyebrow reveal">Simulateur</div>
+    <h2 class="sec-h reveal" style="color:#fff">Estimez votre projet<br>en temps réel.</h2>
+    <p class="sec-p reveal" style="color:rgba(255,255,255,.45)">Configurez votre projet et obtenez un prix instantané. Sans engagement.</p>
+
+    <div class="sim-wrap reveal">
+
+      <!-- COLONNE GAUCHE : options -->
+      <div class="sim-left">
+
+        <!-- Étape 1 : Type -->
+        <div class="sim-step">
+          <div class="sim-step-label">1 · Type de projet</div>
+          <div class="sim-types">
+            <label class="sim-type active" data-type="vitrine" data-price="300">
+              <input type="radio" name="type" value="vitrine" checked>
+              <div class="sim-type-ico">🌐</div>
+              <div class="sim-type-name">Site vitrine</div>
+              <div class="sim-type-price">dès 300€</div>
+            </label>
+            <label class="sim-type" data-type="ecommerce" data-price="600">
+              <input type="radio" name="type" value="ecommerce">
+              <div class="sim-type-ico">🛒</div>
+              <div class="sim-type-name">E-commerce</div>
+              <div class="sim-type-price">dès 600€</div>
+            </label>
+            <label class="sim-type" data-type="app" data-price="800">
+              <input type="radio" name="type" value="app">
+              <div class="sim-type-ico">⚙️</div>
+              <div class="sim-type-name">Application web</div>
+              <div class="sim-type-price">dès 800€</div>
+            </label>
+            <label class="sim-type" data-type="outil" data-price="1000">
+              <input type="radio" name="type" value="outil">
+              <div class="sim-type-ico">📊</div>
+              <div class="sim-type-name">Outil métier</div>
+              <div class="sim-type-price">dès 1 000€</div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Étape 2 : Options -->
+        <div class="sim-step">
+          <div class="sim-step-label">2 · Options souhaitées</div>
+          <div class="sim-opts">
+            <label class="sim-opt">
+              <input type="checkbox" name="opt" value="150" data-label="Formulaire de contact avancé">
+              <div class="sim-opt-check"></div>
+              <div class="sim-opt-txt">
+                <span>Formulaire de contact avancé</span>
+                <span class="sim-opt-price">+150€</span>
+              </div>
+            </label>
+            <label class="sim-opt">
+              <input type="checkbox" name="opt" value="200" data-label="Paiement en ligne (Stripe)">
+              <div class="sim-opt-check"></div>
+              <div class="sim-opt-txt">
+                <span>Paiement en ligne (Stripe)</span>
+                <span class="sim-opt-price">+200€</span>
+              </div>
+            </label>
+            <label class="sim-opt">
+              <input type="checkbox" name="opt" value="300" data-label="Espace client / connexion">
+              <div class="sim-opt-check"></div>
+              <div class="sim-opt-txt">
+                <span>Espace client / connexion</span>
+                <span class="sim-opt-price">+300€</span>
+              </div>
+            </label>
+            <label class="sim-opt">
+              <input type="checkbox" name="opt" value="150" data-label="Blog intégré">
+              <div class="sim-opt-check"></div>
+              <div class="sim-opt-txt">
+                <span>Blog intégré</span>
+                <span class="sim-opt-price">+150€</span>
+              </div>
+            </label>
+            <label class="sim-opt">
+              <input type="checkbox" name="opt" value="250" data-label="SEO avancé + articles optimisés">
+              <div class="sim-opt-check"></div>
+              <div class="sim-opt-txt">
+                <span>SEO avancé + articles optimisés</span>
+                <span class="sim-opt-price">+250€</span>
+              </div>
+            </label>
+            <label class="sim-opt">
+              <input type="checkbox" name="opt" value="200" data-label="Installable sur mobile (PWA)">
+              <div class="sim-opt-check"></div>
+              <div class="sim-opt-txt">
+                <span>Installable sur mobile (PWA)</span>
+                <span class="sim-opt-price">+200€</span>
+              </div>
+            </label>
+            <label class="sim-opt">
+              <input type="checkbox" name="opt" value="100" data-label="Multilingue (FR + EN)">
+              <div class="sim-opt-check"></div>
+              <div class="sim-opt-txt">
+                <span>Multilingue (FR + EN)</span>
+                <span class="sim-opt-price">+100€</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Étape 3 : Contenu -->
+        <div class="sim-step">
+          <div class="sim-step-label">3 · Votre contenu</div>
+          <div class="sim-radios">
+            <label class="sim-radio active" data-add="0">
+              <input type="radio" name="contenu" value="0" checked>
+              <div class="sim-radio-dot"></div>
+              <div>
+                <div class="sim-radio-title">Je fournis tout</div>
+                <div class="sim-radio-sub">Textes, photos, logo prêts</div>
+              </div>
+            </label>
+            <label class="sim-radio" data-add="200">
+              <input type="radio" name="contenu" value="200">
+              <div class="sim-radio-dot"></div>
+              <div>
+                <div class="sim-radio-title">J'ai besoin d'aide</div>
+                <div class="sim-radio-sub">Rédaction + sélection photos</div>
+              </div>
+              <span class="sim-radio-price">+200€</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Étape 4 : Délai -->
+        <div class="sim-step">
+          <div class="sim-step-label">4 · Délai souhaité</div>
+          <div class="sim-radios">
+            <label class="sim-radio active" data-mult="1">
+              <input type="radio" name="delai" value="1" checked>
+              <div class="sim-radio-dot"></div>
+              <div>
+                <div class="sim-radio-title">Standard</div>
+                <div class="sim-radio-sub">1 à 3 semaines</div>
+              </div>
+            </label>
+            <label class="sim-radio" data-mult="1.3">
+              <input type="radio" name="delai" value="1.3">
+              <div class="sim-radio-dot"></div>
+              <div>
+                <div class="sim-radio-title">Express</div>
+                <div class="sim-radio-sub">Livraison prioritaire en 1 semaine</div>
+              </div>
+              <span class="sim-radio-price">+30%</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Étape 5 : Maintenance -->
+        <div class="sim-step">
+          <div class="sim-step-label">5 · Maintenance mensuelle</div>
+          <div class="sim-radios">
+            <label class="sim-radio active" data-maint="0">
+              <input type="radio" name="maint" value="0" checked>
+              <div class="sim-radio-dot"></div>
+              <div>
+                <div class="sim-radio-title">Sans maintenance</div>
+                <div class="sim-radio-sub">Vous gérez vous-même</div>
+              </div>
+            </label>
+            <label class="sim-radio" data-maint="29">
+              <input type="radio" name="maint" value="29">
+              <div class="sim-radio-dot"></div>
+              <div>
+                <div class="sim-radio-title">Maintenance incluse</div>
+                <div class="sim-radio-sub">Mises à jour + support prioritaire</div>
+              </div>
+              <span class="sim-radio-price">+29€/mois</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- COLONNE DROITE : récap prix -->
+      <div class="sim-right">
+        <div class="sim-recap">
+          <div class="sim-recap-top">
+            <div class="sim-recap-label">Estimation de votre projet</div>
+            <div class="sim-recap-price" id="sim-price">300€</div>
+            <div class="sim-recap-sub" id="sim-sub">Site vitrine · Livraison standard</div>
+          </div>
+
+          <div class="sim-recap-lines" id="sim-lines">
+            <div class="sim-line">
+              <span id="sim-base-label">Site vitrine</span>
+              <span id="sim-base-val">300€</span>
+            </div>
+          </div>
+
+          <div class="sim-recap-note">
+            Prix indicatif — devis exact gratuit sous 24h
+          </div>
+
+          <div id="sim-maint-box" class="sim-maint-box" style="display:none">
+            <span>+ Maintenance</span>
+            <span id="sim-maint-val">29€/mois</span>
+          </div>
+
+          <a href="#formulaire" class="sim-cta" id="sim-cta-btn">
+            Obtenir ce devis gratuit →
+          </a>
+
+          <div class="sim-garanties">
+            <div class="sim-gar">✓ Sans engagement</div>
+            <div class="sim-gar">✓ Réponse sous 24h</div>
+            <div class="sim-gar">✓ 100% confidentiel</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- SERVICES -->
 <section class="services" id="services">
@@ -1181,6 +1542,115 @@ footer{
     <div class="foot-copy">© 2026 Axion App Studio · SIRET 914 511 639 00025 · Finistère, Bretagne, France</div>
   </div>
 </footer>
+
+<!-- SIMULATEUR JS -->
+<script>
+(function(){
+  const basePrices = {vitrine:300,ecommerce:600,app:800,outil:1000};
+  const baseLabels = {vitrine:'Site vitrine',ecommerce:'E-commerce',app:'Application web',outil:'Outil métier'};
+
+  function calcAndRender(){
+    // Base
+    const typeEl = document.querySelector('.sim-type.active');
+    const type = typeEl ? typeEl.dataset.type : 'vitrine';
+    let base = basePrices[type] || 300;
+
+    // Options
+    let optsTotal = 0;
+    const optLines = [];
+    document.querySelectorAll('.sim-opt.checked input').forEach(inp => {
+      const val = parseInt(inp.value);
+      optsTotal += val;
+      optLines.push({label: inp.dataset.label, val});
+    });
+
+    // Contenu
+    const contenu = parseInt(document.querySelector('input[name="contenu"]:checked')?.value || 0);
+
+    // Délai
+    const mult = parseFloat(document.querySelector('input[name="delai"]:checked')?.value || 1);
+    const express = mult > 1;
+
+    // Maintenance
+    const maint = parseInt(document.querySelector('input[name="maint"]:checked')?.value || 0);
+
+    // Calcul
+    let total = (base + optsTotal + contenu) * mult;
+    total = Math.round(total / 10) * 10;
+
+    // Affichage prix
+    document.getElementById('sim-price').textContent = total.toLocaleString('fr-FR') + '€';
+    document.getElementById('sim-sub').textContent = baseLabels[type] + (express ? ' · Livraison express' : ' · Livraison standard');
+
+    // Lignes détail
+    const linesEl = document.getElementById('sim-lines');
+    linesEl.innerHTML = '';
+    const addLine = (label, val) => {
+      const d = document.createElement('div');
+      d.className = 'sim-line';
+      d.innerHTML = `<span>${label}</span><span>${val}</span>`;
+      linesEl.appendChild(d);
+    };
+    addLine(baseLabels[type], base + '€');
+    optLines.forEach(o => addLine(o.label, '+' + o.val + '€'));
+    if(contenu > 0) addLine('Aide rédaction + photos', '+' + contenu + '€');
+    if(express){
+      const surcharge = Math.round((base + optsTotal + contenu) * 0.3 / 10) * 10;
+      addLine('Express (+30%)', '+' + surcharge + '€');
+    }
+
+    // Maintenance
+    const maintBox = document.getElementById('sim-maint-box');
+    if(maint > 0){
+      maintBox.style.display = 'flex';
+      document.getElementById('sim-maint-val').textContent = maint + '€/mois';
+    } else {
+      maintBox.style.display = 'none';
+    }
+
+    // Pré-remplir le formulaire
+    const besoins = document.getElementById('besoin');
+    if(besoins){
+      const opts = optLines.map(o => o.label).join(', ');
+      besoins.value = `Type : ${baseLabels[type]}\nOptions : ${opts || 'Aucune'}\nContenu : ${contenu > 0 ? 'Aide souhaitée' : 'Je fournis tout'}\nDélai : ${express ? 'Express' : 'Standard'}\nMaintenance : ${maint > 0 ? 'Oui' : 'Non'}\nBudget estimé : ${total}€`;
+    }
+  }
+
+  // Types
+  document.querySelectorAll('.sim-type').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('.sim-type').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      el.querySelector('input').checked = true;
+      calcAndRender();
+    });
+  });
+
+  // Opts
+  document.querySelectorAll('.sim-opt').forEach(el => {
+    el.addEventListener('click', () => {
+      el.classList.toggle('checked');
+      el.querySelector('input').checked = el.classList.contains('checked');
+      calcAndRender();
+    });
+  });
+
+  // Radios contenu + délai + maint
+  document.querySelectorAll('.sim-radio').forEach(el => {
+    el.addEventListener('click', () => {
+      const name = el.querySelector('input').name;
+      document.querySelectorAll(`.sim-radio input[name="${name}"]`).forEach(i => {
+        i.closest('.sim-radio').classList.remove('active');
+      });
+      el.classList.add('active');
+      el.querySelector('input').checked = true;
+      calcAndRender();
+    });
+  });
+
+  calcAndRender();
+})();
+</script>
 
 <!-- SCROLL REVEAL -->
 <script>
