@@ -676,6 +676,17 @@ textarea{resize:vertical;min-height:110px}
 }
 .btn-sub:hover{background:#6D28D9;transform:translateY(-1px);box-shadow:0 10px 32px rgba(124,58,237,.42)}
 .form-note{font-size:.71rem;color:var(--txl);text-align:center;margin-top:12px;line-height:1.65;font-weight:300}
+.sim-recap-preview{
+  background:rgba(124,58,237,.05);border:1.5px solid rgba(124,58,237,.15);
+  border-radius:12px;padding:16px 18px;margin-bottom:20px;
+  display:none;
+}
+.sim-recap-preview.visible{display:block}
+.srp-title{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--v);margin-bottom:10px}
+.srp-lines{display:flex;flex-direction:column;gap:5px}
+.srp-line{display:flex;justify-content:space-between;font-size:.79rem;color:var(--txm)}
+.srp-line b{font-weight:600;color:var(--txt)}
+.srp-total{display:flex;justify-content:space-between;font-size:.88rem;font-weight:700;color:var(--txt);border-top:1px solid rgba(124,58,237,.12);padding-top:8px;margin-top:6px}
 
 /* ── À PROPOS ── */
 .about{padding:80px 20px;background:#fff;border-top:1px solid rgba(0,0,0,.06)}
@@ -1345,13 +1356,14 @@ footer{
 <!-- FORMULAIRE -->
 <section class="formulaire" id="formulaire">
   <div class="sec-in">
-    <div class="eyebrow reveal">Devis gratuit</div>
-    <h2 class="sec-h reveal">Décrivez votre projet.</h2>
-    <p class="sec-p reveal">Je vous réponds sous 24h avec une proposition adaptée. Sans engagement.</p>
+    <div class="eyebrow reveal">Dernière étape</div>
+    <h2 class="sec-h reveal">Plus qu'un pas.</h2>
+    <p class="sec-p reveal">Votre configuration du simulateur est déjà enregistrée. Laissez juste vos coordonnées — je vous rappelle sous 24h.</p>
     <div class="form-card reveal">
       <form name="contact" method="POST" action="/merci" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
         <input type="hidden" name="bot-field" style="display:none" aria-hidden="true">
+        <textarea id="besoin" name="besoin" style="display:none" aria-hidden="true"></textarea>
 
         <div class="fsect">Vos coordonnées</div>
         <div class="frow">
@@ -1364,50 +1376,20 @@ footer{
             <input type="email" id="email" name="email" placeholder="jean@exemple.fr" required autocomplete="email">
           </div>
         </div>
-        <div class="fg">
-          <label class="fl" for="telephone">Téléphone <span class="fl-opt">(optionnel)</span></label>
-          <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78" autocomplete="tel">
-        </div>
-
-        <div class="fsect">Votre projet</div>
-        <div class="fg">
-          <label class="fl" for="secteur">Votre secteur / métier *</label>
-          <input type="text" id="secteur" name="secteur" placeholder="Ex : plombier, restaurant, association…" required>
-        </div>
-        <div class="fg">
-          <label class="fl" for="besoin">Décrivez votre besoin *</label>
-          <textarea id="besoin" name="besoin" placeholder="Ex : Je voudrais un site pour présenter mon activité et permettre à mes clients de me contacter facilement…" required></textarea>
-        </div>
-
-        <div class="fg">
-          <label class="fl">Vous avez déjà un site web ?</label>
-          <div class="rg" role="radiogroup">
-            <label class="ro"><input type="radio" name="site" value="oui"> Oui</label>
-            <label class="ro"><input type="radio" name="site" value="non"> Non</label>
-            <label class="ro"><input type="radio" name="site" value="en cours"> En cours</label>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl" for="telephone">Téléphone <span class="fl-opt">(optionnel)</span></label>
+            <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78" autocomplete="tel">
           </div>
-        </div>
-        <div class="fg">
-          <label class="fl">Délai souhaité</label>
-          <div class="rg" role="radiogroup">
-            <label class="ro"><input type="radio" name="delai" value="urgent"> Dès que possible</label>
-            <label class="ro"><input type="radio" name="delai" value="1-2 mois"> Dans 1-2 mois</label>
-            <label class="ro"><input type="radio" name="delai" value="pas urgent"> Pas urgent</label>
+          <div class="fg">
+            <label class="fl" for="secteur">Votre secteur / métier *</label>
+            <input type="text" id="secteur" name="secteur" placeholder="Ex : plombier, restaurant…" required>
           </div>
         </div>
 
-        <div class="fsect">Budget approximatif</div>
-        <div class="fg">
-          <div class="rg" role="radiogroup">
-            <label class="ro"><input type="radio" name="budget" value="je ne sais pas"> Je ne sais pas</label>
-            <label class="ro"><input type="radio" name="budget" value="moins 500"> Moins de 500€</label>
-            <label class="ro"><input type="radio" name="budget" value="500-1500"> 500 – 1 500€</label>
-            <label class="ro"><input type="radio" name="budget" value="1500-3000"> 1 500 – 3 000€</label>
-            <label class="ro"><input type="radio" name="budget" value="plus 3000"> Plus de 3 000€</label>
-          </div>
-        </div>
+        <div class="sim-recap-preview" id="form-recap"></div>
 
-        <button type="submit" class="btn-sub">🚀 Obtenir mon devis gratuit — sous 24h</button>
+        <button type="submit" class="btn-sub">🚀 Envoyer ma demande de devis — sous 24h</button>
         <div class="form-note">Réponse garantie sous 24h · Sans engagement · 100% confidentiel</div>
       </form>
     </div>
@@ -1509,8 +1491,21 @@ footer{
     tot.innerHTML='<span>Total estimé</span><b>'+total.toLocaleString('fr-FR')+'€</b>';
     el.appendChild(tot);
 
-    // Maintenance
-    var mb = document.getElementById('sim-maint');
+    // Récap dans le formulaire
+    var recap = document.getElementById('form-recap');
+    if(recap){
+      recap.classList.add('visible');
+      var opts = state.opts.map(function(o){return o.label;}).join(', ') || 'Aucune';
+      recap.innerHTML = '<div class="srp-title">Votre configuration du simulateur</div>'
+        +'<div class="srp-lines">'
+        +'<div class="srp-line"><span>Type</span><b>'+LABELS[state.type]+'</b></div>'
+        +'<div class="srp-line"><span>Options</span><b>'+(state.opts.length>0?state.opts.length+' option(s) sélectionnée(s)':'Aucune')+'</b></div>'
+        +'<div class="srp-line"><span>Contenu</span><b>'+(state.contenu>0?'Aide souhaitée':'Je fournis tout')+'</b></div>'
+        +'<div class="srp-line"><span>Délai</span><b>'+(state.mult>1?'Express':'Standard')+'</b></div>'
+        +'<div class="srp-line"><span>Maintenance</span><b>'+(state.maint>0?state.maint+'€/mois':'Non')+'</b></div>'
+        +'</div>'
+        +'<div class="srp-total"><span>Estimation</span><b>'+total.toLocaleString('fr-FR')+'€</b></div>';
+    }
     if(state.maint>0){mb.style.display='flex';document.getElementById('sim-maint-val').textContent=state.maint+'€/mois';}
     else{mb.style.display='none';}
 
