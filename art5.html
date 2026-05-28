@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AutoCarnet : comment j'ai créé une app Android en solo et la vendre en abonnement — Axion App Studio</title>
+<meta name="description" content="Retour d'expérience complet sur la création d'AutoCarnet, de l'idée au Play Store : Supabase, Stripe, Netlify, notifications push et distribution Android.">
+<link rel="canonical" href="https://axionappstudio.com/blog/autocarnet-application-entretien-voiture">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--v:#7C3AED;--v2:#A855F7;--o:#FF6B35;--txt:#09090F;--txm:#44445A;--txl:#8888A0;--bg:#F6F5FF;--dark:#0A0A14;--dark2:#10101E;}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--txt);-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:var(--v)}
+a:hover{text-decoration:underline}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 20px;display:flex;align-items:center;background:rgba(10,10,20,.95);border-bottom:1px solid rgba(124,58,237,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-in{width:100%;max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.03em;text-decoration:none}
+.nav-logo span{color:var(--v2)}
+.nav-back{font-size:.8rem;color:rgba(255,255,255,.4);transition:.2s;text-decoration:none}
+.nav-back:hover{color:#fff}
+/* Hero article */
+.art-hero{background:var(--dark);padding:100px 20px 52px;border-bottom:1px solid rgba(124,58,237,.12)}
+.art-hero-in{max-width:740px;margin:0 auto}
+.art-tag{display:inline-block;background:rgba(124,58,237,.15);color:var(--v2);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;padding:5px 12px;border-radius:50px;margin-bottom:16px}
+.art-h1{font-size:clamp(1.6rem,3.8vw,2.4rem);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:14px}
+.art-meta{display:flex;align-items:center;gap:14px;font-size:.75rem;color:rgba(255,255,255,.3);flex-wrap:wrap}
+.art-meta span{display:flex;align-items:center;gap:5px}
+/* Body */
+.art-wrap{max-width:740px;margin:0 auto;padding:52px 24px 80px}
+.art-body h2{font-size:1.15rem;font-weight:800;color:var(--txt);margin:40px 0 12px;letter-spacing:-.02em}
+.art-body h3{font-size:.95rem;font-weight:700;color:var(--txm);margin:24px 0 8px}
+.art-body p{font-size:.9rem;color:var(--txm);line-height:1.9;margin-bottom:16px;font-weight:300}
+.art-body ul,.art-body ol{padding-left:20px;margin-bottom:16px}
+.art-body li{font-size:.9rem;color:var(--txm);line-height:1.85;font-weight:300;margin-bottom:6px}
+.art-body strong{font-weight:600;color:var(--txt)}
+.art-body a{color:var(--v);font-weight:500}
+.highlight-box{background:#fff;border:1px solid rgba(124,58,237,.12);border-radius:14px;padding:22px 24px;margin:28px 0;box-shadow:0 2px 16px rgba(124,58,237,.06)}
+.highlight-box p{margin:0;font-size:.86rem}
+.callout{background:rgba(124,58,237,.06);border-left:3px solid var(--v);padding:16px 20px;border-radius:0 10px 10px 0;margin:24px 0;font-size:.86rem;color:var(--txm);line-height:1.8;font-weight:300}
+.callout strong{color:var(--v);font-weight:700}
+.price-table{width:100%;border-collapse:collapse;margin:20px 0;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.price-table th{background:var(--v);color:#fff;padding:12px 16px;font-size:.78rem;font-weight:700;text-align:left}
+.price-table td{padding:11px 16px;font-size:.82rem;color:var(--txm);border-bottom:1px solid rgba(0,0,0,.06);font-weight:300}
+.price-table tr:last-child td{border-bottom:none}
+.price-table tr:nth-child(even) td{background:#fff}
+.price-table tr:nth-child(odd) td{background:var(--bg)}
+/* CTA article */
+.art-cta{background:var(--dark);border-radius:16px;padding:32px;margin:40px 0;text-align:center}
+.art-cta h3{color:#fff;font-size:1.1rem;font-weight:800;margin-bottom:8px}
+.art-cta p{color:rgba(255,255,255,.42);font-size:.84rem;font-weight:300;margin-bottom:20px;line-height:1.7}
+.btn-v{display:inline-flex;align-items:center;gap:8px;background:var(--v);color:#fff;padding:13px 26px;border-radius:10px;font-size:.88rem;font-weight:600;box-shadow:0 4px 18px rgba(124,58,237,.3);transition:.2s;text-decoration:none}
+.btn-v:hover{background:#6D28D9;transform:translateY(-1px);text-decoration:none}
+/* Articles liés */
+.related{margin-top:48px;padding-top:32px;border-top:1px solid rgba(0,0,0,.07)}
+.related-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--txl);margin-bottom:16px}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr}}
+.related-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:16px;transition:.2s;text-decoration:none;display:block}
+.related-card:hover{border-color:rgba(124,58,237,.2);transform:translateY(-2px);text-decoration:none}
+.related-card-tag{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--v2);margin-bottom:6px}
+.related-card-title{font-size:.82rem;font-weight:600;color:var(--txt);line-height:1.4}
+footer{padding:24px;background:var(--dark2);text-align:center;font-size:.7rem;color:rgba(255,255,255,.18)}
+footer a{color:rgba(255,255,255,.3)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="/" class="nav-logo"><svg width="28" height="28" viewBox="0 0 72 72" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs><rect width="72" height="72" rx="20" fill="#16162A"/><path d="M18 56 L36 16 L54 56" stroke="url(#lg)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="25" y1="41" x2="47" y2="41" stroke="url(#lg)" stroke-width="4" stroke-linecap="round"/></svg>AXION <span>APP STUDIO</span></a>
+    <a href="/blog" class="nav-back">← Blog</a>
+  </div>
+</nav>
+<div class="art-hero">
+  <div class="art-hero-in">
+    <div class="art-tag" style="background:rgba(37,99,235,.15);color:#2563EB">Réalisation</div>
+    <h1 class="art-h1">AutoCarnet : comment j'ai créé une app Android en solo et la vendre en abonnement</h1>
+    <div class="art-meta"><span>Mars 2026</span><span>10 min de lecture</span><span>Axion App Studio</span></div>
+  </div>
+</div>
+<div class="art-wrap">
+  <div class="art-body">
+    <p>En 2025, j'ai développé <strong>AutoCarnet</strong> de A à Z en solo : un carnet d'entretien numérique pour voitures, disponible sur Android via le Google Play Store. Voici le retour d'expérience complet, sans filtre.</p>
+
+    <h2>L'idée de départ</h2>
+    <p>Tout est parti d'un constat simple : les carnets d'entretien papier sont perdus, illisibles, oubliés. Et les applications existantes sont soit trop complexes, soit trop américanisées pour le marché français. Il manquait un outil simple, en français, pensé pour les particuliers et les professionnels qui gèrent plusieurs véhicules.</p>
+    <p>L'idée : un carnet d'entretien numérique avec rappels automatiques (CT, vidange, assurance), export PDF, et une version Pro pour les flottes professionnelles.</p>
+
+    <h2>Le choix technique</h2>
+    <p>J'ai délibérément évité les technologies natives (Swift pour iOS, Kotlin pour Android) pour aller vers une <strong>Progressive Web App</strong> — une application web qui se comporte comme une app native. Voici ma stack :</p>
+    <ul>
+      <li><strong>Frontend :</strong> HTML / CSS / JavaScript vanilla — pas de framework, maximum de contrôle et de performance</li>
+      <li><strong>Backend / BDD :</strong> Supabase (PostgreSQL hébergé, authentification, stockage)</li>
+      <li><strong>Hébergement :</strong> Netlify (déploiement automatique depuis GitHub)</li>
+      <li><strong>Paiement :</strong> Stripe avec Netlify Functions pour les webhooks</li>
+      <li><strong>Distribution Android :</strong> Bubblewrap (TWA — Trusted Web Activity) pour packager la PWA en APK Play Store</li>
+      <li><strong>Emails transactionnels :</strong> Resend</li>
+    </ul>
+    <div class="callout"><strong>Pourquoi pas React ou Vue ?</strong> Pour une application de cette taille, le vanilla JS suffit amplement et évite toute la complexité des frameworks. Le résultat est plus léger, plus rapide, et plus facile à maintenir seul.</div>
+
+    <h2>Les grandes étapes du développement</h2>
+    <h3>Phase 1 : Le MVP (2 semaines)</h3>
+    <p>La première version incluait uniquement l'essentiel : authentification, ajout de véhicule, saisie des entretiens, historique. Pas de paiement, pas de rappels. L'objectif était de valider le concept rapidement.</p>
+    <h3>Phase 2 : Monétisation (1 semaine)</h3>
+    <p>J'ai intégré Stripe avec deux abonnements : Famille (1,99€/mois) et Pro (4,99€/mois). La gestion des webhooks Stripe via Netlify Functions a été la partie la plus délicate — notamment la sécurisation des endpoints et la synchronisation avec Supabase.</p>
+    <h3>Phase 3 : Distribution Android (2 semaines)</h3>
+    <p>Passer du site web à une application Play Store m'a pris plus longtemps que prévu. Bubblewrap génère un APK à partir de la PWA, mais le processus de validation Google Play est strict : Digital Asset Links, gestion des SHA-256, politique de confidentialité, captures d'écran... chaque détail compte.</p>
+    <h3>Phase 4 : Fonctionnalités avancées (ongoing)</h3>
+    <p>Une fois la base stable, j'ai ajouté les rappels automatiques, le partage de véhicule entre utilisateurs, l'export PDF, les prix carburant en temps réel (API gouvernementale), et le Jumeau Numérique — une vue SVG interactive du véhicule avec indicateurs de santé par composant.</p>
+
+    <h2>Les difficultés rencontrées</h2>
+    <ul>
+      <li><strong>Les notifications push sur TWA :</strong> l'API FCM legacy a été dépréciée en juin 2024, ce qui a cassé les notifications pour les utilisateurs Android. La migration vers FCM v1 est complexe car elle nécessite des tokens natifs incompatibles avec les web-push endpoints.</li>
+      <li><strong>La gestion des abonnements Stripe :</strong> les webhooks doivent être robustes — un double-déclenchement ou un timeout peut créer des incohérences entre Stripe et Supabase.</li>
+      <li><strong>La politique Google Play :</strong> les achats in-app doivent passer par Google Play Billing, pas Stripe, si l'application est distribuée via le Play Store. J'ai choisi de rediriger les utilisateurs vers le web pour le paiement, ce qui est conforme à la politique Google.</li>
+    </ul>
+
+    <h2>Ce que j'aurais fait différemment</h2>
+    <ul>
+      <li>Démarrer la distribution Play Store bien plus tôt dans le processus</li>
+      <li>Mettre en place les Row Level Security de Supabase dès le début (j'ai dû les ajouter plus tard)</li>
+      <li>Documenter le code au fur et à mesure — six mois après, certaines fonctions semblent mystérieuses</li>
+    </ul>
+
+    <h2>Les leçons pour vos projets</h2>
+    <p>Si vous envisagez de développer une application pour votre entreprise, voici ce que l'expérience AutoCarnet m'a appris :</p>
+    <ul>
+      <li><strong>Commencez simple.</strong> Un MVP fonctionnel en 2 semaines vaut mieux qu'une application parfaite en 6 mois.</li>
+      <li><strong>La PWA est sous-estimée.</strong> Elle couvre 95% des besoins d'une app native pour un dixième du prix.</li>
+      <li><strong>Choisissez une stack simple.</strong> Moins de dépendances = moins de problèmes de maintenance.</li>
+      <li><strong>Anticipez la monétisation.</strong> Intégrer Stripe dès le départ est bien plus simple que de le faire après coup.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p><strong>AutoCarnet aujourd'hui :</strong> l'application est disponible sur le Google Play Store et accessible sur iOS via le navigateur. Elle propose trois formules — Gratuit (1 véhicule), Famille (1,99€/mois, 3 véhicules) et Pro (4,99€/mois, flotte illimitée). Découvrez-la sur <a href="https://autocarnet.fr" target="_blank" rel="noopener">autocarnet.fr</a>.</p>
+    </div>
+
+    <div class="art-cta">
+      <h3>Vous avez un projet similaire en tête ?</h3>
+      <p>Application métier, outil de gestion, SaaS — je peux vous accompagner de l'idée au déploiement avec la même approche pragmatique.</p>
+      <a href="/#simulateur" class="btn-v">🧮 Estimer mon projet →</a>
+    </div>
+
+    <div class="related">
+      <div class="related-title">Articles liés</div>
+      <div class="related-grid">
+        <a href="/blog/pwa-application-mobile-sans-app-store" class="related-card">
+          <div class="related-card-tag">Mobile</div>
+          <div class="related-card-title">PWA : avoir une app mobile sans App Store</div>
+        </a>
+        <a href="/blog/stripe-paiement-en-ligne-site-artisan" class="related-card">
+          <div class="related-card-tag">Paiement</div>
+          <div class="related-card-title">Accepter les paiements en ligne sur son site</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>© 2026 Axion App Studio · <a href="/mentions-legales">Mentions légales</a> · <a href="/cgv">CGV</a> · <a href="/blog">Blog</a></footer>
+</body>
+</html>
