@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AutoCarnet — Carnet d'entretien voiture numérique | Axion App Studio</title>
+<meta name="description" content="AutoCarnet est l'application de carnet d'entretien voiture 100% française. Rappels CT et vidange, export PDF, mode équipe et flotte pro. Disponible sur Android.">
+<link rel="canonical" href="https://axionappstudio.com/autocarnet">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--v:#7C3AED;--v2:#A855F7;--o:#FF6B35;--txt:#09090F;--txm:#44445A;--txl:#8888A0;--bg:#F6F5FF;--dark:#0A0A14;--dark2:#10101E;--ac-blue:#1E3A8A;--ac-blue2:#2563EB;}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--dark);color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 20px;display:flex;align-items:center;background:rgba(10,10,20,.95);border-bottom:1px solid rgba(124,58,237,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-in{width:100%;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.03em}
+.nav-logo span{color:var(--v2)}
+.nav-back{font-size:.8rem;color:rgba(255,255,255,.4);transition:.2s}
+.nav-back:hover{color:#fff}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 20px 60px;position:relative;overflow:hidden;background:linear-gradient(160deg,#0A0A14 0%,#0D1020 50%,#0A0A14 100%)}
+.orb1{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(30,58,138,.25),transparent 70%);top:-100px;left:-150px;pointer-events:none;filter:blur(40px)}
+.orb2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(37,99,235,.12),transparent 70%);bottom:-100px;right:-100px;pointer-events:none;filter:blur(40px)}
+.hero-in{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:48px;align-items:center;position:relative;z-index:1}
+@media(min-width:768px){.hero-in{grid-template-columns:1fr 1fr}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.25);padding:6px 14px;border-radius:50px;font-size:.73rem;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:22px;letter-spacing:.02em}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--ac-blue2);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
+.hero-h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:18px}
+.hero-h1 span{background:linear-gradient(135deg,var(--ac-blue2),var(--v2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.42);line-height:1.8;margin-bottom:32px;font-weight:300;max-width:420px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;background:var(--ac-blue2);color:#fff;padding:13px 24px;border-radius:10px;font-size:.88rem;font-weight:600;box-shadow:0 6px 24px rgba(37,99,235,.35);transition:.2s}
+.btn-blue:hover{background:#1D4ED8;transform:translateY(-1px)}
+.btn-out{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.1);padding:13px 20px;border-radius:10px;font-size:.88rem;font-weight:500;transition:.2s}
+.btn-out:hover{background:rgba(255,255,255,.09);color:#fff}
+.hero-trust{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+.trust-item{font-size:.73rem;color:rgba(255,255,255,.28);display:flex;align-items:center;gap:5px}
+.trust-dot{width:4px;height:4px;border-radius:50%;background:var(--ac-blue2);flex-shrink:0}
+
+/* App mockup */
+.app-card{background:linear-gradient(160deg,#0D1A3A,#0A1428);border:1px solid rgba(37,99,235,.2);border-radius:24px;padding:28px;box-shadow:0 24px 64px rgba(0,0,0,.4)}
+.app-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.app-logo{width:48px;height:48px;border-radius:12px;flex-shrink:0}
+.app-name{font-size:1rem;font-weight:800;color:#fff}
+.app-tag{font-size:.72rem;color:rgba(255,255,255,.35);font-weight:300}
+.app-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.app-stat{background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.15);border-radius:10px;padding:12px;text-align:center}
+.app-stat-n{font-size:1.2rem;font-weight:800;background:linear-gradient(135deg,var(--ac-blue2),var(--v2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.app-stat-l{font-size:.65rem;color:rgba(255,255,255,.3);margin-top:2px;font-weight:300}
+.app-feats-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.app-feat{display:flex;align-items:center;gap:7px;font-size:.75rem;color:rgba(255,255,255,.45);font-weight:300}
+.app-feat::before{content:'✓';color:var(--ac-blue2);font-weight:700;flex-shrink:0}
+.app-plans-row{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.app-plan{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:5px 12px;border-radius:50px;font-size:.67rem;color:rgba(255,255,255,.3);font-weight:400}
+
+/* FEATURES */
+.features{padding:80px 20px;background:var(--dark2);border-top:1px solid rgba(37,99,235,.1)}
+.sec-in{max-width:900px;margin:0 auto}
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--ac-blue2);margin-bottom:14px}
+.eyebrow::before{content:'';width:16px;height:1.5px;background:var(--ac-blue2);border-radius:2px}
+.sec-h{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:12px}
+.sec-p{font-size:.9rem;color:rgba(255,255,255,.42);line-height:1.8;max-width:440px;font-weight:300}
+.feat-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:44px}
+@media(min-width:560px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:860px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
+.feat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:22px 18px;transition:.2s}
+.feat:hover{border-color:rgba(37,99,235,.25);background:rgba(37,99,235,.05)}
+.feat-ico{width:40px;height:40px;border-radius:10px;background:rgba(37,99,235,.1);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.feat-n{font-size:.9rem;font-weight:700;margin-bottom:6px}
+.feat-d{font-size:.78rem;color:rgba(255,255,255,.38);line-height:1.7;font-weight:300}
+
+/* PLANS */
+.plans{padding:80px 20px;background:var(--dark);border-top:1px solid rgba(37,99,235,.1)}
+.plan-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:44px}
+@media(min-width:600px){.plan-grid{grid-template-columns:repeat(3,1fr)}}
+.plan-card{background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.07);border-radius:16px;padding:26px 20px;transition:.2s}
+.plan-card:hover{border-color:rgba(37,99,235,.25)}
+.plan-card.pop{background:rgba(37,99,235,.08);border-color:rgba(37,99,235,.3);box-shadow:0 8px 32px rgba(37,99,235,.15)}
+.plan-badge{display:inline-block;background:linear-gradient(135deg,var(--ac-blue2),var(--v2));color:#fff;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:50px;margin-bottom:12px}
+.plan-name{font-size:1rem;font-weight:800;margin-bottom:6px}
+.plan-price{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:10px 0 4px}
+.plan-price span{font-size:.85rem;font-weight:400;color:rgba(255,255,255,.35)}
+.plan-sep{height:1px;background:rgba(255,255,255,.07);margin:14px 0}
+.plan-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.plan-list li{font-size:.78rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:7px;font-weight:300}
+.plan-list li::before{content:'✓';color:var(--ac-blue2);font-weight:700;flex-shrink:0}
+.plan-cta{display:block;text-align:center;margin-top:20px;padding:11px;border-radius:9px;font-size:.82rem;font-weight:600;background:rgba(37,99,235,.1);color:var(--ac-blue2);border:1px solid rgba(37,99,235,.2);transition:.2s}
+.plan-cta:hover{background:rgba(37,99,235,.18)}
+.plan-card.pop .plan-cta{background:var(--ac-blue2);color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(37,99,235,.35)}
+.plan-card.pop .plan-cta:hover{background:#1D4ED8}
+
+/* CTA */
+.cta-fin{padding:80px 20px;text-align:center;background:var(--dark2);border-top:1px solid rgba(37,99,235,.1);position:relative;overflow:hidden}
+.cta-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.1),transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;filter:blur(30px)}
+.cta-fin h2{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:12px;position:relative;z-index:1}
+.cta-fin p{font-size:.9rem;color:rgba(255,255,255,.38);margin-bottom:28px;position:relative;z-index:1;line-height:1.8;font-weight:300}
+
+footer{padding:28px 20px;background:var(--dark);border-top:1px solid rgba(255,255,255,.04);text-align:center;font-size:.7rem;color:rgba(255,255,255,.18)}
+footer a{color:rgba(255,255,255,.3)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="/" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 72 72" fill="none">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs>
+        <rect width="72" height="72" rx="20" fill="#16162A"/>
+        <path d="M18 56 L36 16 L54 56" stroke="url(#lg)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="25" y1="41" x2="47" y2="41" stroke="url(#lg)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      AXION <span>APP STUDIO</span>
+    </a>
+    <a href="/" class="nav-back">← Axion App Studio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+  <div class="hero-in">
+    <div>
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Application Android · Fait en Bretagne 🇫🇷</div>
+      <h1 class="hero-h1">Le carnet d'entretien<br><span>100% numérique</span><br>pour votre voiture.</h1>
+      <p class="hero-sub">Rappels automatiques CT et vidange, historique complet, export PDF, gestion de flotte. Simple, sans pub, sans tracking.</p>
+      <div class="hero-btns">
+        <a href="https://play.google.com/store/apps/details?id=fr.autocarnet.app" target="_blank" rel="noopener" class="btn-blue">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.36.6 1.24 0 1.6L4.6 21.3c-.66.5-1.6.03-1.6-.8z"/></svg>
+          Google Play
+        </a>
+        <a href="https://autocarnet.fr" target="_blank" rel="noopener" class="btn-out">Site web →</a>
+      </div>
+      <div class="hero-trust">
+        <span class="trust-item"><span class="trust-dot"></span>Gratuit à télécharger</span>
+        <span class="trust-item"><span class="trust-dot"></span>Sans pub</span>
+        <span class="trust-item"><span class="trust-dot"></span>Données en France</span>
+      </div>
+    </div>
+    <div>
+      <div class="app-card">
+        <div class="app-header">
+          <img src="autocarnet-logo.png" alt="Logo AutoCarnet" class="app-logo" width="48" height="48">
+          <div>
+            <div class="app-name">AutoCarnet</div>
+            <div class="app-tag">Carnet d'entretien · Android</div>
+          </div>
+        </div>
+        <div class="app-stat-row">
+          <div class="app-stat">
+            <div class="app-stat-n">100%</div>
+            <div class="app-stat-l">Français</div>
+          </div>
+          <div class="app-stat">
+            <div class="app-stat-n">0</div>
+            <div class="app-stat-l">Pub</div>
+          </div>
+          <div class="app-stat">
+            <div class="app-stat-n">24h</div>
+            <div class="app-stat-l">Support</div>
+          </div>
+        </div>
+        <div class="app-feats-grid">
+          <div class="app-feat">Rappels CT automatiques</div>
+          <div class="app-feat">Rappels vidange</div>
+          <div class="app-feat">Historique complet</div>
+          <div class="app-feat">Export PDF &amp; CSV</div>
+          <div class="app-feat">Partage famille</div>
+          <div class="app-feat">Mode flotte Pro</div>
+          <div class="app-feat">Prix carburant</div>
+          <div class="app-feat">Fonctionne hors ligne</div>
+        </div>
+        <div class="app-plans-row">
+          <div class="app-plan">Gratuit</div>
+          <div class="app-plan">Famille 1,99€/mois</div>
+          <div class="app-plan">Pro 4,99€/mois</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="sec-in">
+    <div class="eyebrow">Fonctionnalités</div>
+    <h2 class="sec-h">Tout ce dont vous avez besoin<br>pour suivre vos véhicules.</h2>
+    <p class="sec-p">Conçu pour les particuliers comme pour les professionnels avec une flotte de véhicules.</p>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="feat-n">Rappels automatiques</div>
+        <div class="feat-d">CT, vidange, assurance, révision — recevez une notification avant l'échéance, sans rien avoir à faire.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="feat-n">Historique complet</div>
+        <div class="feat-d">Toutes vos interventions, factures et notes centralisées en un endroit, accessibles à tout moment.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+        <div class="feat-n">Export PDF &amp; CSV</div>
+        <div class="feat-d">Générez un rapport complet de l'historique de chaque véhicule en un clic — utile pour la revente.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="feat-n">Partage famille</div>
+        <div class="feat-d">Partagez vos véhicules avec votre conjoint ou vos enfants — chacun peut consulter et mettre à jour.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="feat-n">Mode flotte Pro</div>
+        <div class="feat-d">Gérez une flotte de véhicules professionnels, assignez des conducteurs et suivez les dépenses.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+        <div class="feat-n">Prix carburant</div>
+        <div class="feat-d">Consultez les prix carburant en temps réel près de chez vous grâce à l'API officielle du gouvernement.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="plans">
+  <div class="sec-in">
+    <div class="eyebrow">Tarifs</div>
+    <h2 class="sec-h">Simple et transparent.</h2>
+    <p class="sec-p">Commencez gratuitement, passez au plan supérieur quand vous en avez besoin.</p>
+    <div class="plan-grid">
+      <div class="plan-card">
+        <div class="plan-name">Gratuit</div>
+        <div class="plan-price">0€ <span>/ mois</span></div>
+        <div class="plan-sep"></div>
+        <ul class="plan-list">
+          <li>1 véhicule</li>
+          <li>Historique illimité</li>
+          <li>Rappels automatiques</li>
+          <li>Export PDF</li>
+          <li>Prix carburant</li>
+        </ul>
+        <a href="https://play.google.com/store/apps/details?id=fr.autocarnet.app" target="_blank" rel="noopener" class="plan-cta">Télécharger →</a>
+      </div>
+      <div class="plan-card pop">
+        <div class="plan-badge">Populaire</div>
+        <div class="plan-name">Famille</div>
+        <div class="plan-price">1,99€ <span>/ mois</span></div>
+        <div class="plan-sep"></div>
+        <ul class="plan-list">
+          <li>3 véhicules</li>
+          <li>Tout le plan Gratuit</li>
+          <li>Partage familial</li>
+          <li>Export CSV</li>
+          <li>Support prioritaire</li>
+        </ul>
+        <a href="https://autocarnet.fr" target="_blank" rel="noopener" class="plan-cta">Commencer →</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">4,99€ <span>/ mois</span></div>
+        <div class="plan-sep"></div>
+        <ul class="plan-list">
+          <li>Véhicules illimités</li>
+          <li>Tout le plan Famille</li>
+          <li>Mode flotte professionnelle</li>
+          <li>Signalement d'incidents</li>
+          <li>Gestion d'équipe</li>
+          <li>Jumeau numérique</li>
+        </ul>
+        <a href="https://autocarnet.fr" target="_blank" rel="noopener" class="plan-cta">Commencer →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-fin">
+  <div class="cta-glow"></div>
+  <h2>Prêt à essayer AutoCarnet ?</h2>
+  <p>Gratuit, sans carte bancaire, disponible sur Android.<br>Ou découvrez toutes les fonctionnalités sur le site dédié.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
+    <a href="https://play.google.com/store/apps/details?id=fr.autocarnet.app" target="_blank" rel="noopener" class="btn-blue">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.36.6 1.24 0 1.6L4.6 21.3c-.66.5-1.6.03-1.6-.8z"/></svg>
+      Télécharger sur Android
+    </a>
+    <a href="https://autocarnet.fr" target="_blank" rel="noopener" class="btn-out">Voir autocarnet.fr →</a>
+  </div>
+</section>
+
+<footer>© 2026 Axion App Studio · <a href="/mentions-legales">Mentions légales</a> · <a href="/cgv">CGV</a> · <a href="/">axionappstudio.com</a></footer>
+
+</body>
+</html>

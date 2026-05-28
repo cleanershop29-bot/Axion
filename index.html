@@ -1387,7 +1387,7 @@ footer{
     <h2 class="sec-h reveal">Plus qu'un pas.</h2>
     <p class="sec-p reveal">Votre configuration du simulateur est déjà enregistrée. Laissez juste vos coordonnées — je vous rappelle sous 24h.</p>
     <div class="form-card reveal">
-      <form name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+      <form name="contact" id="devis-form" method="POST" action="/merci" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
         <input type="hidden" name="bot-field" style="display:none" aria-hidden="true">
         <textarea id="besoin" name="besoin" style="display:none" aria-hidden="true"></textarea>
@@ -1660,6 +1660,40 @@ footer{
   });
 
   render();
+})();
+</script>
+
+<!-- FORM SUBMIT JS -->
+<script>
+(function(){
+  var form = document.getElementById('devis-form');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = form.querySelector('.btn-sub');
+    if(btn){ btn.textContent = 'Envoi en cours...'; btn.disabled = true; }
+
+    var nom = (form.querySelector('#nom') || {}).value || '';
+    var email = (form.querySelector('#email') || {}).value || '';
+    var telephone = (form.querySelector('#telephone') || {}).value || '';
+    var secteur = (form.querySelector('#secteur') || {}).value || '';
+    var besoin = (document.getElementById('besoin') || {}).value || '';
+
+    // Soumettre à Netlify Forms (pour le backoffice)
+    var fd = new FormData(form);
+    fetch('/', { method: 'POST', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams(fd).toString() });
+
+    // Envoyer via Resend
+    fetch('/.netlify/functions/send-devis', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nom: nom, email: email, telephone: telephone, secteur: secteur, besoin: besoin })
+    }).then(function(){
+      window.location.href = '/merci';
+    }).catch(function(){
+      window.location.href = '/merci';
+    });
+  });
 })();
 </script>
 
