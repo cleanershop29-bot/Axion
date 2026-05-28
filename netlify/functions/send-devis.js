@@ -27,7 +27,7 @@ exports.handler = async function(event) {
 
   // ── Email pour JÉRÉMY (récap complet)
   const emailJeremy = {
-    from: 'AutoCarnet <noreply@axionappstudio.com>',
+    from: 'Axion App Studio <contact@autocarnet.fr>',
     to: ['contact@axionappstudio.com'],
     subject: 'Nouveau devis — ' + nom + ' (' + (secteur || 'secteur non précisé') + ')',
     html: `
