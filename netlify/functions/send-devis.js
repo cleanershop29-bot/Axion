@@ -1,216 +1,193 @@
-// Netlify Function — Envoi email devis via Resend
-// netlify/functions/send-devis.js
-// Variable d'environnement : RESEND_API_KEY
-
 exports.handler = async function(event) {
   if (event.httpMethod !== 'POST') return { statusCode: 405, body: 'Method Not Allowed' };
+  const KEY = process.env.RESEND_API_KEY;
+  if (!KEY) return { statusCode: 500, body: 'Missing key' };
+  let d;
+  try { d = JSON.parse(event.body); } catch(e) { return { statusCode: 400, body: 'Bad JSON' }; }
+  const { nom, email, telephone, secteur, besoin } = d;
+  if (!nom || !email) return { statusCode: 400, body: 'Missing fields' };
 
-  const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  if (!RESEND_API_KEY) return { statusCode: 500, body: 'Missing RESEND_API_KEY' };
+  const date = new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  const safebesoin = (besoin||'Non configuré').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-  let data;
-  try { data = JSON.parse(event.body); } catch(e) { return { statusCode: 400, body: 'Invalid JSON' }; }
+  // SVG logo inline (le vrai logo Axion)
+  const logo = `<table cellpadding="0" cellspacing="0" border="0"><tr valign="middle">
+    <td style="width:40px;height:40px;background:#0D0D1A;border-radius:11px;border:1.5px solid #7C3AED;text-align:center;vertical-align:middle;padding:0">
+      <svg width="40" height="40" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient><linearGradient id="g2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#A855F7"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs>
+        <path d="M18 56 L36 16 L54 56" stroke="url(#g1)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="25" y1="41" x2="47" y2="41" stroke="url(#g2)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </td>
+    <td style="padding-left:10px;font-family:system-ui,sans-serif;font-size:13px;font-weight:800;letter-spacing:.05em;color:#ffffff">AXION&nbsp;<span style="color:#A855F7">APP STUDIO</span></td>
+  </tr></table>`;
 
-  const { nom, email, telephone, secteur, besoin } = data;
-  if (!nom || !email) return { statusCode: 400, body: 'Champs requis manquants' };
+  // ────────────────────────────────────────────
+  // EMAIL JÉRÉMY — fond sombre, récap complet
+  // ────────────────────────────────────────────
+  const htmlJeremy = `<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nouveau devis</title></head>
+<body style="margin:0;padding:0;background:#07070F;-webkit-font-smoothing:antialiased">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#07070F" style="background:#07070F;padding:28px 12px">
+<tr><td align="center">
+<table width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%">
 
-  const date = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  <!-- Logo -->
+  <tr><td style="padding-bottom:20px">${logo}</td></tr>
 
-  const logoA = `<table cellpadding="0" cellspacing="0" border="0"><tr><td style="width:36px;height:36px;background:#16162A;border-radius:10px;border:1.5px solid #7C3AED;text-align:center;vertical-align:middle"><span style="font-family:system-ui;font-size:14px;font-weight:900;color:#A855F7">A</span></td><td style="padding-left:10px;font-family:system-ui;font-size:13px;font-weight:800;color:#fff;letter-spacing:.04em">AXION <span style="color:#A855F7">APP STUDIO</span></td></tr></table>`;
+  <!-- Card -->
+  <tr><td style="background:#0F0F1E;border:1px solid #2D1F6E;border-radius:16px;overflow:hidden">
 
-  // ── EMAIL JÉRÉMY
-  const htmlJeremy = `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#0A0A14;font-family:system-ui,-apple-system,sans-serif">
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0A0A14;padding:32px 16px">
-  <tr><td align="center">
-    <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%">
+    <!-- Header gradient -->
+    <tr><td style="background:linear-gradient(135deg,#4C1D95,#7C3AED);padding:22px 28px;border-radius:16px 16px 0 0">
+      <p style="margin:0 0 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:rgba(255,255,255,.55)">Nouvelle demande de devis</p>
+      <h1 style="margin:0;font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em">${nom}</h1>
+      <p style="margin:5px 0 0;font-size:11px;color:rgba(255,255,255,.45)">${date}</p>
+    </td></tr>
 
-      <!-- HEADER -->
-      <tr><td style="padding-bottom:24px">${logoA}</td></tr>
+    <!-- Contact -->
+    <tr><td style="padding:22px 28px 0">
+      <p style="margin:0 0 10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:#A855F7">Contact</p>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;border:1px solid rgba(255,255,255,.08);border-radius:10px;overflow:hidden">
+        <tr><td style="padding:10px 14px;font-size:11px;color:rgba(255,255,255,.3);font-weight:600;width:90px;background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.05)">Nom</td><td style="padding:10px 14px;font-size:13px;color:#fff;font-weight:600;border-bottom:1px solid rgba(255,255,255,.05)">${nom}</td></tr>
+        <tr><td style="padding:10px 14px;font-size:11px;color:rgba(255,255,255,.3);font-weight:600;background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.05)">Email</td><td style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.05)"><a href="mailto:${email}" style="font-size:13px;color:#A855F7;font-weight:600;text-decoration:none">${email}</a></td></tr>
+        <tr><td style="padding:10px 14px;font-size:11px;color:rgba(255,255,255,.3);font-weight:600;background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.05)">Téléphone</td><td style="padding:10px 14px;font-size:13px;color:rgba(255,255,255,.65);border-bottom:1px solid rgba(255,255,255,.05)">${telephone||'Non renseigné'}</td></tr>
+        <tr><td style="padding:10px 14px;font-size:11px;color:rgba(255,255,255,.3);font-weight:600;background:rgba(255,255,255,.02)">Secteur</td><td style="padding:10px 14px;font-size:13px;color:rgba(255,255,255,.65)">${secteur||'Non renseigné'}</td></tr>
+      </table>
+    </td></tr>
 
-      <!-- CARD PRINCIPALE -->
-      <tr><td style="background:#10101E;border:1px solid rgba(124,58,237,.25);border-radius:16px;overflow:hidden">
+    <!-- Config simulateur -->
+    <tr><td style="padding:20px 28px 0">
+      <p style="margin:0 0 10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:#A855F7">Configuration simulateur</p>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr><td style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);border-radius:10px;padding:16px 18px">
+          <pre style="margin:0;font-size:12px;color:rgba(255,255,255,.7);white-space:pre-wrap;line-height:1.85;font-family:system-ui,sans-serif">${safebesoin}</pre>
+        </td></tr>
+      </table>
+    </td></tr>
 
-        <!-- Bandeau haut -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr><td style="background:linear-gradient(135deg,#7C3AED,#A855F7);padding:24px 28px">
-            <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.6)">Nouvelle demande</p>
-            <h1 style="margin:0;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.02em">Devis — ${nom}</h1>
-            <p style="margin:6px 0 0;font-size:12px;color:rgba(255,255,255,.5)">${date}</p>
-          </td></tr>
-        </table>
+    <!-- CTA -->
+    <tr><td style="padding:22px 28px 26px">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr><td style="background:#7C3AED;border-radius:9px">
+          <a href="mailto:${email}?subject=Votre devis Axion App Studio&body=Bonjour ${nom},%0D%0A%0D%0AMerci pour votre demande." style="display:inline-block;padding:12px 22px;font-size:13px;font-weight:700;color:#fff;text-decoration:none;font-family:system-ui">✉️ Répondre à ${nom} →</a>
+        </td></tr>
+      </table>
+    </td></tr>
 
-        <!-- Infos client -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:24px 28px">
-          <tr><td>
-            <p style="margin:0 0 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#A855F7">Contact</p>
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid rgba(255,255,255,.07);border-radius:10px;overflow:hidden">
-              <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
-                <td style="padding:11px 16px;font-size:11px;color:rgba(255,255,255,.35);font-weight:600;width:100px;background:rgba(255,255,255,.02)">Nom</td>
-                <td style="padding:11px 16px;font-size:13px;color:#fff;font-weight:600">${nom}</td>
-              </tr>
-              <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
-                <td style="padding:11px 16px;font-size:11px;color:rgba(255,255,255,.35);font-weight:600;background:rgba(255,255,255,.02)">Email</td>
-                <td style="padding:11px 16px;font-size:13px"><a href="mailto:${email}" style="color:#A855F7;font-weight:600">${email}</a></td>
-              </tr>
-              <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
-                <td style="padding:11px 16px;font-size:11px;color:rgba(255,255,255,.35);font-weight:600;background:rgba(255,255,255,.02)">Téléphone</td>
-                <td style="padding:11px 16px;font-size:13px;color:rgba(255,255,255,.7)">${telephone || 'Non renseigné'}</td>
-              </tr>
-              <tr>
-                <td style="padding:11px 16px;font-size:11px;color:rgba(255,255,255,.35);font-weight:600;background:rgba(255,255,255,.02)">Secteur</td>
-                <td style="padding:11px 16px;font-size:13px;color:rgba(255,255,255,.7)">${secteur || 'Non renseigné'}</td>
-              </tr>
-            </table>
-          </td></tr>
-        </table>
-
-        <!-- Config simulateur -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:0 28px 24px">
-          <tr><td>
-            <p style="margin:0 0 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#A855F7">Configuration simulateur</p>
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.2);border-radius:10px">
-              <tr><td style="padding:18px 20px">
-                <pre style="margin:0;font-size:12px;color:rgba(255,255,255,.65);white-space:pre-wrap;line-height:1.8;font-family:system-ui">${(besoin || 'Non configuré').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
-              </td></tr>
-            </table>
-          </td></tr>
-        </table>
-
-        <!-- CTA répondre -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:0 28px 28px">
-          <tr><td>
-            <table cellpadding="0" cellspacing="0" border="0">
-              <tr><td style="background:#7C3AED;border-radius:10px">
-                <a href="mailto:${email}?subject=Votre devis Axion App Studio&body=Bonjour ${nom}," style="display:inline-block;padding:13px 24px;font-size:13px;font-weight:700;color:#fff;text-decoration:none">Répondre à ${nom} →</a>
-              </td></tr>
-            </table>
-          </td></tr>
-        </table>
-
-      </td></tr>
-
-      <!-- FOOTER -->
-      <tr><td style="padding:20px 0 0;text-align:center">
-        <p style="margin:0;font-size:11px;color:rgba(255,255,255,.18)">Axion App Studio · SIRET 914 511 639 00025 · Saint-Ségal, Finistère</p>
-      </td></tr>
-
-    </table>
   </td></tr>
+
+  <!-- Footer -->
+  <tr><td style="padding:18px 0 0;text-align:center">
+    <p style="margin:0;font-size:11px;color:rgba(255,255,255,.18);font-family:system-ui">Axion App Studio · SIRET 914 511 639 00025 · Saint-Ségal, Finistère, France</p>
+  </td></tr>
+
 </table>
+</td></tr></table>
 </body></html>`;
 
-  // ── EMAIL CLIENT
-  const htmlClient = `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#F6F5FF;font-family:system-ui,-apple-system,sans-serif">
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F6F5FF;padding:32px 16px">
-  <tr><td align="center">
-    <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%">
+  // ────────────────────────────────────────────
+  // EMAIL CLIENT — fond clair, pro et rassurant
+  // ────────────────────────────────────────────
+  const htmlClient = `<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demande bien reçue</title></head>
+<body style="margin:0;padding:0;background:#EEEDF8;-webkit-font-smoothing:antialiased">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#EEEDF8" style="background:#EEEDF8;padding:28px 12px">
+<tr><td align="center">
+<table width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%">
 
-      <!-- HEADER -->
-      <tr><td style="background:#0A0A14;border-radius:16px 16px 0 0;padding:24px 28px">
-        ${logoA}
-      </td></tr>
-
-      <!-- HERO -->
-      <tr><td style="background:linear-gradient(135deg,#7C3AED 0%,#A855F7 50%,#FF6B35 100%);padding:36px 28px;text-align:center">
-        <p style="margin:0 0 8px;font-size:32px">✅</p>
-        <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#fff;letter-spacing:-.02em">Demande bien reçue !</h1>
-        <p style="margin:0;font-size:14px;color:rgba(255,255,255,.75);font-weight:300">Je vous réponds sous 24h avec une proposition adaptée.</p>
-      </td></tr>
-
-      <!-- BODY -->
-      <tr><td style="background:#fff;border:1px solid rgba(0,0,0,.07);border-top:none;border-radius:0 0 16px 16px;padding:28px">
-
-        <p style="margin:0 0 20px;font-size:15px;color:#374151">Bonjour <strong>${nom}</strong>,</p>
-        <p style="margin:0 0 24px;font-size:14px;color:#6b7280;line-height:1.8;font-weight:300">Votre demande de devis a bien été enregistrée. J'analyse votre projet et vous envoie une proposition personnalisée <strong style="color:#374151">sous 24h</strong>, sans engagement.</p>
-
-        <!-- Récap -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F6F5FF;border:1px solid rgba(124,58,237,.15);border-radius:12px;margin-bottom:24px">
-          <tr><td style="padding:18px 20px">
-            <p style="margin:0 0 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#7C3AED">Récapitulatif de votre projet</p>
-            <pre style="margin:0;font-size:12px;color:#44445A;white-space:pre-wrap;line-height:1.8;font-family:system-ui">${(besoin || 'Configuration en attente').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
-          </td></tr>
-        </table>
-
-        <!-- Étapes -->
-        <p style="margin:0 0 14px;font-size:13px;font-weight:700;color:#374151">Les prochaines étapes :</p>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px">
-          <tr><td style="padding:10px 0;border-bottom:1px solid #f3f4f6">
-            <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="width:28px;height:28px;background:linear-gradient(135deg,#7C3AED,#A855F7);border-radius:50%;text-align:center;vertical-align:middle;font-size:11px;font-weight:700;color:#fff;flex-shrink:0">1</td>
-              <td style="padding-left:12px;font-size:13px;color:#6b7280;font-weight:300">J'analyse votre projet et prépare un devis personnalisé</td>
-            </tr></table>
-          </td></tr>
-          <tr><td style="padding:10px 0;border-bottom:1px solid #f3f4f6">
-            <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="width:28px;height:28px;background:linear-gradient(135deg,#7C3AED,#A855F7);border-radius:50%;text-align:center;vertical-align:middle;font-size:11px;font-weight:700;color:#fff">2</td>
-              <td style="padding-left:12px;font-size:13px;color:#6b7280;font-weight:300">Vous recevez le devis détaillé avec tarif et délai exacts <strong style="color:#374151">sous 24h</strong></td>
-            </tr></table>
-          </td></tr>
-          <tr><td style="padding:10px 0">
-            <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="width:28px;height:28px;background:linear-gradient(135deg,#7C3AED,#A855F7);border-radius:50%;text-align:center;vertical-align:middle;font-size:11px;font-weight:700;color:#fff">3</td>
-              <td style="padding-left:12px;font-size:13px;color:#6b7280;font-weight:300">Après validation du devis, je démarre immédiatement</td>
-            </tr></table>
-          </td></tr>
-        </table>
-
-        <!-- Question urgente -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F6F5FF;border-radius:10px;padding:16px;margin-bottom:8px">
-          <tr><td style="padding:16px">
-            <p style="margin:0 0 4px;font-size:12px;color:#8888A0;font-weight:400">Une question urgente ?</p>
-            <a href="mailto:contact@axionappstudio.com" style="font-size:13px;color:#7C3AED;font-weight:600;text-decoration:none">contact@axionappstudio.com</a>
-          </td></tr>
-        </table>
-
-      </td></tr>
-
-      <!-- FOOTER -->
-      <tr><td style="padding:20px 0 0;text-align:center">
-        <p style="margin:0 0 4px;font-size:11px;color:#8888A0">Axion App Studio · Développeur web freelance · Finistère, Bretagne</p>
-        <a href="https://axionappstudio.com" style="font-size:11px;color:#7C3AED;text-decoration:none">axionappstudio.com</a>
-      </td></tr>
-
-    </table>
+  <!-- Header sombre avec logo -->
+  <tr><td style="background:#0A0A14;border-radius:14px 14px 0 0;padding:20px 28px">
+    ${logo}
   </td></tr>
+
+  <!-- Hero gradient -->
+  <tr><td style="background:linear-gradient(135deg,#3B0F8C 0%,#7C3AED 45%,#C2410C 100%);padding:40px 28px;text-align:center">
+    <div style="font-size:40px;margin-bottom:12px">✅</div>
+    <h1 style="margin:0 0 8px;font-size:26px;font-weight:800;color:#fff;letter-spacing:-.03em;font-family:system-ui">Demande bien reçue !</h1>
+    <p style="margin:0;font-size:14px;color:rgba(255,255,255,.7);font-weight:300;line-height:1.6;font-family:system-ui">Je vous réponds sous 24h avec une proposition sur mesure.</p>
+  </td></tr>
+
+  <!-- Corps blanc -->
+  <tr><td style="background:#ffffff;border-left:1px solid #E5E3F5;border-right:1px solid #E5E3F5;padding:32px 28px">
+
+    <p style="margin:0 0 8px;font-size:15px;color:#1a1a2e;font-weight:600;font-family:system-ui">Bonjour ${nom},</p>
+    <p style="margin:0 0 28px;font-size:14px;color:#6b6b8a;line-height:1.8;font-weight:300;font-family:system-ui">Votre demande de devis a bien été enregistrée. J'analyse votre projet et vous envoie une proposition personnalisée <strong style="color:#1a1a2e;font-weight:600">sous 24 heures ouvrées</strong>, sans engagement de votre part.</p>
+
+    <!-- Récap projet -->
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px">
+      <tr><td style="background:#F3F1FE;border-left:3px solid #7C3AED;border-radius:0 10px 10px 0;padding:18px 20px">
+        <p style="margin:0 0 10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:#7C3AED;font-family:system-ui">Récapitulatif de votre projet</p>
+        <pre style="margin:0;font-size:12px;color:#44445A;white-space:pre-wrap;line-height:1.85;font-family:system-ui,sans-serif">${safebesoin}</pre>
+      </td></tr>
+    </table>
+
+    <!-- Étapes -->
+    <p style="margin:0 0 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#1a1a2e;font-family:system-ui">Les prochaines étapes</p>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px">
+      <tr><td style="padding-bottom:12px">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr valign="top">
+          <td style="width:30px"><div style="width:28px;height:28px;background:linear-gradient(135deg,#7C3AED,#A855F7);border-radius:50%;text-align:center;line-height:28px;font-size:11px;font-weight:800;color:#fff;font-family:system-ui">1</div></td>
+          <td style="padding-left:12px;font-size:13px;color:#6b6b8a;line-height:1.7;font-weight:300;font-family:system-ui;padding-top:4px">J'analyse votre projet et prépare un devis personnalisé et détaillé.</td>
+        </tr></table>
+      </td></tr>
+      <tr><td style="padding-bottom:12px">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr valign="top">
+          <td style="width:30px"><div style="width:28px;height:28px;background:linear-gradient(135deg,#7C3AED,#A855F7);border-radius:50%;text-align:center;line-height:28px;font-size:11px;font-weight:800;color:#fff;font-family:system-ui">2</div></td>
+          <td style="padding-left:12px;font-size:13px;color:#6b6b8a;line-height:1.7;font-weight:300;font-family:system-ui;padding-top:4px">Vous recevez le devis avec tarif exact, délai et détail des fonctionnalités <strong style="color:#1a1a2e;font-weight:600">sous 24h</strong>.</td>
+        </tr></table>
+      </td></tr>
+      <tr><td>
+        <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr valign="top">
+          <td style="width:30px"><div style="width:28px;height:28px;background:linear-gradient(135deg,#7C3AED,#A855F7);border-radius:50%;text-align:center;line-height:28px;font-size:11px;font-weight:800;color:#fff;font-family:system-ui">3</div></td>
+          <td style="padding-left:12px;font-size:13px;color:#6b6b8a;line-height:1.7;font-weight:300;font-family:system-ui;padding-top:4px">Après validation du devis et de l'acompte, je démarre immédiatement votre projet.</td>
+        </tr></table>
+      </td></tr>
+    </table>
+
+    <!-- Question urgente -->
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F8F7FF;border:1px solid #E5E3F5;border-radius:10px">
+      <tr><td style="padding:16px 18px">
+        <p style="margin:0 0 3px;font-size:11px;color:#8888A0;font-family:system-ui">Une question urgente ?</p>
+        <a href="mailto:contact@axionappstudio.com" style="font-size:13px;font-weight:600;color:#7C3AED;text-decoration:none;font-family:system-ui">contact@axionappstudio.com</a>
+      </td></tr>
+    </table>
+
+  </td></tr>
+
+  <!-- Footer -->
+  <tr><td style="background:#F0EFF9;border:1px solid #E5E3F5;border-top:none;border-radius:0 0 14px 14px;padding:18px 28px;text-align:center">
+    <p style="margin:0 0 4px;font-size:11px;color:#8888A0;font-family:system-ui">Axion App Studio · Développeur web freelance · Finistère, Bretagne</p>
+    <a href="https://axionappstudio.com" style="font-size:11px;color:#7C3AED;text-decoration:none;font-family:system-ui">axionappstudio.com</a>
+  </td></tr>
+
+  <!-- Espace bas -->
+  <tr><td style="padding-top:24px;text-align:center">
+    <p style="margin:0;font-size:10px;color:#AAAABC;font-family:system-ui">Vous avez reçu cet email car vous avez soumis une demande sur axionappstudio.com</p>
+  </td></tr>
+
 </table>
+</td></tr></table>
 </body></html>`;
 
-  const emailJeremy = {
-    from: 'Axion App Studio <contact@autocarnet.fr>',
-    to: ['contact@axionappstudio.com'],
-    subject: 'Nouveau devis — ' + nom + ' (' + (secteur || 'secteur non précisé') + ')',
-    html: htmlJeremy
-  };
-
-  const emailClient = {
-    from: 'Axion App Studio <contact@autocarnet.fr>',
-    to: [email],
-    subject: 'Votre demande de devis a bien été reçue — Axion App Studio',
-    html: htmlClient
-  };
+  const send = (payload) => fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
 
   try {
     const [r1, r2] = await Promise.all([
-      fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Authorization': 'Bearer ' + RESEND_API_KEY, 'Content-Type': 'application/json' },
-        body: JSON.stringify(emailJeremy)
-      }),
-      fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Authorization': 'Bearer ' + RESEND_API_KEY, 'Content-Type': 'application/json' },
-        body: JSON.stringify(emailClient)
-      })
+      send({ from:'Axion App Studio <contact@autocarnet.fr>', to:['contact@axionappstudio.com'], subject:'Nouveau devis — '+nom+' ('+( secteur||'secteur non précisé')+')', html: htmlJeremy }),
+      send({ from:'Axion App Studio <contact@autocarnet.fr>', to:[email], subject:'Votre demande de devis a bien été reçue — Axion App Studio', html: htmlClient })
     ]);
-
-    if (!r1.ok) { const e = await r1.text(); console.error('Resend r1:', e); }
-    if (!r2.ok) { const e = await r2.text(); console.error('Resend r2:', e); }
-
-    return { statusCode: 200, body: JSON.stringify({ success: true }) };
+    if(!r1.ok){ const e=await r1.text(); console.error('r1:',e); }
+    if(!r2.ok){ const e=await r2.text(); console.error('r2:',e); }
+    return { statusCode: 200, body: JSON.stringify({success:true}) };
   } catch(e) {
-    console.error('Function error:', e);
-    return { statusCode: 500, body: 'Internal error' };
+    console.error(e);
+    return { statusCode: 500, body: 'Error' };
   }
 };
