@@ -178,17 +178,23 @@ nav{
 
 /* ── FAB ── */
 .fab{
-  position:fixed;bottom:20px;right:12px;z-index:998;
+  position:relative;
   display:flex;align-items:center;gap:6px;
   background:var(--v);color:#fff;
   font-size:.78rem;font-weight:600;
   padding:11px 16px;border-radius:50px;
   box-shadow:0 8px 28px rgba(124,58,237,.48);
-  animation:fab-in .6s .5s cubic-bezier(.34,1.56,.64,1) both;
   transition:background .2s,transform .15s,box-shadow .2s;
-  letter-spacing:.01em;max-width:calc(100vw - 24px);
+  letter-spacing:.01em;white-space:nowrap;
 }
 .fab:hover{background:#6D28D9;transform:translateY(-2px);box-shadow:0 12px 36px rgba(124,58,237,.56)}
+.fab-wa{background:#25D366}
+.fab-wa:hover{background:#1ebe5d;box-shadow:0 12px 36px rgba(37,211,102,.4)}
+.fab-group{
+  position:fixed;bottom:20px;right:12px;z-index:998;
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+  animation:fab-in .6s .5s cubic-bezier(.34,1.56,.64,1) both;
+}
 @keyframes fab-in{from{transform:translateY(80px);opacity:0}to{transform:translateY(0);opacity:1}}
 
 /* ── HERO ── */
@@ -885,7 +891,13 @@ footer{
   <a href="#simulateur" class="nav-mob-cta">🧮 Estimer mon projet →</a>
 </div>
 
-<a href="#simulateur" class="fab" aria-label="Estimer mon projet">🧮 Estimer</a>
+<div class="fab-group">
+  <a href="#simulateur" class="fab" aria-label="Estimer mon projet">🧮 Estimer</a>
+  <a href="#" class="fab fab-wa" id="fab-wa" aria-label="Contacter sur WhatsApp">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.11 1.523 5.835L.057 23.927a.5.5 0 00.609.61l6.265-1.629A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.877 9.877 0 01-5.031-1.378l-.36-.214-3.732.979.997-3.645-.235-.374A9.867 9.867 0 012.1 12C2.1 6.533 6.533 2.1 12 2.1S21.9 6.533 21.9 12 17.467 21.9 12 21.9z"/></svg>
+    WhatsApp
+  </a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1660,6 +1672,32 @@ footer{
   });
 
   render();
+})();
+</script>
+
+<!-- WHATSAPP FAB JS -->
+<script>
+(function(){
+  var btn = document.getElementById('fab-wa');
+  if(!btn) return;
+  // Numéro WhatsApp Jérémy — format international sans +
+  var TEL = '33749613299';
+
+  function buildMsg(){
+    // Récupérer la config simulateur depuis le champ besoin
+    var besoin = (document.getElementById('besoin')||{}).value || '';
+    if(besoin && besoin.length > 20){
+      return 'Bonjour, je suis intéressé par vos services.' + String.fromCharCode(10) + String.fromCharCode(10) + besoin;
+    }
+    return 'Bonjour, je souhaite obtenir un devis pour la création de mon site web. Pouvez-vous me contacter ?';
+  }
+
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    var msg = encodeURIComponent(buildMsg());
+    var url = 'https://wa.me/' + TEL + '?text=' + msg;
+    window.open(url, '_blank', 'noopener');
+  });
 })();
 </script>
 
