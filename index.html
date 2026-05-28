@@ -19,7 +19,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://axionappstudio.com">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:image" content="https://axionappstudio.com/og-image.png">
+<meta property="og:image" content="https://axionappstudio.com/icon-512.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Axion App Studio">
@@ -28,7 +28,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Axion App Studio — Développeur Web Freelance Bretagne">
 <meta name="twitter:description" content="Sites vitrines, apps et outils métier sur mesure. Devis gratuit sous 24h.">
-<meta name="twitter:image" content="https://axionappstudio.com/og-image.png">
+<meta name="twitter:image" content="https://axionappstudio.com/icon-512.png">
 
 <!-- ── SCHEMA.ORG ── -->
 <script type="application/ld+json">
@@ -62,6 +62,7 @@
 </script>
 
 <!-- ── FONTS ── -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" as="style">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
@@ -139,6 +140,41 @@ nav{
   letter-spacing:.01em;
 }
 .nav-cta:hover{background:#6D28D9;transform:translateY(-1px)}
+.nav-burger{
+  display:flex;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;padding:8px;
+  margin-left:4px;flex-shrink:0;
+}
+@media(min-width:768px){.nav-burger{display:none}}
+.nav-burger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.7);border-radius:2px;transition:.25s}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile{
+  position:fixed;top:64px;left:0;right:0;z-index:999;
+  background:rgba(10,10,20,.98);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(124,58,237,.15);
+  padding:20px;
+  display:flex;flex-direction:column;gap:4px;
+  transform:translateY(-110%);opacity:0;
+  transition:transform .3s ease,opacity .3s ease;
+  pointer-events:none;
+}
+.nav-mobile.open{transform:translateY(0);opacity:1;pointer-events:all}
+@media(min-width:768px){.nav-mobile{display:none}}
+.nav-mob-link{
+  padding:13px 16px;border-radius:10px;
+  font-size:.92rem;font-weight:500;color:rgba(255,255,255,.6);
+  transition:.2s;
+}
+.nav-mob-link:hover{background:rgba(124,58,237,.1);color:#fff}
+.nav-mob-cta{
+  margin-top:8px;padding:14px;border-radius:11px;
+  background:var(--v);color:#fff;text-align:center;
+  font-size:.92rem;font-weight:700;
+  box-shadow:0 4px 18px rgba(124,58,237,.35);
+}
 
 /* ── FAB ── */
 .fab{
@@ -504,6 +540,13 @@ h1{
 }
 .avis-name{font-size:.8rem;font-weight:600;color:var(--txt)}
 .avis-role{font-size:.7rem;color:var(--txl);font-weight:300}
+.avis-note-top{font-size:.78rem;color:var(--txl);font-style:italic;margin-top:8px;font-weight:300}
+.avis-empty{background:rgba(124,58,237,.03);border:1.5px dashed rgba(124,58,237,.15);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:160px}
+.avis-empty-ico{font-size:1.8rem;opacity:.3}
+.avis-empty-txt{font-size:.85rem;font-weight:600;color:var(--txm)}
+.avis-empty-sub{font-size:.74rem;color:var(--txl);font-weight:300;line-height:1.6;max-width:200px}
+.avis-empty-btn{font-size:.76rem;font-weight:600;color:var(--v);border:1.5px solid rgba(124,58,237,.2);padding:7px 14px;border-radius:8px;transition:.2s}
+.avis-empty-btn:hover{background:rgba(124,58,237,.06)}
 
 /* ── AUTOCARNET ── */
 .autocarnet{padding:80px 20px;background:#fff;border-top:1px solid rgba(0,0,0,.06)}
@@ -818,9 +861,21 @@ footer{
       <a href="#apps">AutoCarnet</a>
       <a href="#about">Studio</a>
     </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <a href="#formulaire" class="nav-cta">Devis gratuit</a>
   </div>
 </nav>
+<!-- MENU MOBILE -->
+<div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+  <a href="#simulateur" class="nav-mob-link">Simulateur de prix</a>
+  <a href="#services" class="nav-mob-link">Services</a>
+  <a href="#tarifs" class="nav-mob-link">Tarifs</a>
+  <a href="#apps" class="nav-mob-link">AutoCarnet</a>
+  <a href="#about" class="nav-mob-link">Studio</a>
+  <a href="#formulaire" class="nav-mob-cta">💬 Devis gratuit →</a>
+</div>
 
 <a href="#formulaire" class="fab" aria-label="Demander un devis gratuit">💬 Devis gratuit</a>
 
@@ -836,7 +891,7 @@ footer{
     Développeur Web Freelance · Finistère, Bretagne 🇫🇷
   </div>
 
-  <h1>Sites web & apps<br><span class="hi">sur mesure.</span></h1>
+  <h1>Le développeur web<br>des <span class="hi">artisans bretons.</span></h1>
 
   <p class="hero-sub">Artisan, commerçant, TPE ou startup — je crée l'outil numérique qu'il vous faut, au bon prix, livré rapidement.</p>
 
@@ -887,22 +942,22 @@ footer{
           <div class="sim-step-label">1 · Type de projet</div>
           <div class="sim-types">
             <div class="sim-type active" data-type="vitrine" data-price="290" data-desc="Idéal pour présenter votre activité en ligne. Inclut : design personnalisé, pages accueil/services/contact, formulaire simple, optimisation Google et hébergement 1 an.">
-              <div class="sim-type-ico">🌐</div>
+              <div class="sim-type-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><ellipse cx="12" cy="12" rx="4" ry="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
               <div class="sim-type-name">Site vitrine</div>
               <div class="sim-type-price">dès 290€</div>
             </div>
             <div class="sim-type" data-type="ecommerce" data-price="590" data-desc="Vendez vos produits en ligne 24h/24. Inclut : catalogue produits, panier, paiement sécurisé Stripe, gestion des commandes et livraison.">
-              <div class="sim-type-ico">🛒</div>
+              <div class="sim-type-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
               <div class="sim-type-name">E-commerce</div>
               <div class="sim-type-price">dès 590€</div>
             </div>
             <div class="sim-type" data-type="app" data-price="790" data-desc="Une vraie application accessible depuis n'importe quel appareil. Inclut : base de données, comptes utilisateurs, interface sur mesure et mode hors ligne.">
-              <div class="sim-type-ico">⚙️</div>
+              <div class="sim-type-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
               <div class="sim-type-name">Application web</div>
               <div class="sim-type-price">dès 790€</div>
             </div>
             <div class="sim-type" data-type="outil" data-price="990" data-desc="Un outil numérique taillé pour votre façon de travailler. Gestion de stocks, tableaux de bord, suivi clients — remplacez Excel par quelque chose de vraiment puissant.">
-              <div class="sim-type-ico">📊</div>
+              <div class="sim-type-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
               <div class="sim-type-name">Outil métier</div>
               <div class="sim-type-price">dès 990€</div>
             </div>
@@ -1314,45 +1369,6 @@ footer{
   <a href="#formulaire">🛠️ Vous avez un projet ? Devis gratuit sous 24h →</a>
 </div>
 
-<!-- SUR MESURE -->
-<section class="sur-mesure" id="sur-mesure">
-  <div class="sec-in">
-    <div class="eyebrow reveal">Sur mesure</div>
-    <h2 class="sec-h reveal">Vous avez un projet ?<br>Je le construis.</h2>
-    <p class="sec-p reveal">Quel que soit votre secteur — sans budget d'agence, sans jargon.</p>
-    <div class="sur-dark reveal">
-      <div class="sg1" aria-hidden="true"></div>
-      <div class="sg2" aria-hidden="true"></div>
-      <div class="sur-t">Un outil pensé pour votre métier.</div>
-      <div class="sur-d">Site vitrine, boutique en ligne, application de gestion, outil interne — quelques exemples de secteurs :</div>
-      <div class="sur-pills" role="list">
-        <div class="sur-pill" role="listitem">🔧 Artisan</div>
-        <div class="sur-pill" role="listitem">🍽️ Restaurant</div>
-        <div class="sur-pill" role="listitem">🏋️ Coach / sport</div>
-        <div class="sur-pill" role="listitem">🚚 Transporteur</div>
-        <div class="sur-pill" role="listitem">🏥 Praticien santé</div>
-        <div class="sur-pill" role="listitem">📦 Commerce</div>
-        <div class="sur-pill" role="listitem">🧑‍🤝‍🧑 Association</div>
-        <div class="sur-pill" role="listitem">🌾 Agriculteur</div>
-        <div class="sur-pill" role="listitem">🏗️ Bureau d'études</div>
-        <div class="sur-pill" role="listitem">🎨 Artiste</div>
-        <div class="sur-pill" role="listitem">Et bien d'autres…</div>
-      </div>
-      <div class="sur-inc">
-        <div class="sur-item">Design personnalisé</div>
-        <div class="sur-item">Installable sur mobile</div>
-        <div class="sur-item">iPhone &amp; Android</div>
-        <div class="sur-item">Fonctionne hors ligne</div>
-        <div class="sur-item">Livraison rapide</div>
-        <div class="sur-item">Hébergement inclus 1 an</div>
-      </div>
-      <div class="sur-cta">
-        <a href="#formulaire" class="btn-wh">💬 Décrire mon projet →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FORMULAIRE -->
 <section class="formulaire" id="formulaire">
   <div class="sec-in">
@@ -1360,7 +1376,7 @@ footer{
     <h2 class="sec-h reveal">Plus qu'un pas.</h2>
     <p class="sec-p reveal">Votre configuration du simulateur est déjà enregistrée. Laissez juste vos coordonnées — je vous rappelle sous 24h.</p>
     <div class="form-card reveal">
-      <form name="contact" method="POST" action="/merci" data-netlify="true" netlify-honeypot="bot-field">
+      <form name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
         <input type="hidden" name="bot-field" style="display:none" aria-hidden="true">
         <textarea id="besoin" name="besoin" style="display:none" aria-hidden="true"></textarea>
@@ -1506,25 +1522,37 @@ footer{
         +'</div>'
         +'<div class="srp-total"><span>Estimation</span><b>'+total.toLocaleString('fr-FR')+'€</b></div>';
     }
-    if(state.maint>0){mb.style.display='flex';document.getElementById('sim-maint-val').textContent=state.maint+'€/mois';}
-    else{mb.style.display='none';}
+    // Maintenance box
+    var mb = document.getElementById('sim-maint');
+    if(mb){
+      if(state.maint>0){mb.style.display='flex';var mv=document.getElementById('sim-maint-val');if(mv)mv.textContent=state.maint+'€/mois';}
+      else{mb.style.display='none';}
+    }
 
-    // Pré-remplir formulaire
+    // Pré-remplir formulaire (contenu riche pour l'email reçu)
     var besoin = document.getElementById('besoin');
     if(besoin){
-      var opts = state.opts.map(function(o){return o.label;}).join(', ') || 'Aucune';
+      var optsStr = state.opts.length > 0
+        ? state.opts.map(function(o){return o.label+' ('+o.price+'€)';}).join(' | ')
+        : 'Aucune option';
       var autre = document.getElementById('sim-autre') ? document.getElementById('sim-autre').value : '';
       var lines = [
-        'Projet simulé :',
-        '- Type : ' + LABELS[state.type],
-        '- Options : ' + opts,
-        '- Contenu : ' + (state.contenu > 0 ? 'Aide souhaitee' : 'Je fournis tout'),
-        '- Delai : ' + (express ? 'Express' : 'Standard'),
-        '- Maintenance : ' + (state.maint > 0 ? 'Oui (' + state.maint + 'EUR/mois)' : 'Non'),
-        '- Budget estime : ' + total + 'EUR'
+        '=== DEMANDE DE DEVIS - AXION APP STUDIO ===',
+        '',
+        'TYPE DE PROJET : ' + LABELS[state.type] + ' (base ' + BASE[state.type] + 'EUR)',
+        '',
+        'OPTIONS SELECTIONNEES :',
+        optsStr,
+        '',
+        'CONTENU : ' + (state.contenu > 0 ? 'Aide souhaitee pour redaction et photos (+150EUR)' : 'Client fournit tout (textes, photos, logo)'),
+        'DELAI : ' + (express ? 'EXPRESS - Livraison en 1 semaine (+25%)' : 'Standard - 1 a 3 semaines'),
+        'MAINTENANCE : ' + (state.maint > 0 ? 'Oui, maintenance mensuelle a ' + state.maint + 'EUR/mois' : 'Non'),
+        '',
+        'BUDGET ESTIME : ' + total + 'EUR',
+        '',
+        'BESOIN SPECIFIQUE : ' + (autre || 'Aucun')
       ];
-      if(autre) lines.push('- Besoin specifique : ' + autre);
-      besoin.value = lines.join('\n');
+      besoin.value = lines.join(String.fromCharCode(10));
     }
   }
 
@@ -1589,6 +1617,55 @@ footer{
   });
 
   render();
+})();
+</script>
+
+<!-- HAMBURGER JS -->
+<script>
+(function(){
+  var btn = document.getElementById('nav-burger');
+  var menu = document.getElementById('nav-mobile');
+  if(!btn||!menu) return;
+  btn.addEventListener('click',function(){
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',open);
+    menu.setAttribute('aria-hidden',!open);
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      menu.setAttribute('aria-hidden','true');
+    });
+  });
+})();
+</script>
+
+<!-- VALIDATION TEMPS RÉEL -->
+<script>
+(function(){
+  var emailEl = document.getElementById('email');
+  if(!emailEl) return;
+  var msg = document.createElement('div');
+  msg.style.cssText = 'font-size:.71rem;color:#EF4444;margin-top:4px;display:none';
+  emailEl.parentNode.appendChild(msg);
+  emailEl.addEventListener('blur',function(){
+    var v = emailEl.value;
+    if(v && (v.indexOf('@') < 1 || v.indexOf('.') < 3)){
+      msg.textContent = 'Adresse email invalide';
+      msg.style.display = 'block';
+      emailEl.style.borderColor = '#EF4444';
+    } else {
+      msg.style.display = 'none';
+      emailEl.style.borderColor = '';
+    }
+  });
+  emailEl.addEventListener('input',function(){
+    msg.style.display='none';
+    emailEl.style.borderColor='';
+  });
 })();
 </script>
 
