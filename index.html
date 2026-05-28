@@ -1679,11 +1679,7 @@ footer{
     var secteur = (form.querySelector('#secteur') || {}).value || '';
     var besoin = (document.getElementById('besoin') || {}).value || '';
 
-    // Soumettre à Netlify Forms (pour le backoffice)
-    var fd = new FormData(form);
-    fetch('/', { method: 'POST', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams(fd).toString() });
-
-    // Envoyer via Resend
+    // Envoyer uniquement via Resend (pas de double email Netlify)
     fetch('/.netlify/functions/send-devis', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
