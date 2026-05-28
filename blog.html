@@ -7,9 +7,50 @@
 <meta name="description" content="Conseils, guides et actualités sur la création de sites web pour artisans et TPE en Bretagne. Par Axion App Studio, développeur web freelance en Finistère.">
 <link rel="canonical" href="https://axionappstudio.com/blog">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" href="/icon192.png">
+<meta name="theme-color" content="#7C3AED">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog — Axion App Studio · Développement web Finistère">
+<meta property="og:description" content="Conseils, guides et actualités sur la création de sites web pour artisans et TPE en Bretagne.">
+<meta property="og:url" content="https://axionappstudio.com/blog">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://axionappstudio.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Axion App Studio">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog — Axion App Studio">
+<meta name="twitter:description" content="Conseils, guides et actualités sur la création de sites web pour artisans et TPE en Bretagne.">
+<meta name="twitter:image" content="https://axionappstudio.com/og-default.png">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog Axion App Studio",
+  "description": "Conseils, guides et actualités sur la création de sites web pour artisans et TPE en Bretagne.",
+  "url": "https://axionappstudio.com/blog",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Axion App Studio",
+    "url": "https://axionappstudio.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://axionappstudio.com/icon192.png"
+    }
+  }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet"></noscript>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--v:#7C3AED;--v2:#A855F7;--o:#FF6B35;--txt:#09090F;--txm:#44445A;--txl:#8888A0;--bg:#F6F5FF;--dark:#0A0A14;--dark2:#10101E;}
@@ -49,10 +90,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 20px;d
 .blog-cta p{font-size:.88rem;color:var(--txm);margin-bottom:20px;font-weight:300}
 .btn-v{display:inline-flex;align-items:center;gap:8px;background:var(--v);color:#fff;padding:13px 26px;border-radius:10px;font-size:.88rem;font-weight:600;box-shadow:0 4px 18px rgba(124,58,237,.3);transition:.2s}
 .btn-v:hover{background:#6D28D9;transform:translateY(-1px)}
-footer{padding:28px 20px;background:var(--dark2);text-align:center;font-size:.7rem;color:rgba(255,255,255,.18)}
+footer{padding:28px 20px;background:var(--dark2);text-align:center;font-size:.7rem;color:rgba(255,255,255,.22)}
+footer a{color:rgba(255,255,255,.35);text-decoration:none}
+footer a:hover{color:rgba(255,255,255,.7)}
+a:focus-visible,button:focus-visible,.blog-card:focus-visible,.btn-v:focus-visible{outline:2px solid var(--v);outline-offset:3px;border-radius:6px}
 </style>
 </head>
 <body>
+<a href="#blog-content" class="skip-link" style="position:absolute;left:-9999px;top:4px;background:#7C3AED;color:#fff;padding:8px 16px;border-radius:6px;font-size:.85rem;font-weight:600;z-index:10000;text-decoration:none">Aller au contenu</a>
 
 <nav>
   <div class="nav-in">
@@ -75,7 +120,7 @@ footer{padding:28px 20px;background:var(--dark2);text-align:center;font-size:.7r
   <p class="blog-sub">Guides pratiques, conseils et retours d'expérience sur la création de sites web et d'applications pour artisans et TPE en Bretagne.</p>
 </div>
 
-<div class="blog-wrap">
+<div class="blog-wrap" id="blog-content">
   <div class="blog-grid">
 
     <a href="/blog/combien-coute-site-web-artisan-bretagne" class="blog-card">
@@ -177,7 +222,10 @@ footer{padding:28px 20px;background:var(--dark2);text-align:center;font-size:.7r
   <a href="/#simulateur" class="btn-v">🧮 Estimer mon projet →</a>
 </div>
 
-<footer>© 2026 Axion App Studio · SIRET 914 511 639 00025 · Saint-Ségal, Finistère · <a href="/mentions-legales" style="color:rgba(255,255,255,.3)">Mentions légales</a> · <a href="/cgv" style="color:rgba(255,255,255,.3)">CGV</a></footer>
+<footer>
+  <p>© 2026 Axion App Studio · SIRET 914 511 639 00025 · Saint-Ségal, Finistère</p>
+  <p style="margin-top:6px"><a href="/mentions-legales">Mentions légales</a> · <a href="/cgv">CGV</a> · <a href="/">Accueil</a></p>
+</footer>
 
 </body>
 </html>

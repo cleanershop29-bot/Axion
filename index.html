@@ -61,11 +61,53 @@
 }
 </script>
 
+<!-- Schema FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Combien coûte un site vitrine pour artisan ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un site vitrine professionnel pour artisan coûte à partir de 290€ chez Axion App Studio. Le prix varie selon les options (formulaire de contact, galerie photos, blog, multilingue) et le délai souhaité. Devis gratuit sous 24h."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "En combien de temps mon site sera-t-il livré ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un site vitrine est livré en 1 semaine en délai standard. Une application web prend 2 à 3 semaines. Une livraison express en 1 semaine est possible pour tous les projets avec un supplément de 25%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Intervenez-vous partout en Bretagne ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Basé en Finistère, j'interviens pour tous les artisans et TPE de Bretagne : Quimper, Brest, Lorient, Vannes, Rennes — et également à distance partout en France."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce qu'une PWA ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une Progressive Web App (PWA) est un site web qui se comporte comme une application mobile native. Elle est installable sur l'écran d'accueil du téléphone, fonctionne hors ligne et peut envoyer des notifications push — pour un coût 5 à 10 fois inférieur à une app native."
+      }
+    }
+  ]
+}
+</script>
+
 <!-- ── FONTS ── -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" as="style">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet"></noscript>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -90,6 +132,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 a{text-decoration:none;color:inherit}
+a:focus-visible,button:focus-visible,.nav-cta:focus-visible,.btn-main:focus-visible,.btn-out:focus-visible,.fab:focus-visible,.tarif-cta:focus-visible,.sim-btn:focus-visible,.btn-sub:focus-visible{outline:2px solid var(--v2);outline-offset:3px;border-radius:4px}
 img{max-width:100%}
 h1,h2,h3,.syne{font-family:'DM Sans',sans-serif}
 
@@ -208,7 +251,7 @@ nav{
   position:relative;overflow:hidden;
 }
 /* Orbes animées */
-.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px)}
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px);will-change:transform}
 .orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.22),transparent 70%);top:-200px;left:-150px;animation:drift1 12s ease-in-out infinite}
 .orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(255,107,53,.1),transparent 70%);bottom:-150px;right:-100px;animation:drift2 15s ease-in-out infinite}
 .orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(168,85,247,.12),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:drift3 8s ease-in-out infinite}
@@ -852,6 +895,7 @@ footer{
 </style>
 </head>
 <body>
+<a href="#hero" class="skip-link" style="position:absolute;left:-9999px;top:4px;background:var(--v);color:#fff;padding:8px 16px;border-radius:6px;font-size:.85rem;font-weight:600;z-index:10000;text-decoration:none">Aller au contenu principal</a>
 
 <!-- NAV -->
 <nav>
@@ -899,6 +943,7 @@ footer{
   </a>
 </div>
 
+<main id="main-content">
 <!-- HERO -->
 <section class="hero">
   <div class="orb orb1" aria-hidden="true"></div>
@@ -1401,7 +1446,11 @@ footer{
     <div class="form-card reveal">
       <form name="contact" id="devis-form" method="POST" action="/merci" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
-        <input type="hidden" name="bot-field" style="display:none" aria-hidden="true">
+        <!-- Honeypot anti-bot : ne pas remplir -->
+        <div style="position:absolute;left:-9999px;top:-9999px;height:0;overflow:hidden" aria-hidden="true">
+          <label for="hp-website">Ne pas remplir</label>
+          <input type="text" id="hp-website" name="honeypot" tabindex="-1" autocomplete="off" value="">
+        </div>
         <textarea id="besoin" name="besoin" style="display:none" aria-hidden="true"></textarea>
 
         <div class="fsect">Vos coordonnées</div>
@@ -1469,6 +1518,8 @@ footer{
   <a href="#simulateur" class="btn-main" style="position:relative;z-index:1">🧮 Estimer mon projet →</a>
 </section>
 
+</main>
+</main>
 <!-- FOOTER -->
 <footer>
   <div class="foot-in">
@@ -1492,7 +1543,6 @@ footer{
       <a href="/blog">Blog</a>
       <a href="/mentions-legales">Mentions légales</a>
       <a href="/cgv">CGV</a>
-      <a href="/blog">Blog</a>
     </div>
     <div class="foot-copy">© 2026 Axion App Studio · SIRET 914 511 639 00025 · Finistère, Bretagne, France</div>
   </div>
@@ -1711,6 +1761,7 @@ footer{
     var btn = form.querySelector('.btn-sub');
     if(btn){ btn.textContent = 'Envoi en cours...'; btn.disabled = true; }
 
+    var honeypot = (form.querySelector('#hp-website') || {}).value || '';
     var nom = (form.querySelector('#nom') || {}).value || '';
     var email = (form.querySelector('#email') || {}).value || '';
     var telephone = (form.querySelector('#telephone') || {}).value || '';
@@ -1721,7 +1772,7 @@ footer{
     fetch('/.netlify/functions/send-devis', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nom: nom, email: email, telephone: telephone, secteur: secteur, besoin: besoin })
+      body: JSON.stringify({ nom: nom, email: email, telephone: telephone, secteur: secteur, besoin: besoin, honeypot: honeypot })
     }).then(function(){
       window.location.href = '/merci';
     }).catch(function(){

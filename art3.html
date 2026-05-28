@@ -7,71 +7,83 @@
 <meta name="description" content="Une Progressive Web App, c'est quoi exactement ? Pourquoi c'est la solution idéale pour les TPE et artisans en 2026, sans dépenser 10 000 euros.">
 <link rel="canonical" href="https://axionappstudio.com/blog/pwa-application-mobile-sans-app-store">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" href="/icon192.png">
+<meta name="theme-color" content="#7C3AED">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="PWA : avoir une app mobile sans App Store — Axion App Studio">
+<meta property="og:description" content="Une Progressive Web App, c'est quoi exactement ? Pourquoi c'est la solution idéale pour les TPE et artisans en 2026, sans dépenser 10 000 euros.">
+<meta property="og:url" content="https://axionappstudio.com/blog/pwa-application-mobile-sans-app-store">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://axionappstudio.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Axion App Studio">
+<meta property="article:published_time" content="2026-04-20T08:00:00+02:00">
+<meta property="article:author" content="Jérémy — Axion App Studio">
+<meta property="article:section" content="Mobile">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PWA : avoir une app mobile sans App Store — Axion App Studio">
+<meta name="twitter:description" content="Une Progressive Web App, c'est quoi exactement ? Pourquoi c'est la solution idéale pour les TPE et artisans en 2026, sans dépenser 10 000 euros.">
+<meta name="twitter:image" content="https://axionappstudio.com/og-default.png">
+
+<!-- Schema.org BlogPosting -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PWA : avoir une app mobile sans passer par l'App Store ni dépenser 10 000€",
+  "description": "Une Progressive Web App, c'est quoi exactement ? Pourquoi c'est la solution idéale pour les TPE et artisans en 2026, sans dépenser 10 000 euros.",
+  "url": "https://axionappstudio.com/blog/pwa-application-mobile-sans-app-store",
+  "datePublished": "2026-04-20",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Person",
+    "name": "Jérémy",
+    "url": "https://axionappstudio.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Axion App Studio",
+    "url": "https://axionappstudio.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://axionappstudio.com/icon192.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://axionappstudio.com/blog/pwa-application-mobile-sans-app-store"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Accueil","item":"https://axionappstudio.com"},
+      {"@type":"ListItem","position":2,"name":"Blog","item":"https://axionappstudio.com/blog"},
+      {"@type":"ListItem","position":3,"name":"PWA : avoir une app mobile sans passer par l'App Store ni dépenser 10 000€","item":"https://axionappstudio.com/blog/pwa-application-mobile-sans-app-store"}
+    ]
+  }
+}
+</script>
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--v:#7C3AED;--v2:#A855F7;--o:#FF6B35;--txt:#09090F;--txm:#44445A;--txl:#8888A0;--bg:#F6F5FF;--dark:#0A0A14;--dark2:#10101E;}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--txt);-webkit-font-smoothing:antialiased}
-a{text-decoration:none;color:var(--v)}
-a:hover{text-decoration:underline}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 20px;display:flex;align-items:center;background:rgba(10,10,20,.95);border-bottom:1px solid rgba(124,58,237,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.nav-in{width:100%;max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.nav-logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.03em;text-decoration:none}
-.nav-logo span{color:var(--v2)}
-.nav-back{font-size:.8rem;color:rgba(255,255,255,.4);transition:.2s;text-decoration:none}
-.nav-back:hover{color:#fff}
-/* Hero article */
-.art-hero{background:var(--dark);padding:100px 20px 52px;border-bottom:1px solid rgba(124,58,237,.12)}
-.art-hero-in{max-width:740px;margin:0 auto}
-.art-tag{display:inline-block;background:rgba(124,58,237,.15);color:var(--v2);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;padding:5px 12px;border-radius:50px;margin-bottom:16px}
-.art-h1{font-size:clamp(1.6rem,3.8vw,2.4rem);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:14px}
-.art-meta{display:flex;align-items:center;gap:14px;font-size:.75rem;color:rgba(255,255,255,.3);flex-wrap:wrap}
-.art-meta span{display:flex;align-items:center;gap:5px}
-/* Body */
-.art-wrap{max-width:740px;margin:0 auto;padding:52px 24px 80px}
-.art-body h2{font-size:1.15rem;font-weight:800;color:var(--txt);margin:40px 0 12px;letter-spacing:-.02em}
-.art-body h3{font-size:.95rem;font-weight:700;color:var(--txm);margin:24px 0 8px}
-.art-body p{font-size:.9rem;color:var(--txm);line-height:1.9;margin-bottom:16px;font-weight:300}
-.art-body ul,.art-body ol{padding-left:20px;margin-bottom:16px}
-.art-body li{font-size:.9rem;color:var(--txm);line-height:1.85;font-weight:300;margin-bottom:6px}
-.art-body strong{font-weight:600;color:var(--txt)}
-.art-body a{color:var(--v);font-weight:500}
-.highlight-box{background:#fff;border:1px solid rgba(124,58,237,.12);border-radius:14px;padding:22px 24px;margin:28px 0;box-shadow:0 2px 16px rgba(124,58,237,.06)}
-.highlight-box p{margin:0;font-size:.86rem}
-.callout{background:rgba(124,58,237,.06);border-left:3px solid var(--v);padding:16px 20px;border-radius:0 10px 10px 0;margin:24px 0;font-size:.86rem;color:var(--txm);line-height:1.8;font-weight:300}
-.callout strong{color:var(--v);font-weight:700}
-.price-table{width:100%;border-collapse:collapse;margin:20px 0;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.price-table th{background:var(--v);color:#fff;padding:12px 16px;font-size:.78rem;font-weight:700;text-align:left}
-.price-table td{padding:11px 16px;font-size:.82rem;color:var(--txm);border-bottom:1px solid rgba(0,0,0,.06);font-weight:300}
-.price-table tr:last-child td{border-bottom:none}
-.price-table tr:nth-child(even) td{background:#fff}
-.price-table tr:nth-child(odd) td{background:var(--bg)}
-/* CTA article */
-.art-cta{background:var(--dark);border-radius:16px;padding:32px;margin:40px 0;text-align:center}
-.art-cta h3{color:#fff;font-size:1.1rem;font-weight:800;margin-bottom:8px}
-.art-cta p{color:rgba(255,255,255,.42);font-size:.84rem;font-weight:300;margin-bottom:20px;line-height:1.7}
-.btn-v{display:inline-flex;align-items:center;gap:8px;background:var(--v);color:#fff;padding:13px 26px;border-radius:10px;font-size:.88rem;font-weight:600;box-shadow:0 4px 18px rgba(124,58,237,.3);transition:.2s;text-decoration:none}
-.btn-v:hover{background:#6D28D9;transform:translateY(-1px);text-decoration:none}
-/* Articles liés */
-.related{margin-top:48px;padding-top:32px;border-top:1px solid rgba(0,0,0,.07)}
-.related-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--txl);margin-bottom:16px}
-.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:500px){.related-grid{grid-template-columns:1fr}}
-.related-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:16px;transition:.2s;text-decoration:none;display:block}
-.related-card:hover{border-color:rgba(124,58,237,.2);transform:translateY(-2px);text-decoration:none}
-.related-card-tag{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--v2);margin-bottom:6px}
-.related-card-title{font-size:.82rem;font-weight:600;color:var(--txt);line-height:1.4}
-footer{padding:24px;background:var(--dark2);text-align:center;font-size:.7rem;color:rgba(255,255,255,.18)}
-footer a{color:rgba(255,255,255,.3)}
-</style>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/article.css">
 </head>
 <body>
-<nav>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:4px;background:var(--v);color:#fff;padding:8px 16px;border-radius:6px;font-size:.85rem;font-weight:600;z-index:9999">Aller au contenu</a>
+<nav aria-label="Navigation principale">
   <div class="nav-in">
-    <a href="/" class="nav-logo"><svg width="28" height="28" viewBox="0 0 72 72" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs><rect width="72" height="72" rx="20" fill="#16162A"/><path d="M18 56 L36 16 L54 56" stroke="url(#lg)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="25" y1="41" x2="47" y2="41" stroke="url(#lg)" stroke-width="4" stroke-linecap="round"/></svg>AXION <span>APP STUDIO</span></a>
+    <a href="/" class="nav-logo" aria-label="Axion App Studio — Accueil">
+      <svg width="28" height="28" viewBox="0 0 72 72" fill="none" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs><rect width="72" height="72" rx="20" fill="#16162A"/><path d="M18 56 L36 16 L54 56" stroke="url(#lg)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="25" y1="41" x2="47" y2="41" stroke="url(#lg)" stroke-width="4" stroke-linecap="round"/></svg>
+      AXION <span>APP STUDIO</span>
+    </a>
     <a href="/blog" class="nav-back">← Blog</a>
   </div>
 </nav>
@@ -79,9 +91,14 @@ footer a{color:rgba(255,255,255,.3)}
   <div class="art-hero-in">
     <div class="art-tag" style="background:rgba(255,107,53,.15);color:#FF6B35">Mobile</div>
     <h1 class="art-h1">PWA : avoir une app mobile sans passer par l'App Store ni dépenser 10 000€</h1>
-    <div class="art-meta"><span>Avril 2026</span><span>6 min de lecture</span><span>Axion App Studio</span></div>
+    <div class="art-meta" aria-label="Métadonnées de l'article">
+      <span>Avril 2026</span>
+      <span>6 min de lecture</span>
+      <span>Axion App Studio</span>
+    </div>
   </div>
 </div>
+<main id="main-content">
 <div class="art-wrap">
   <div class="art-body">
     <p>Vous avez rêvé d'avoir votre propre application mobile, mais le devis de l'agence vous a refroidi ? Bonne nouvelle : il existe une alternative bien moins chère, tout aussi efficace, et que la plupart des prestataires ne vous proposent pas. C'est la PWA — Progressive Web App.</p>
@@ -158,6 +175,11 @@ footer a{color:rgba(255,255,255,.3)}
     </div>
   </div>
 </div>
-<footer>© 2026 Axion App Studio · <a href="/mentions-legales">Mentions légales</a> · <a href="/cgv">CGV</a> · <a href="/blog">Blog</a></footer>
+
+</main>
+<footer>
+  <p>© 2026 Axion App Studio · SIRET 914 511 639 00025 · Saint-Ségal, Finistère</p>
+  <p style="margin-top:6px"><a href="/mentions-legales">Mentions légales</a> · <a href="/cgv">CGV</a> · <a href="/blog">Blog</a> · <a href="/">Accueil</a></p>
+</footer>
 </body>
 </html>
