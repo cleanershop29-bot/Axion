@@ -6,10 +6,51 @@
 <title>AutoCarnet — Carnet d'entretien voiture numérique | Axion App Studio</title>
 <meta name="description" content="AutoCarnet est l'application de carnet d'entretien voiture 100% française. Rappels CT et vidange, export PDF, mode équipe et flotte pro. Disponible sur Android.">
 <link rel="canonical" href="https://axionappstudio.com/autocarnet">
+<link rel="apple-touch-icon" href="/icon192.png">
+<meta name="theme-color" content="#2563EB">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="AutoCarnet — Carnet d'entretien voiture numérique">
+<meta property="og:description" content="AutoCarnet : rappels CT et vidange, export PDF, mode équipe. Application PWA gratuite pour suivre l'entretien de vos véhicules.">
+<meta property="og:url" content="https://axionappstudio.com/autocarnet">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://axionappstudio.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Axion App Studio">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AutoCarnet — Carnet d'entretien voiture numérique">
+<meta name="twitter:description" content="Application PWA gratuite : rappels CT et vidange, export PDF, mode équipe.">
+<meta name="twitter:image" content="https://axionappstudio.com/og-default.png">
+
+<!-- Schema.org SoftwareApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AutoCarnet",
+  "description": "Application PWA de carnet d'entretien voiture. Rappels automatiques CT et vidange, export PDF, gestion de flotte professionnelle.",
+  "url": "https://axionappstudio.com/autocarnet",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Android, iOS, Web",
+  "offers": [
+    {"@type":"Offer","name":"Gratuit","price":"0","priceCurrency":"EUR"},
+    {"@type":"Offer","name":"Famille","price":"1.99","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","billingDuration":"P1M"}},
+    {"@type":"Offer","name":"Pro","price":"4.99","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","billingDuration":"P1M"}}
+  ],
+  "author": {"@type":"Organization","name":"Axion App Studio","url":"https://axionappstudio.com"},
+  "sameAs": ["https://autocarnet.fr"]
+}
+</script>
+
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet"></noscript>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--v:#7C3AED;--v2:#A855F7;--o:#FF6B35;--txt:#09090F;--txm:#44445A;--txl:#8888A0;--bg:#F6F5FF;--dark:#0A0A14;--dark2:#10101E;--ac-blue:#1E3A8A;--ac-blue2:#2563EB;}
@@ -106,13 +147,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 20px;d
 
 footer{padding:28px 20px;background:var(--dark);border-top:1px solid rgba(255,255,255,.04);text-align:center;font-size:.7rem;color:rgba(255,255,255,.18)}
 footer a{color:rgba(255,255,255,.3)}
+a:focus-visible,button:focus-visible,.btn-blue:focus-visible,.btn-out:focus-visible,.p-cta:focus-visible{outline:2px solid #60A5FA;outline-offset:3px;border-radius:4px}
+.trust-item{font-size:.73rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:5px}
 </style>
 </head>
 <body>
+<a href="#main-content" style="position:absolute;left:-9999px;top:4px;background:#2563EB;color:#fff;padding:8px 16px;border-radius:6px;font-size:.85rem;font-weight:600;z-index:10000;text-decoration:none" onblur="this.style.left='-9999px'" onfocus="this.style.left='4px'">Aller au contenu</a>
 
 <nav>
   <div class="nav-in">
-    <a href="/" class="nav-logo">
+    <a href="/" class="nav-logo" aria-label="Axion App Studio — Accueil">
       <svg width="28" height="28" viewBox="0 0 72 72" fill="none">
         <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs>
         <rect width="72" height="72" rx="20" fill="#16162A"/>
@@ -126,7 +170,7 @@ footer a{color:rgba(255,255,255,.3)}
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="main-content">
   <div class="orb1"></div>
   <div class="orb2"></div>
   <div class="hero-in">
