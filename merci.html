@@ -8,7 +8,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet"></noscript>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--v:#7C3AED;--v2:#A855F7;--o:#FF6B35;--dark:#0A0A14;--dark2:#10101E;}
@@ -62,7 +63,8 @@ h1{font-size:1.8rem;font-weight:800;letter-spacing:-.03em;margin-bottom:12px;lin
   </div>
 
   <a href="/" class="btn-main">← Retour au site</a>
-  <p class="note">Une question urgente ? contact@axionappstudio.com</p>
+  <a href="/blog" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:rgba(255,255,255,.35);font-size:.82rem;text-decoration:none;transition:.2s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">En attendant, lire nos conseils web →</a>
+  <p class="note">Une question urgente ? <a href="mailto:contact@axionappstudio.com" style="color:rgba(255,255,255,.4)">contact@axionappstudio.com</a></p>
 </div>
 
 <script>
@@ -70,8 +72,9 @@ h1{font-size:1.8rem;font-weight:800;letter-spacing:-.03em;margin-bottom:12px;lin
 (function(){
   var c = document.getElementById('confetti');
   var ctx = c.getContext('2d');
-  c.width = window.innerWidth;
-  c.height = window.innerHeight;
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize);
   var particles = [];
   var colors = ['#7C3AED','#A855F7','#FF6B35','#F59E0B','#10B981','#fff'];
   for(var i=0;i<80;i++){

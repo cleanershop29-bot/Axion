@@ -10,7 +10,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet"></noscript>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--v:#7C3AED;--v2:#A855F7;--o:#FF6B35;--txt:#09090F;--txm:#44445A;--txl:#8888A0;--bg:#F6F5FF;--dark:#0A0A14;}
@@ -44,7 +45,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 20px;d
 <body>
 <nav>
   <div class="nav-in">
-    <a href="/" class="nav-logo">
+    <a href="/" class="nav-logo" aria-label="Axion App Studio — Accueil">
       <svg width="28" height="28" viewBox="0 0 72 72" fill="none">
         <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs>
         <rect width="72" height="72" rx="20" fill="#16162A"/>
@@ -123,7 +124,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 20px;d
 
   </div>
 
-  <span class="footer-small">© 2026 Axion App Studio — SIRET 914 511 639 00025 · Saint-Ségal, Finistère, France</span>
+  <span class="footer-small">© 2026 Axion App Studio — SIRET 914 511 639 00025 · Saint-Ségal, Finistère, France · <a href="mailto:contact@axionappstudio.com" style="color:var(--txl)">contact@axionappstudio.com</a></span>
 </div>
 </body>
 </html>
