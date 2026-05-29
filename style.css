@@ -224,9 +224,8 @@ h1{
   letter-spacing:.01em;
 }
 .btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(124,58,237,.55);background:#6D28D9}
-.btn-glow{position:relative;z-index:0}
-.btn-glow::before{content:'';position:absolute;inset:-2px;border-radius:12px;background:conic-gradient(from 0deg,#7C3AED,#FF6B35,#A855F7,#7C3AED);z-index:-1;filter:blur(2px);animation:border-spin 3s linear infinite;will-change:transform}
-@keyframes border-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.btn-glow{position:relative;animation:btn-pulse 2.5s ease-in-out infinite}
+@keyframes btn-pulse{0%,100%{box-shadow:0 6px 28px rgba(124,58,237,.4)}50%{box-shadow:0 6px 36px rgba(124,58,237,.75),0 0 0 4px rgba(124,58,237,.15)}}
 .btn-out{
   display:inline-flex;align-items:center;gap:8px;
   padding:14px 24px;border-radius:10px;
