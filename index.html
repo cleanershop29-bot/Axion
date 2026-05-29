@@ -19,7 +19,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://axionappstudio.com">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:image" content="https://axionappstudio.com/icon-512.png">
+<meta property="og:image" content="https://axionappstudio.com/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Axion App Studio">
@@ -28,7 +28,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Axion App Studio — Développeur Web Freelance Bretagne">
 <meta name="twitter:description" content="Sites vitrines, apps et outils métier sur mesure. Devis gratuit sous 24h.">
-<meta name="twitter:image" content="https://axionappstudio.com/icon-512.png">
+<meta name="twitter:image" content="https://axionappstudio.com/og-default.png">
 
 <!-- ── SCHEMA.ORG ── -->
 <script type="application/ld+json">
@@ -136,6 +136,14 @@ a:focus-visible,button:focus-visible,.nav-cta:focus-visible,.btn-main:focus-visi
 img{max-width:100%}
 h1,h2,h3,.syne{font-family:'DM Sans',sans-serif}
 
+/* ── CUSTOM CURSOR ── */
+@media(pointer:fine){
+  body{cursor:none}
+  .cursor-dot{width:8px;height:8px;background:var(--v2);border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:transform .1s,opacity .2s;will-change:transform}
+  .cursor-ring{width:32px;height:32px;border:1.5px solid rgba(168,85,247,.5);border-radius:50%;position:fixed;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease,width .2s,height .2s,opacity .2s;will-change:transform}
+  a:hover ~ .cursor-dot,button:hover ~ .cursor-dot{transform:translate(-50%,-50%) scale(2)}
+}
+
 /* ── NOISE OVERLAY ── */
 body::before{
   content:'';position:fixed;inset:0;
@@ -174,6 +182,7 @@ nav{
   transition:color .2s;letter-spacing:.01em;
 }
 .nav-links a:hover{color:#fff}
+.nav-links a.nav-active{color:rgba(255,255,255,.9)}
 .nav-cta{
   background:var(--v);color:#fff;
   padding:9px 14px;border-radius:8px;
@@ -327,6 +336,9 @@ h1{
   letter-spacing:.01em;
 }
 .btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(124,58,237,.55);background:#6D28D9}
+.btn-glow{position:relative}
+.btn-glow::before{content:'';position:absolute;inset:-2px;border-radius:12px;background:linear-gradient(90deg,#7C3AED,#FF6B35,#A855F7,#7C3AED);background-size:300%;animation:border-spin 3s linear infinite;z-index:-1;filter:blur(1px)}
+@keyframes border-spin{0%{background-position:0%}100%{background-position:300%}}
 .btn-out{
   display:inline-flex;align-items:center;gap:8px;
   padding:14px 24px;border-radius:10px;
@@ -884,6 +896,14 @@ footer{
 /* ── SCROLL REVEAL ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
+.stagger-children > *{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+.stagger-children.visible > *{opacity:1;transform:translateY(0)}
+.stagger-children.visible > *:nth-child(1){transition-delay:.05s}
+.stagger-children.visible > *:nth-child(2){transition-delay:.12s}
+.stagger-children.visible > *:nth-child(3){transition-delay:.19s}
+.stagger-children.visible > *:nth-child(4){transition-delay:.26s}
+.stagger-children.visible > *:nth-child(5){transition-delay:.33s}
+.stagger-children.visible > *:nth-child(6){transition-delay:.40s}
 
 @media(max-width:480px){
   .ac-top,.sur-dark,.ab-card{padding:24px 18px}
@@ -956,12 +976,12 @@ footer{
     Développeur Web Freelance · Finistère, Bretagne 🇫🇷
   </div>
 
-  <h1>Le développeur web<br>des <span class="hi">artisans bretons.</span></h1>
+  <h1>Le développeur web<br>des <span class="hi" id="typed-word">artisans bretons.</span></h1>
 
   <p class="hero-sub">Artisan, commerçant, TPE ou startup — je crée l'outil numérique qu'il vous faut, au bon prix, livré rapidement.</p>
 
   <div class="hero-btns">
-    <a href="#simulateur" class="btn-main">🧮 Estimer mon projet →</a>
+    <a href="#simulateur" class="btn-main btn-glow">🧮 Estimer mon projet →</a>
     <a href="#services" class="btn-out">Voir les services →</a>
   </div>
 
@@ -978,15 +998,15 @@ footer{
 <div class="stats" role="region" aria-label="Chiffres clés">
   <div class="stats-in">
     <div class="stat-item">
-      <div class="sn">+5</div>
+      <div class="sn" data-count="5" data-prefix="+" data-suffix="">+5</div>
       <div class="sl">Projets livrés</div>
     </div>
     <div class="stat-item">
-      <div class="sn">24h</div>
+      <div class="sn" data-count="24" data-prefix="" data-suffix="h">24h</div>
       <div class="sl">Délai de réponse</div>
     </div>
     <div class="stat-item">
-      <div class="sn">100%</div>
+      <div class="sn" data-count="100" data-prefix="" data-suffix="%">100%</div>
       <div class="sl">Sans pub ni tracking</div>
     </div>
   </div>
@@ -1218,7 +1238,7 @@ footer{
     <div class="eyebrow reveal">Ce que je fais</div>
     <h2 class="sec-h reveal">Tout ce dont vous avez besoin,<br>un seul interlocuteur.</h2>
     <p class="sec-p reveal">Du site vitrine à l'application métier — je m'adapte à votre besoin, pas l'inverse.</p>
-    <div class="srv-grid reveal">
+    <div class="srv-grid reveal stagger-children">
       <div class="srv">
         <div class="srv-ico" style="background:rgba(37,99,235,.08)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><ellipse cx="12" cy="12" rx="4" ry="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
         <div class="srv-n">Site vitrine</div>
@@ -1260,7 +1280,7 @@ footer{
     <h2 class="sec-h reveal">Des prix clairs,<br>sans mauvaise surprise.</h2>
     <p class="sec-p reveal">Les prix ci-dessous sont des <strong>points de départ</strong> — chaque projet est différent. Utilisez le simulateur ci-dessous pour obtenir une estimation personnalisée en 2 minutes.</p>
     <p class="tarif-note reveal">Prix indicatifs · Options et fonctionnalités supplémentaires configurables via le simulateur · Devis ferme gratuit sous 24h.</p>
-    <div class="tarif-grid reveal">
+    <div class="tarif-grid reveal stagger-children">
 
       <div class="tarif-card">
         <div class="tarif-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--v)" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><ellipse cx="12" cy="12" rx="4" ry="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
@@ -1322,7 +1342,7 @@ footer{
   <div class="sec-in">
     <div class="eyebrow reveal">Ils me font confiance</div>
     <h2 class="sec-h reveal">Ce que disent<br>mes clients.</h2>
-    <div class="avis-grid reveal">
+    <div class="avis-grid reveal stagger-children">
 
       <div class="avis-card">
         <div class="avis-stars">★★★★★</div>
@@ -1369,7 +1389,7 @@ footer{
   <div class="sec-in">
     <div class="eyebrow reveal">Comment ça marche</div>
     <h2 class="sec-h reveal">De l'idée au site<br>en 4 étapes.</h2>
-    <div class="proc-grid reveal">
+    <div class="proc-grid reveal stagger-children">
       <div class="proc-item">
         <div class="proc-num">01</div>
         <div class="proc-title">Échange gratuit</div>
@@ -1520,7 +1540,6 @@ footer{
   <a href="#simulateur" class="btn-main" style="position:relative;z-index:1">🧮 Estimer mon projet →</a>
 </section>
 
-</main>
 </main>
 <!-- FOOTER -->
 <footer>
@@ -1850,5 +1869,144 @@ footer{
 })();
 </script>
 
+
+<!-- CURSOR JS -->
+<script>
+(function(){
+  if(!window.matchMedia('(pointer:fine)').matches) return;
+  var dot = document.createElement('div');
+  dot.className = 'cursor-dot';
+  var ring = document.createElement('div');
+  ring.className = 'cursor-ring';
+  document.body.appendChild(dot);
+  document.body.appendChild(ring);
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
+  function lerp(a,b,t){return a+(b-a)*t}
+  function animate(){
+    rx=lerp(rx,mx,0.12); ry=lerp(ry,my,0.12);
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+  document.addEventListener('mouseleave',function(){dot.style.opacity='0';ring.style.opacity='0';});
+  document.addEventListener('mouseenter',function(){dot.style.opacity='1';ring.style.opacity='1';});
+  document.querySelectorAll('a,button,.sim-type,.sim-opt,.sim-radio,.tarif-card,.blog-card').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(168,85,247,.8)';dot.style.transform='translate(-50%,-50%) scale(0)';});
+    el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(168,85,247,.5)';dot.style.transform='translate(-50%,-50%) scale(1)';});
+  });
+})();
+</script>
+
+<!-- TYPING EFFECT JS -->
+<script>
+(function(){
+  var el = document.getElementById('typed-word');
+  if(!el) return;
+  var words = ['artisans bretons.','commerçants locaux.','TPE du Finistère.','entrepreneurs bretons.'];
+  var wi=0, ci=0, deleting=false, pause=0;
+  function tick(){
+    if(pause>0){pause--;setTimeout(tick,50);return;}
+    var word = words[wi];
+    if(!deleting){
+      ci++;
+      el.textContent = word.slice(0,ci);
+      if(ci===word.length){deleting=true;pause=40;}
+      setTimeout(tick, 60+Math.random()*40);
+    } else {
+      ci--;
+      el.textContent = word.slice(0,ci);
+      if(ci===0){deleting=false;wi=(wi+1)%words.length;pause=8;}
+      setTimeout(tick, 35);
+    }
+  }
+  setTimeout(tick, 1800);
+})();
+</script>
+
+<!-- COUNTER ANIMATION JS -->
+<script>
+(function(){
+  var els = document.querySelectorAll('[data-count]');
+  if(!els.length) return;
+  var observed = false;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !observed){
+        observed = true;
+        els.forEach(function(el){
+          var target = parseInt(el.dataset.count);
+          var prefix = el.dataset.prefix||'';
+          var suffix = el.dataset.suffix||'';
+          var start = 0;
+          var duration = 1200;
+          var startTime = null;
+          function step(ts){
+            if(!startTime) startTime=ts;
+            var progress = Math.min((ts-startTime)/duration,1);
+            var ease = 1-Math.pow(1-progress,3);
+            var val = Math.round(start+(target-start)*ease);
+            el.textContent = prefix+val+suffix;
+            if(progress<1) requestAnimationFrame(step);
+            else el.textContent = prefix+target+suffix;
+          }
+          requestAnimationFrame(step);
+        });
+      }
+    });
+  },{threshold:0.5});
+  els.forEach(function(el){io.observe(el);});
+})();
+</script>
+
+<!-- ACTIVE NAV LINK JS -->
+<script>
+(function(){
+  var sections = document.querySelectorAll('section[id], div[id="simulateur"]');
+  var links = document.querySelectorAll('.nav-links a[href^="#"]');
+  if(!links.length) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id = e.target.getAttribute('id');
+        links.forEach(function(a){
+          a.classList.toggle('nav-active', a.getAttribute('href')==='#'+id);
+        });
+      }
+    });
+  },{threshold:0.3,rootMargin:'-64px 0px -40% 0px'});
+  sections.forEach(function(s){io.observe(s);});
+})();
+</script>
+
+<!-- PRESELECTEUR SIMULATEUR DEPUIS TARIFS JS -->
+<script>
+(function(){
+  var MAP = {'vitrine':'vitrine','app':'app','ecommerce':'ecommerce'};
+  document.querySelectorAll('.tarif-cta').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var card = a.closest('.tarif-card');
+      if(!card) return;
+      var name = card.querySelector('.tarif-name');
+      if(!name) return;
+      var txt = name.textContent.trim().toLowerCase();
+      var type = txt.indexOf('vitrine')>-1?'vitrine':txt.indexOf('app')>-1?'app':txt.indexOf('commerce')>-1?'ecommerce':null;
+      if(!type) return;
+      var target = document.querySelector('.sim-type[data-type="'+type+'"]');
+      if(!target) return;
+      setTimeout(function(){
+        document.querySelectorAll('.sim-type').forEach(function(t){t.classList.remove('active');});
+        target.classList.add('active');
+        target.click();
+      }, 100);
+    });
+  });
+})();
+</script>
+
+<!-- READING PROGRESS BAR (articles) -->
 </body>
 </html>

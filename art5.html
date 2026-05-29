@@ -77,6 +77,7 @@
 <link rel="stylesheet" href="/article.css">
 </head>
 <body>
+<div class="reading-progress" id="read-prog" aria-hidden="true"></div>
 <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:4px;background:var(--v);color:#fff;padding:8px 16px;border-radius:6px;font-size:.85rem;font-weight:600;z-index:9999">Aller au contenu</a>
 <nav aria-label="Navigation principale">
   <div class="nav-in">
@@ -183,5 +184,17 @@
   <p>© 2026 Axion App Studio · SIRET 914 511 639 00025 · Saint-Ségal, Finistère</p>
   <p style="margin-top:6px"><a href="/mentions-legales">Mentions légales</a> · <a href="/cgv">CGV</a> · <a href="/blog">Blog</a> · <a href="/">Accueil</a></p>
 </footer>
+<script>
+(function(){
+  var bar=document.getElementById('read-prog');
+  if(!bar) return;
+  window.addEventListener('scroll',function(){
+    var doc=document.documentElement;
+    var scrolled=doc.scrollTop||document.body.scrollTop;
+    var total=(doc.scrollHeight||document.body.scrollHeight)-doc.clientHeight;
+    bar.style.width=(total>0?Math.min(100,scrolled/total*100):0)+'%';
+  },{passive:true});
+})();
+</script>
 </body>
 </html>
